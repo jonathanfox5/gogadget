@@ -81,6 +81,7 @@ Coming in a few days...
   - [Windows](#windows)
   - [macOS](#macos)
   - [Linux](#linux)
+  - [Custom Installation Notes](#custom-installation-notes)
 - [Quick Start](#quick-start)
   - [Understanding Commands](#understanding-commands)
   - [_\[Advanced\]_ Short Names](#advanced-short-names)
@@ -194,6 +195,16 @@ gogadget
 ```sh
 gogadget install
 ```
+
+## Custom Installation Notes
+
+You should ignore this section if you are using the installation instructions for Windows, macOS or Linux. This is only to help anyone doing their own custom installation.
+
+Notes on Python version:
+
+- The tool is currently compatible with Python `3.10`, `3.11` and `3.12`.
+- `3.13` is **not** supported as the dependencies `ctranslate2` and `torch` do not currently provide compatible packages.
+- If you manually install gogadget and you get errors about either of these packages, a Python version issue is probably the cause.
 
 # Quick Start
 
@@ -906,8 +917,8 @@ gogadget
 
 Pull requests are welcome. Some basic requirements:
 
-- All code should be linted / formatted using [ruff](https://docs.astral.sh/ruff/). The `pyproject.toml` file in the repository contains project specific settings that should be automatically picked up by both the command line version and VSCode extension versions of ruff. The main ones are 100 line length, 4 spaces as intent and double quotes.
-- All code should be type checked by [mypy](https://www.mypy-lang.org).
+- All code should be linted / formatted using [ruff](https://docs.astral.sh/ruff/). The `pyproject.toml` file in the repository contains project specific settings that should be automatically picked up by both the command line version and VSCode extension versions of ruff. The main requirements are 100 line length, 4 spaces as intent, import linting and double quotes.
+- All code should be type checked by [mypy](https://www.mypy-lang.org). Support for `import-untyped` checking is disabled in `pyproject.toml` to avoid the need to generate stubs for third party libraries.
 
 # Acknowledgements
 
