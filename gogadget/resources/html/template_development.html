@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HZD Subtitles</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/color-modes.min.js"></script>
+    <script src="js/playaudio.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <header class="sticky-top">
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">HZD Subtitles</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  00 Main Quests
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#chapter-1">Chapter 1</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#chapter-2">Chapter 2</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#chapter-3">Chapter 3</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid"></div>
+    </header>
+    <main class="container-fluid">
+      <section id="instructions" class="row">
+        <p class="col fst-italic fw-lighter text-body-secondary">
+          Click on the speaker or the sentence to hear the audio and hover over
+          the sentence to get the translation
+        </p>
+      </section>
+      <section id="chapter-1">
+        <div class="row">
+          <h1 class="col">Chapter 1</h1>
+        </div>
+        <article class="row" id="scene1">
+          <div class="col">
+            <h2>Scene 1</h2>
+            <table class="table table-borderless table-sm">
+              <thead>
+                <th style="width: 10%"></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr onclick="playAudio('horse.mp3')">
+                  <th>Rost</th>
+                  <td
+                    data-bs-toggle="tooltip"
+                    data-bs-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <script src="js/enable-tooltips.min.js"></script>
+    </footer>
+  </body>
+</html>

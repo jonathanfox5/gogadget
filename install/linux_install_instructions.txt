@@ -1,0 +1,19 @@
+Linux Instructions
+==================
+
+1. Install uv using the following terminal command. This is a python package manager that is used to keep gogadget packages separate so that they don't interfere with your existing python installation.
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+2. Install ffmpeg using your package manager. This will depend on your distribution. For example:
+- Ubuntu based distributions: apt install ffmpeg
+- Fedora based distributions: dnf install ffmpeg
+- Arch based distributions: pacman -S ffmpeg
+
+3. Install gogadget using uv:
+uv tool install gogadget --python3.12
+
+4. You can then run the tool by typing the following command into your terminal:
+gogadget
+
+5. [Optional] You can install all of the models required for your chosen language. Type the following to get the instructions:
+gogadget install

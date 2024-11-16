@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "gogadget"
+version = "0.1.0"
+description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
+authors = ["Jonathan Fox"]
+readme = "README.md"
+license = "CC BY-NC-SA 4.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+keywords = ["language learning", "yt-dlp", "whisper", "anki", "frequency analysis", "priming"]
+homepage = "https://github.com/jonathanfox5/gogadget"
+repository = "https://github.com/jonathanfox5/gogadget"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+typer = "*"
+lemon_tizer = "*"
+yt-dlp = "*"
+genanki = "*"
+ffmpeg-python = "*"
+pandas = "*"
+openpyxl = "*"
+pysubs2 = "*"
+numpy = "^2"
+argostranslate = "*"
+whisperx-numpy2-compatibility = "*"
+
+[tool.poetry.scripts]
+gogadget = "gogadget.main:app"
+whispergg = "gogadget.whisper:cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+disable_error_code = "import-untyped"
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+target-version = "py310"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint]
+extend-select = ["I"]
