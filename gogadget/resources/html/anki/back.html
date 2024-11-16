@@ -1,0 +1,40 @@
+<div class="customCard cardBack">
+  <div class="horizontalPadding centerVertically targetWordContainer">
+    <span class="targetWord"> {{word}} </span>
+    <span class="wordAudioButtonBack"> {{word_audio}} </span>
+  </div>
+
+  <div class="dividerLine"></div>
+
+  <div class="horizontalPadding">
+    <div class="header">definition:</div>
+
+    <div class="indent">
+      <div>{{definition}}</div>
+    </div>
+  </div>
+  {{#screenshot}}
+		<div class="image">
+			{{screenshot}}
+		</div>
+	{{/screenshot}}
+		
+	{{^screenshot}}
+		<div class="dividerLine"></div>
+	{{/screenshot}}
+
+  <div class="horizontalPadding">
+    <div class="header centerVertically">example:</div>
+    <div class="indent">
+      <div class="centerVertically" style="position: relative; gap: 5px">
+        <span>{{sentence}}</span>
+        <span class="sentenceAudioButton">{{sentence_audio}}</span>
+      </div>
+      <div class="sentenceTranslation">{{hint:translation}}</div>
+    </div>
+  </div>
+
+  <div class="dividerLine"></div>
+
+  <div class="horizontalPadding"></div>
+</div>
