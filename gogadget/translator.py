@@ -1,9 +1,9 @@
 import warnings
 
-import argostranslate.package as pkg
-import argostranslate.translate as argos
+import argos_spacy_compatibility.package as pkg
+import argos_spacy_compatibility.translate as argos
 import pandas as pd
-from argostranslate.package import Package as pkg_type
+from argos_spacy_compatibility.package import Package as pkg_type
 from rich import print
 from rich.progress import track
 
