@@ -185,7 +185,7 @@ def split_sentence(input_str: str, filter_punctuation: bool) -> list[dict[str, s
 
 def remove_punctuation(input_string: str) -> str:
     """Remove punctuation from a string. Used if lemmatiser isn't being used.
-    Only allow letters/numbers (\w), hyphens (-), apostrophes(') and whitespace (\s)
+    Only allow letters/numbers, hyphens, apostrophes and whitespace
     Untested on languages that don't use the latin alphabet but google seems to claim it works...
     """
 

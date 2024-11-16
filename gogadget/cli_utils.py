@@ -106,7 +106,7 @@ class CliUtils:
         if (not allow_blank) and (path is None):
             raise typer.BadParameter("Cannot be blank!")
         if (must_be_file) and (not path.is_file()):
-            raise typer.BadParameter("Must be a file path. User provided path: `{path}`.")
+            raise typer.BadParameter(f"Must be a file path. User provided path: `{path}`.")
         if (must_be_directory) and (not path.is_dir()):
             raise typer.BadParameter(
                 f"Must be a valid directory (aka folder). User provided path: `{path}`."
