@@ -2,7 +2,7 @@
 Taken from: https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py
 Public domain licence: https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE
 
-File not been modified from source, aside from this.
+File not been modified from source, aside from this comment and removal of if __name__ == "__main__" block.
 
 Used to convert yt-dlp command line arguments into a dictionary that can be read by the python api.
 """
@@ -49,12 +49,3 @@ def cli_to_api(opts, cli_defaults=False):
             pp for pp in diff["postprocessors"] if pp not in default_opts["postprocessors"]
         ]
     return diff
-
-
-if __name__ == "__main__":
-    from pprint import pprint
-
-    print("\nThe arguments passed translate to:\n")
-    pprint(cli_to_api(sys.argv[1:]))
-    print("\nCombining these with the CLI defaults gives:\n")
-    pprint(cli_to_api(sys.argv[1:], True))

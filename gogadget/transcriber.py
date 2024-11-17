@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from rich import print
-
 from .cli_utils import CliUtils
 from .command_runner import run_command
 from .config import SUPPORTED_AUDIO_EXTS, SUPPORTED_VIDEO_EXTS
@@ -29,7 +27,8 @@ def transcriber(
 
     if len(path_list) == 0:
         CliUtils.print_warning("No supported file formats found")
-        print("Supported formats: ", supported_formats)
+        CliUtils.print_rich("Supported formats:")
+        CliUtils.print_rich(supported_formats)
         return []
 
     # Configure settings

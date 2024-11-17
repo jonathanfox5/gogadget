@@ -2,7 +2,6 @@ from pathlib import Path
 
 import ffmpeg
 import pandas as pd
-from rich import print
 from rich.progress import track
 
 from .cli_utils import CliUtils
@@ -93,12 +92,12 @@ def match_subtitles_to_media(input_directory: Path) -> dict[Path, Path]:
 
     if len(all_subs) == 0:
         CliUtils.print_warning("No supported subtitles in directory. Supported formats:")
-        print(SUPPORTED_SUB_EXTS)
+        CliUtils.print_rich(SUPPORTED_SUB_EXTS)
         return result
 
     if (len(all_videos) + len(all_audio)) == 0:
         CliUtils.print_warning("No media files in directory. Suppported formats:")
-        print(SUPPORTED_VIDEO_EXTS, SUPPORTED_AUDIO_EXTS)
+        CliUtils.print_rich(SUPPORTED_VIDEO_EXTS + SUPPORTED_AUDIO_EXTS)
         return result
 
     # Try to match a video file first. If we can't find it, move on to looking at audio files
