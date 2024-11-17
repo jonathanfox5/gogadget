@@ -194,7 +194,7 @@ class HelpText:
     word_examples = "[cyan][Optional][/] Directory of mp3 files of individual words to include in the Anki cards."
     transcribe_path = "Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files."
     whisper_model = "[cyan][Optional][/] Specify the whisper model to use for transcription. By default, this is large-v3 turbo but setting this to [cyan b]small[/] can significantly speed the process up at the cost of accuracy."
-    alignment_model = "[cyan][Optional][/] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you. Run [cyan bold]gogadget list-languages[/] to see supported languages."
+    alignment_model = "[cyan][Optional][/] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you."
     use_cuda = "[cyan][Optional][/] You can specify --gpu if you have a CUDA enabled Nvidia graphics card to significantly speed up the processing."
     subtitle_format = "[cyan][Optional][/] File format for the subtitles. You can specify vtt, srt, json, txt, tsv or aud. Vtt is the preferred format of the other tools in this suite."
     lemmatise = "[cyan][Optional][/] Enable or disable lemmatisation. If supported for your language, this is generally recommended."
@@ -226,6 +226,9 @@ class HelpText:
 # - If you don't want to a specify a value, just type two double quotes beside each other e.g.:
 #       language = ""
 #       word_exclude_spreadsheet = ""
+# - If you are on Windows, any paths will need to have any backslashes replaces with a double backslash e.g.:
+#       word_exclude_spreadsheet = "C:\\\\data\\\\exclude.xlsx"
+#   Since this is easy to forget about, the tool will try to fix it for you. However, it's always best if it is correct to begin with!
 #
 # WARNING
 # =======
@@ -241,15 +244,19 @@ class HelpText:
 #
 # output_directory needs to be a valid folder on your system.
 # You can use a dot "." if you want to use the current directory that you are running commands from.
+# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
+# The tool will try to fix it if you forget but it's best to get it correct to begin with!
 # Valid examples:
-#       output_directory = ""                       # No default, you will have to specify when running the command
-#       output_directory = "."                      # The outputs of the command will be written to the current folder
-#       output_directory = "immersion_videos"       # Outputs will be written to a sub folder called "immersion_videos"
-#       output_directory = "C:\\immersion_videos\\"   # Outputs will be written to a specific folder on the C:\\ drive
+#       output_directory = ""                         # No default, you will have to specify when running the command
+#       output_directory = "."                        # The outputs of the command will be written to the current folder
+#       output_directory = "immersion_videos"         # Outputs will be written to a sub folder called "immersion_videos"
+#       output_directory = "C:\\\\immersion_videos\\\\"   # Outputs will be written to a specific folder on the C:\\ drive
 """
     toml_external = """These can be set to "" if you don't want to use them or want to specify them every time.
+# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
+# The tool will try to fix it if you forget but it's best to get it correct to begin with!
 # Valid examples:
-#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"       # This will load a specific spreadsheet
+#       word_exclude_spreadsheet = "C:\\\\data\\\\exclude.xlsx"     # This will load a specific spreadsheet
 #       word_exclude_spreadsheet = ""                           # Don't use an exclude spreadsheet or only use when specified in the command
 """
     toml_anki = """extract_media and include_words_with_no_definition should either be set to "True" or "False" and MUST be wrapped in quotes. 
@@ -267,7 +274,7 @@ class HelpText:
 #       lemmatise = "True"
 #       lemmatise = "False"
 """
-    toml_downloader = """ These should either wrapped in quotes or set to double quotes to leave it blank. 
+    toml_downloader = """These should either wrapped in quotes or set to double quotes to leave it blank. 
 # Valid examples:
 #       format = "best[ext=mp4]"
 #       format = ""
@@ -278,7 +285,7 @@ class HelpText:
 #       whisper_use_gpu = "True"
 #
 # The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
-# These are best left alone unless you know what you are doing! Valid examples:
+# These settings are best left alone unless you know what you are doing! Valid examples:
 #       whisper_model = "small"
 #       alignment_model = ""
 """

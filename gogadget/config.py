@@ -1,4 +1,5 @@
 import importlib.metadata
+import re
 from importlib import import_module
 from pathlib import Path
 from typing import Any
@@ -31,10 +32,6 @@ SUPPORTED_VIDEO_EXTS = [
 SUPPORTED_AUDIO_EXTS = [".mp3", ".ogg", ".wav", ".opus", ".m4a", ".aac", ".aiff", ".flac"]
 SUPPORTED_SUB_EXTS = [".srt", ".vtt"]
 SUPPORTED_WORD_AUDIO_EXTS = [".mp3"]
-
-# TODO: [Release] Update help text to match toml changes
-# TODO: [Release] Update readme to match toml changes
-# TODO: [Release] Update example configs folder
 
 
 def get_version_number() -> str:
@@ -145,6 +142,11 @@ class ConfigFile:
                 for key, value in content.items():
                     if value is None:
                         value = ""
+
+                    # Escape any paths
+                    if isinstance(value, Path):
+                        value = re.sub(r"\\", r"\\\\", str(value))
+
                     result.add(key, str(value))
 
             return result
@@ -195,6 +197,7 @@ class ConfigFile:
         return output
 
     def read_defaults(self) -> None:
+        """Read the defaults values from a toml file"""
         config_file = self.get_config_file_path()
 
         if not config_file.exists():
@@ -202,14 +205,24 @@ class ConfigFile:
             return None
 
         config: dict = {}
+
+        parse_error = False
         try:
             config = rtoml.load(config_file)
-        except rtoml.TomlParsingError as e:
-            CliUtils.print_error(
-                "Could not read user config file. gogadget will use its own default values.\nYou may want to run `gogadget set-defaults --factory` to reset the user configuration.",
-                e,
-            )
-            return None
+        except rtoml.TomlParsingError:
+            parse_error = True
+
+        # Attempt to fix it, most likely culprit is escaped paths
+        if parse_error:
+            try:
+                self.fix_toml_paths(config_file)
+                config = rtoml.load(config_file)
+            except Exception as e:
+                CliUtils.print_error(
+                    "Could not read user config file. gogadget will use its own default values.\nYou may want to run `gogadget set-defaults --factory` to reset the user configuration.",
+                    e,
+                )
+                return None
 
         # We don't want this to cause a crash as we need the user to always be able to run gogadget set-defaults --factory
         # This runs every time, including before that command
@@ -304,6 +317,19 @@ class ConfigFile:
                 "Could not read configuration parameters.\nPlease fix your user config file and / or consider running `gogadget set-defaults --factory` to reset it.",
                 e,
             )
+
+    def fix_toml_paths(self, file_path: Path) -> None:
+        """Escapes any windows paths in the toml file"""
+        # Read the content of the file
+        with file_path.open("r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Replace single backslashes with double backslashes, ignoring existing double backslashes
+        escaped_content = re.sub(r"(?<!\\)\\(?!\\)", r"\\\\", content)
+
+        # Write the modified content back to the file
+        with file_path.open("w", encoding="utf-8") as f:
+            f.write(escaped_content)
 
     def read_path(
         self, toml_dict: dict, dict_key: str, default_value: Path | None, blank_is_none: bool = True

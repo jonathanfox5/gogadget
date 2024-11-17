@@ -282,48 +282,51 @@ The following example is my personal use case for producing priming materials pr
 
 As a "one off" task, I set up my default settings by running `gogadget set-defaults --custom`. I changed the following settings from the defaults. [the defaults are set for the widest compatibility, not for a specific workflow]
 
-```ini
+```toml
 [general]
-# Change language to target language (mine is Italian)
-language = it
-language_for_translations = en
-output_directory = .
+# Changed language to target language (mine is Italian)
+language = "it"
+language_for_translations = "en"
+output_directory = "."
 
 [external_resources]
 # Set the paths of the resources on my hard drive
-dictionary_file = /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Dictionaries/Migaku/Vicon_Ita_to_Eng_Dictionary.json
-word_audio_directory = /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Audio
-word_exclude_spreadsheet = /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Frequency_lists/ita_exclude.xlsx
+# Since this is the configuration for my windows pc, I need to replace backslashes with double backslashes
+# The tool *should* fix it if I only typed single backslashes but it's best to get it correct to begin with!
+word_exclude_spreadsheet = "C:\\languages\\it\\ita_exclude.xlsx"
+dictionary_file = "C:\\languages\\it\\it_to_en.json"
+word_audio_directory = "C:\\languages\\it\\word_audio"
 
 [anki]
-# Change the `include_words_with_no_definition` to False. By filtering out words not in the dictionary, this has the effect of filtering out proper nouns and non-target language words
-extract_media = True
-include_words_with_no_definition = False
-subs_offset_ms = 0
-subs_buffer_ms = 50
-max_cards_in_deck = 100
+# Changed the `include_words_with_no_definition` to False. By filtering out words not in the dictionary, this has the effect of filtering out proper nouns and non-target language words
+# The reason why this is not default behaviour is that it would cause Anki decks to have no cards if the user hasn't set a dictionary
+extract_media = "True"
+include_words_with_no_definition = "False"
+subs_offset_ms = "0"
+subs_buffer_ms = "50"
+max_cards_in_deck = "100"
 
 [lemmatiser]
 # Keep the settings in here as default but might be useful to tweak them for other languages
-lemmatise = True
-filter_out_non_alpha = True
-filter_out_stop_words = True
-convert_input_to_lower = True
-convert_output_to_lower = True
-return_just_first_word_of_lemma = True
+lemmatise = "True"
+filter_out_non_alpha = "True"
+filter_out_stop_words = "True"
+convert_input_to_lower = "True"
+convert_output_to_lower = "True"
+return_just_first_word_of_lemma = "True"
 
 [downloader]
 # I keep subtitle_language blank as I prefer to generate my own using `gogadget transcribe`
-advanced_options =
-format =
-subtitle_language =
+advanced_options = ""
+format = ""
+subtitle_language = ""
 
 [transcriber]
 # Change `whisper_use_gpu` to True on my windows PC which has an Nvidia GPU. This massively speeds up transcription but isn't compatible unless you have a GPU that can run CUDA
-whisper_model = deepdml/faster-whisper-large-v3-turbo-ct2
-alignment_model =
-subtitle_format = vtt
-whisper_use_gpu = True
+whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
+alignment_model = ""
+subtitle_format = "vtt"
+whisper_use_gpu = "True"
 ```
 
 Now that these parameters are set, they no longer need to be specified in the commands.
@@ -703,7 +706,7 @@ $ gogadget transcribe [OPTIONS]
 - `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
 - `-o, --output-directory PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
 - `-w, --whisper-model TEXT`: [Optional] Specify the whisper model to use for transcription. By default, this is large-v3 turbo but setting this to `small` can significantly speed the process up at the cost of accuracy.
-- `-a, --align-model TEXT`: [Optional] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you. Run `gogadget list-languages` to see supported languages.
+- `-a, --align-model TEXT`: [Optional] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you.
 - `-g, --gpu / -c, --cpu`: [Optional] You can specify `--gpu` if you have a CUDA enabled Nvidia graphics card to significantly speed up the processing.
 - `-f, --subtitle-format TEXT`: [Optional] File format for the subtitles. You can specify `vtt`, `srt`, `json`, `txt`, `tsv` or `aud`. `vtt` is the preferred format of the other tools in this suite.
 - `--help`: Show this message and exit.
@@ -824,70 +827,118 @@ $ gogadget update-downloader [OPTIONS]
 
 # Default Parameters
 
-```ini
+```toml
 [instructions]
-# Main instruction:
-# - Set your default values in this file
+# IMPORTANT INFORMATION
+# =====================
+# - All values are text and should be therefore be wrapped in double quotes. Valid examples:
+#       language = "en"
+#       lemmatise = "True"
+#       lemmatise = "False"
+#       subs_offset_ms = "0"
+#       subs_offset_ms = "50"
+# - If you don't want to a specify a value, just type two double quotes beside each other e.g.:
+#       language = ""
+#       word_exclude_spreadsheet = ""
+# - If you are on Windows, any paths will need to have any backslashes replaces with a double backslash e.g.:
+#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"
+#   Since this is easy to forget about, the tool will try to fix it for you. However, it's always best if it is correct to begin with!
 #
-# Some tips:
-# - Everything in here is treated as a string.
-#   Therefore, do ~~~NOT~~~ include 'quote marks' around any of your entries, it will just break things!
-# - You can type True or False for settings that are on/off (e.g. lemmatise, extract_media, etc.)
-# - The script will attempt to fall back to sensible defaults if it can't read your values.
-#   If your setting appears to not be read by the tool, this is probably the reason!
-# - When specifying values in [external_resources], you can type None to show that the functionality is being used.
-#   This does not work in any other section.
-#   (Reasoning: This behaviour simplifies the user interface for less experienced users.
-#   If you are reading this, you are being treated as an 'advanced user'!)
-#
-# ~~~~ WARNING ~~~~ It is possible to break the tool by setting incorrect values in here
-#   Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour
+# WARNING
+# =======
+# It is possible to break the tool by setting incorrect values in here.
+# However, the script will attempt to fall back to sensible defaults if it can't read your values.
+# If your setting appears to not be read by the tool, this is probably the reason!
+# Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour
 
 [general]
-# language and language_for_translations should be a valid two letter language code
-#   they can be left blank if desired
-#   for a list of supported languages, run `gogadget list-languages` (without quotes)
+# language and language_for_translations either be a valid two letter language code or be set to "".
+# Valid examples:
+#       language = "en"
+#       language = ""
+# For a list of supported languages, please see the readme or run `gogadget list-languages` (without quotes)
 #
-# output_directory needs to be a valid folder on your system
-#   do ~~~not~~~ include quote marks around the path
-#   default is a period / dot. this represents the user's current working directory
-language =
-language_for_translations = en
-output_directory = .
+# output_directory needs to be a valid folder on your system.
+# You can use a dot "." if you want to use the current directory that you are running commands from.
+# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
+# The tool will try to fix it if you forget but it's best to get it correct to begin with!
+# Valid examples:
+#       output_directory = ""                         # No default, you will have to specify when running the command
+#       output_directory = "."                        # The outputs of the command will be written to the current folder
+#       output_directory = "immersion_videos"         # Outputs will be written to a sub folder called "immersion_videos"
+#       output_directory = "C:\\immersion_videos\\"   # Outputs will be written to a specific folder on the C:\ drive
+
+language = ""
+language_for_translations = "en"
+output_directory = "."
 
 [external_resources]
-# these parameters can be set to `none` (without quotes) if you don't want to use them
-# setting parameters to `none` only works in this section, see instructions at top for explanation
-# if you specify a path for these parameters, do ~~~not~~~ include quote marks around the path
-dictionary_file = None
-word_audio_directory = None
-word_exclude_spreadsheet = None
+# These can be set to "" if you don't want to use them or want to specify them every time.
+# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
+# The tool will try to fix it if you forget but it's best to get it correct to begin with!
+# Valid examples:
+#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"     # This will load a specific spreadsheet
+#       word_exclude_spreadsheet = ""                           # Don't use an exclude spreadsheet or only use when specified in the command
+
+word_exclude_spreadsheet = ""
+dictionary_file = ""
+word_audio_directory = ""
 
 [anki]
-extract_media = True
-include_words_with_no_definition = True
-subs_offset_ms = 0
-subs_buffer_ms = 50
-max_cards_in_deck = 100
+# extract_media and include_words_with_no_definition should either be set to "True" or "False" and MUST be wrapped in quotes.
+# Valid examples:
+#       extract_media = "True"
+#       include_words_with_no_definition = "False"
+#
+# subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes.
+# Valid examples:
+#       subs_offset_ms = "0"
+#       subs_buffer_ms = "50
+
+extract_media = "True"
+include_words_with_no_definition = "True"
+subs_offset_ms = "0"
+subs_buffer_ms = "50"
+max_cards_in_deck = "100"
 
 [lemmatiser]
-lemmatise = True
-filter_out_non_alpha = True
-filter_out_stop_words = True
-convert_input_to_lower = True
-convert_output_to_lower = True
-return_just_first_word_of_lemma = True
+# All values should be set to "True" or "False" and MUST be wrapped in quotes.
+# Valid examples:
+#       lemmatise = "True"
+#       lemmatise = "False"
+
+lemmatise = "True"
+filter_out_non_alpha = "True"
+filter_out_stop_words = "True"
+convert_input_to_lower = "True"
+convert_output_to_lower = "True"
+return_just_first_word_of_lemma = "True"
 
 [downloader]
-advanced_options =
-format =
-subtitle_language =
+# These should either wrapped in quotes or set to double quotes to leave it blank.
+# Valid examples:
+#       format = "best[ext=mp4]"
+#       format = ""
+
+advanced_options = ""
+format = ""
+subtitle_language = ""
 
 [transcriber]
-whisper_model = deepdml/faster-whisper-large-v3-turbo-ct2
-alignment_model =
-subtitle_format = vtt
-whisper_use_gpu = False
+# whisper_use_gpu should either be set to "True" or "False" and MUST be wrapped in quotes.
+# Valid examples:
+#       whisper_use_gpu = "False"
+#       whisper_use_gpu = "True"
+#
+# The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
+# These settings are best left alone unless you know what you are doing! Valid examples:
+#       whisper_model = "small"
+#       alignment_model = ""
+
+whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
+alignment_model = ""
+subtitle_format = "vtt"
+whisper_use_gpu = "False"
 ```
 
 # Developer
