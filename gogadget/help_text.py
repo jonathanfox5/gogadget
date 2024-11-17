@@ -229,8 +229,8 @@ class HelpText:
 #
 # WARNING
 # =======
-# It is possible to break the tool by setting incorrect values in here
-# The script will attempt to fall back to sensible defaults if it can't read your values.
+# It is possible to break the tool by setting incorrect values in here.
+# However, the script will attempt to fall back to sensible defaults if it can't read your values.
 # If your setting appears to not be read by the tool, this is probably the reason!
 # Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour"""
     toml_general = """language and language_for_translations either be a valid two letter language code or be set to "". 

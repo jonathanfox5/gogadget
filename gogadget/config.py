@@ -213,6 +213,7 @@ class ConfigFile:
 
         # We don't want this to cause a crash as we need the user to always be able to run gogadget set-defaults --factory
         # This runs every time, including before that command
+        # If there is an issue, the tool will revert to the defaults set in the classes
         try:
             general = config["general"]
             self.general.language = self.read_str(general, "language", self.general.language)
@@ -300,7 +301,7 @@ class ConfigFile:
 
         except Exception as e:
             CliUtils.print_error(
-                "Could not read configuration parameters.\nPlease fix your user config file and consider running `gogadget set-defaults --factory` to reset it.",
+                "Could not read configuration parameters.\nPlease fix your user config file and / or consider running `gogadget set-defaults --factory` to reset it.",
                 e,
             )
 
