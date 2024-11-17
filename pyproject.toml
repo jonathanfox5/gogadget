@@ -27,7 +27,6 @@ numpy = "^2"
 argos-spacy-compatibility = "*"
 whisperx-numpy2-compatibility = "*"
 pip = "*"
-tomli = "^2.1.0"
 rtoml = "^0.11.0"
 tomlkit = "^0.13.2"
 
