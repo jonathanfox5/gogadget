@@ -214,33 +214,74 @@ class HelpText:
         "[cyan][Optional][/] List the languages supported by each module of the tool."
     )
 
-    # .ini file
-    ini_instructions = """# Main instruction:
-# - Set your default values in this file
-# 
-# Some tips:
-# - Everything in here is treated as a string.
-#   Therefore, do ~~~NOT~~~ include 'quote marks' around any of your entries, it will just break things!
-# - You can type True or False for settings that are on/off (e.g. lemmatise, extract_media, etc.)
-# - The script will attempt to fall back to sensible defaults if it can't read your values.
-#   If your setting appears to not be read by the tool, this is probably the reason!
-# - When specifying values in [external_resources], you can type None to show that the functionality is being used.
-#   This does not work in any other section.
-#   (Reasoning: This behaviour simplifies the user interface for less experienced users.
-#   If you are reading this, you are being treated as an 'advanced user'!)
+    # .toml file
+    toml_instructions = """IMPORTANT INFORMATION
+# =====================
+# - All values are text and should be therefore be wrapped in double quotes. Valid examples:
+#       language = "en"
+#       lemmatise = "True"
+#       lemmatise = "False"
+#       subs_offset_ms = "0"
+#       subs_offset_ms = "50"
+# - If you don't want to a specify a value, just type two double quotes beside each other e.g.:
+#       language = ""
+#       word_exclude_spreadsheet = ""
 #
-# ~~~~ WARNING ~~~~ It is possible to break the tool by setting incorrect values in here
-#   Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour"""
-    ini_general = """# language and language_for_translations should be a valid two letter language code
-#   they can be left blank if desired
-#   for a list of supported languages, run `gogadget list-languages` (without quotes)
+# WARNING
+# =======
+# It is possible to break the tool by setting incorrect values in here
+# The script will attempt to fall back to sensible defaults if it can't read your values.
+# If your setting appears to not be read by the tool, this is probably the reason!
+# Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour"""
+    toml_general = """language and language_for_translations either be a valid two letter language code or be set to "". 
+# Valid examples:
+#       language = "en"
+#       language = ""
+# For a list of supported languages, please see the readme or run `gogadget list-languages` (without quotes)
 #
-# output_directory needs to be a valid folder on your system
-#   do ~~~NOT~~~ include quote marks around the path
-#   default is a period / dot. This represents the user's current working directory"""
-    ini_external = """# these parameters can be set to `none` (without quotes) if you don't want to use them
-# setting parameters to `none` only works in this section, see instructions at top for explanation
-# if you specify a path for these parameters, do ~~~NOT~~~ include quote marks around the path"""
+# output_directory needs to be a valid folder on your system.
+# You can use a dot "." if you want to use the current directory that you are running commands from.
+# Valid examples:
+#       output_directory = ""                       # No default, you will have to specify when running the command
+#       output_directory = "."                      # The outputs of the command will be written to the current folder
+#       output_directory = "immersion_videos"       # Outputs will be written to a sub folder called "immersion_videos"
+#       output_directory = "C:\\immersion_videos\\"   # Outputs will be written to a specific folder on the C:\\ drive
+"""
+    toml_external = """These can be set to "" if you don't want to use them or want to specify them every time.
+# Valid examples:
+#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"       # This will load a specific spreadsheet
+#       word_exclude_spreadsheet = ""                           # Don't use an exclude spreadsheet or only use when specified in the command
+"""
+    toml_anki = """extract_media and include_words_with_no_definition should either be set to "True" or "False" and MUST be wrapped in quotes. 
+# Valid examples:
+#       extract_media = "True"
+#       include_words_with_no_definition = "False"
+#
+# subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes. 
+# Valid examples:
+#       subs_offset_ms = "0"
+#       subs_buffer_ms = "50
+"""
+    toml_lemmatiser = """All values should be set to "True" or "False" and MUST be wrapped in quotes.
+# Valid examples:
+#       lemmatise = "True"
+#       lemmatise = "False"
+"""
+    toml_downloader = """ These should either wrapped in quotes or set to double quotes to leave it blank. 
+# Valid examples:
+#       format = "best[ext=mp4]"
+#       format = ""
+"""
+    toml_transcriber = """whisper_use_gpu should either be set to "True" or "False" and MUST be wrapped in quotes. 
+# Valid examples:
+#       whisper_use_gpu = "False"
+#       whisper_use_gpu = "True"
+#
+# The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
+# These are best left alone unless you know what you are doing! Valid examples:
+#       whisper_model = "small"
+#       alignment_model = ""
+"""
 
 
 class SupportedLanguages:

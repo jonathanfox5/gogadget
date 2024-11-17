@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+from typing import Any
 
 import typer
 from rich import print
@@ -15,6 +16,11 @@ class CliUtils:
         cleaned = input_str.strip()
 
         return cleaned
+
+    @staticmethod
+    def print_rich(item: Any) -> None:
+        """Print an object using rich's formatting"""
+        print(item)
 
     @staticmethod
     def print_status(message: str) -> None:

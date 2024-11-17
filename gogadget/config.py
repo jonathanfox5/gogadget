@@ -1,15 +1,16 @@
-import configparser
 import importlib.metadata
 from importlib import import_module
 from pathlib import Path
+from typing import Any
 
+import rtoml
 import typer
 
 from .cli_utils import CliUtils
 from .command_runner import program_exists, run_command
 from .help_text import HelpText
 
-"""Simple app metadata"""
+"""Metadata"""
 APP_NAME = "gogadget"
 
 """Supported file formats"""
@@ -30,6 +31,10 @@ SUPPORTED_VIDEO_EXTS = [
 SUPPORTED_AUDIO_EXTS = [".mp3", ".ogg", ".wav", ".opus", ".m4a", ".aac", ".aiff", ".flac"]
 SUPPORTED_SUB_EXTS = [".srt", ".vtt"]
 SUPPORTED_WORD_AUDIO_EXTS = [".mp3"]
+
+# TODO: [Release] Update help text to match toml changes
+# TODO: [Release] Update readme to match toml changes
+# TODO: [Release] Update example configs folder
 
 
 def get_version_number() -> str:
@@ -88,7 +93,7 @@ class ConfigFile:
 
     def get_config_file_path(self) -> Path:
         """Get the default path name for the config file"""
-        config_file = ConfigFile.CONFIG_DIRECTORY / "gogadget.ini"
+        config_file = ConfigFile.CONFIG_DIRECTORY / f"{APP_NAME}.toml"
 
         return config_file
 
@@ -118,147 +123,242 @@ class ConfigFile:
 
         if config_file.exists() and config_file.is_file():
             config_file.unlink()
-            print("Config file deleted. Will be re-generated next time the program is launched.")
+            CliUtils.print_rich(
+                "Config file deleted. Will be re-generated next time the program is launched."
+            )
 
     def write_defaults(self) -> None:
-        """Write the factory defaults to the config file in .ini format"""
+        """Write the factory defaults to the config file in .toml format"""
 
+        # Since this is run on every load but rarely used, only import within the function
+        import tomlkit
+        from tomlkit.items import Table
+
+        # Helper function to pull together a table (section) of the toml file
+        # Write everything as a string to make it easier for novices to edit. We will convert it later.
+        def create_table(content: dict[str, Any] | None, comment_str: str | None = None) -> Table:
+            result = tomlkit.table()
+
+            if comment_str:
+                result.add(tomlkit.comment(comment_str))
+            if content:
+                for key, value in content.items():
+                    if value is None:
+                        value = ""
+                    result.add(key, str(value))
+
+            return result
+
+        # Create config file if it doesn't currently exist
         file_path = self.create_config_file()
 
-        config = configparser.ConfigParser(allow_no_value=True)
-        config.add_section("instructions")
-        config.add_section("general")
-        config.set("general", HelpText.ini_instructions, None)
+        doc = tomlkit.document()
+        doc.add("instructions", create_table(None, HelpText.toml_instructions))
+        doc.add(
+            "general", create_table(self.get_object_values(self.general), HelpText.toml_general)
+        )
+        doc.add(
+            "external_resources",
+            create_table(self.get_object_values(self.external_resources), HelpText.toml_external),
+        )
+        doc.add("anki", create_table(self.get_object_values(self.anki), HelpText.toml_anki))
+        doc.add(
+            "lemmatiser",
+            create_table(self.get_object_values(self.lemmatiser), HelpText.toml_lemmatiser),
+        )
+        doc.add(
+            "downloader",
+            create_table(self.get_object_values(self.downloader), HelpText.toml_downloader),
+        )
+        doc.add(
+            "transcriber",
+            create_table(self.get_object_values(self.transcriber), HelpText.toml_transcriber),
+        )
 
-        config["general"] = {HelpText.ini_general: None} | self.get_object_values(self.general)  # type: ignore
-        config["external_resources"] = {HelpText.ini_external: None} | self.get_object_values(
-            self.external_resources
-        )  # type: ignore
-        config["anki"] = self.get_object_values(self.anki)
-        config["lemmatiser"] = self.get_object_values(self.lemmatiser)
-        config["downloader"] = self.get_object_values(self.downloader)
-        config["transcriber"] = self.get_object_values(self.transcriber)
+        with file_path.open("w", encoding="utf-8") as f:
+            tomlkit.dump(doc, f)
 
-        # Case sensitive stuff here
-        config.optionxform = str  # type: ignore
-        config.set("instructions", HelpText.ini_instructions, None)
-
-        with file_path.open("w") as f:
-            config.write(f)
-
-    def get_object_values(self, defaults_class: object) -> dict[str, str]:
+    def get_object_values(self, defaults_class: object) -> dict[str, Any]:
         """Get the non-built in parameters from an object
 
         Be careful if the object has both parameters and functions.
         This is designed to work with objects with parameters only.
         """
 
-        output: dict = {}
+        output: dict[str, Any] = {}
         for key, value in vars(defaults_class).items():
             if not key.startswith("__"):
-                output[key] = str(value)
+                if isinstance(value, Path):
+                    value = str(value)
+                output[key] = value
 
         return output
 
-    def read_optional_path(
-        self, section: configparser.SectionProxy, param_name: str
-    ) -> Path | None:
-        """Read path from ini file but return None if ini string = 'None'"""
-        value = section.get(param_name, "none")
-        value = value.lower()
-
-        if value == "none":
-            return None
-
-        return Path(value)
-
     def read_defaults(self) -> None:
-        """Read default values in from the user ini file"""
-
         config_file = self.get_config_file_path()
 
         if not config_file.exists():
             CliUtils.print_error("Could not read configuration file. Defaults have not been loaded")
             return None
 
+        config: dict = {}
         try:
-            config = configparser.ConfigParser()
-            config.read(config_file)
-
-            general = config["general"]
-            self.general.language = general.get("language", self.general.language)
-            self.general.language_for_translations = general.get(
-                "language_for_translations", self.general.language_for_translations
+            config = rtoml.load(config_file)
+        except rtoml.TomlParsingError as e:
+            CliUtils.print_error(
+                "Could not read user config file. gogadget will use its own default values.\nYou may want to run `gogadget set-defaults --factory` to reset the user configuration.",
+                e,
             )
-            self.general.output_directory = Path(general.get("output_directory", ""))
+            return None
+
+        # We don't want this to cause a crash as we need the user to always be able to run gogadget set-defaults --factory
+        # This runs every time, including before that command
+        try:
+            general = config["general"]
+            self.general.language = self.read_str(general, "language", self.general.language)
+            self.general.language_for_translations = self.read_str(
+                general, "language_for_translations", self.general.language_for_translations
+            )
+            self.general.output_directory = self.read_path(
+                general, "output_directory", self.general.output_directory, blank_is_none=False
+            )  # type: ignore
 
             external_resources = config["external_resources"]
-            self.external_resources.dictionary_file = self.read_optional_path(
-                external_resources, "dictionary_file"
+            self.external_resources.dictionary_file = self.read_path(
+                external_resources, "dictionary_file", self.external_resources.dictionary_file
             )
-            self.external_resources.word_audio_directory = self.read_optional_path(
-                external_resources, "word_audio_directory"
+            self.external_resources.word_audio_directory = self.read_path(
+                external_resources,
+                "word_audio_directory",
+                self.external_resources.word_audio_directory,
             )
-            self.external_resources.word_exclude_spreadsheet = self.read_optional_path(
-                external_resources, "word_exclude_spreadsheet"
+            self.external_resources.word_exclude_spreadsheet = self.read_path(
+                external_resources,
+                "word_exclude_spreadsheet",
+                self.external_resources.word_exclude_spreadsheet,
             )
 
             anki = config["anki"]
-            self.anki.extract_media = anki.getboolean("extract_media", self.anki.extract_media)
-            self.anki.include_words_with_no_definition = anki.getboolean(
-                "include_words_with_no_definition", self.anki.include_words_with_no_definition
+            self.anki.extract_media = self.read_bool(anki, "extract_media", self.anki.extract_media)
+            self.anki.include_words_with_no_definition = self.read_bool(
+                anki, "include_words_with_no_definition", self.anki.include_words_with_no_definition
             )
-            self.anki.subs_offset_ms = anki.getint("subs_offset_ms", self.anki.subs_offset_ms)
-            self.anki.subs_buffer_ms = anki.getint("subs_buffer_ms", self.anki.subs_buffer_ms)
-            self.anki.max_cards_in_deck = anki.getint(
-                "max_cards_in_deck", self.anki.max_cards_in_deck
+            self.anki.subs_offset_ms = self.read_int(
+                anki, "subs_offset_ms", self.anki.subs_offset_ms
+            )
+            self.anki.subs_buffer_ms = self.read_int(
+                anki, "subs_buffer_ms", self.anki.subs_buffer_ms
+            )
+            self.anki.max_cards_in_deck = self.read_int(
+                anki, "max_cards_in_deck", self.anki.max_cards_in_deck
             )
 
             lemmatiser = config["lemmatiser"]
-            self.lemmatiser.lemmatise = lemmatiser.getboolean(
-                "lemmatise", self.lemmatiser.lemmatise
+            self.lemmatiser.lemmatise = self.read_bool(
+                lemmatiser, "lemmatise", self.lemmatiser.lemmatise
             )
-            self.lemmatiser.filter_out_non_alpha = lemmatiser.getboolean(
-                "filter_out_non_alpha", self.lemmatiser.filter_out_non_alpha
+            self.lemmatiser.filter_out_non_alpha = self.read_bool(
+                lemmatiser, "filter_out_non_alpha", self.lemmatiser.filter_out_non_alpha
             )
-            self.lemmatiser.filter_out_stop_words = lemmatiser.getboolean(
-                "filter_out_stop_words", self.lemmatiser.filter_out_stop_words
+            self.lemmatiser.filter_out_stop_words = self.read_bool(
+                lemmatiser, "filter_out_stop_words", self.lemmatiser.filter_out_stop_words
             )
-            self.lemmatiser.convert_input_to_lower = lemmatiser.getboolean(
-                "convert_input_to_lower", self.lemmatiser.convert_input_to_lower
+            self.lemmatiser.convert_input_to_lower = self.read_bool(
+                lemmatiser, "convert_input_to_lower", self.lemmatiser.convert_input_to_lower
             )
-            self.lemmatiser.convert_output_to_lower = lemmatiser.getboolean(
-                "convert_output_to_lower", self.lemmatiser.convert_output_to_lower
+            self.lemmatiser.convert_output_to_lower = self.read_bool(
+                lemmatiser, "convert_output_to_lower", self.lemmatiser.convert_output_to_lower
             )
-            self.lemmatiser.return_just_first_word_of_lemma = lemmatiser.getboolean(
-                "return_just_first_word_of_lemma", self.lemmatiser.return_just_first_word_of_lemma
+            self.lemmatiser.return_just_first_word_of_lemma = self.read_bool(
+                lemmatiser,
+                "return_just_first_word_of_lemma",
+                self.lemmatiser.return_just_first_word_of_lemma,
             )
 
             downloader = config["downloader"]
-            self.downloader.advanced_options = downloader.get(
-                "advanced_options", self.downloader.advanced_options
+            self.downloader.advanced_options = self.read_str(
+                downloader, "advanced_options", self.downloader.advanced_options
             )
-            self.downloader.format = downloader.get("format", self.downloader.format)
-            self.downloader.subtitle_language = downloader.get(
-                "subtitle_language", self.downloader.subtitle_language
+            self.downloader.format = self.read_str(downloader, "format", self.downloader.format)
+            self.downloader.subtitle_language = self.read_str(
+                downloader, "subtitle_language", self.downloader.subtitle_language
             )
 
             transcriber = config["transcriber"]
-            self.transcriber.whisper_model = transcriber.get(
-                "whisper_model", self.transcriber.whisper_model
+            self.transcriber.whisper_model = self.read_str(
+                transcriber, "whisper_model", self.transcriber.whisper_model
             )
-            self.transcriber.alignment_model = transcriber.get(
-                "alignment_model", self.transcriber.alignment_model
+            self.transcriber.alignment_model = self.read_str(
+                transcriber, "alignment_model", self.transcriber.alignment_model
             )
-            self.transcriber.subtitle_format = transcriber.get(
-                "subtitle_format", self.transcriber.subtitle_format
+            self.transcriber.subtitle_format = self.read_str(
+                transcriber, "subtitle_format", self.transcriber.subtitle_format
             )
-            self.transcriber.whisper_use_gpu = transcriber.getboolean(
-                "whisper_use_gpu", self.transcriber.whisper_use_gpu
+            self.transcriber.whisper_use_gpu = self.read_bool(
+                transcriber, "whisper_use_gpu", self.transcriber.whisper_use_gpu
             )
 
         except Exception as e:
-            CliUtils.print_error("Could not read configuration parameters", e)
+            CliUtils.print_error(
+                "Could not read configuration parameters.\nPlease fix your user config file and consider running `gogadget set-defaults --factory` to reset it.",
+                e,
+            )
+
+    def read_path(
+        self, toml_dict: dict, dict_key: str, default_value: Path | None, blank_is_none: bool = True
+    ) -> Path | None:
+        value = toml_dict.get(dict_key)
+        """Read value from a dictionary and convert it to path. If it's blank, change return type based upon blank_is_none"""
+
+        if value is None:
+            # Nothing found in the dictionary, return the default value, regardless of value of blank_is_none
+            return default_value
+
+        # Convert whatever we have to a string and remove all whitespace
+        value = str(value).strip()
+
+        if value != "":
+            # Not blank, convert it to a path and return
+            return Path(value)
+        elif blank_is_none:
+            # It's blank and we have decided that blank should be treated as none
+            return None
+        else:
+            # Otherwise, blank is blank
+            # Path("") is actually equivalent to Path(".")
+            # Therefore, let's be safe and just return the default value
+            return default_value
+
+    def read_bool(self, toml_dict: dict, dict_key: str, default_value: bool) -> bool:
+        """Get a value from a dictionary. If it's a bool, return it. If not, try to convert the string into the name of a bool type"""
+        value = toml_dict.get(dict_key, default_value)
+
+        if isinstance(value, bool):
+            return value
+
+        if isinstance(value, str):
+            value = value.lower().strip()
+
+            if value == "true":
+                return True
+            elif value == "false":
+                return False
+
+        # Unclear what we have, just return the default
+        return default_value
+
+    def read_int(self, toml_dict: dict, dict_key: str, default_value: int) -> int:
+        """Get a value from a dictionary and convert to int. If key not present, return default. Return default if we can't convert it to int."""
+        try:
+            value = int(toml_dict.get(dict_key, default_value))
+            return value
+        except ValueError:
+            return default_value
+
+    def read_str(self, toml_dict: dict, dict_key: str, default_value: str) -> str:
+        """Get a value from a dictionary and convert to str and strip whitespace. Return default value if key isn't present in dict."""
+        value = str(toml_dict.get(dict_key, default_value)).strip()
+        return value
 
     class general:
         """Object to hold default values. Pre-initialised with factory defaults"""
@@ -270,9 +370,9 @@ class ConfigFile:
     class external_resources:
         """Object to hold default values. Pre-initialised with factory defaults"""
 
+        word_exclude_spreadsheet: Path | None = None
         dictionary_file: Path | None = None
         word_audio_directory: Path | None = None
-        word_exclude_spreadsheet: Path | None = None
 
     class anki:
         """Object to hold default values. Pre-initialised with factory defaults"""
