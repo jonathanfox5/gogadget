@@ -4,7 +4,6 @@ import shlex
 from pathlib import Path
 
 import pandas as pd
-from rich import print
 
 from .cli_utils import CliUtils
 
@@ -104,7 +103,8 @@ def list_files_with_extension(
                 CliUtils.print_error(
                     f"File is not a supported {file_description_text} file! User provided path: {str(input_path)}"
                 )
-                print(f"Supported {file_description_text} file types: ", valid_suffixes)
+                CliUtils.print_rich(f"Supported {file_description_text} file types:")
+                CliUtils.print_rich(valid_suffixes)
 
         return [input_path]
 
@@ -125,7 +125,8 @@ def list_files_with_extension(
                 CliUtils.print_error(
                     f"No {file_description_text} supported files found in directory! User provided path: {str(input_path)}."
                 )
-                print(f"Supported {file_description_text} file types: ", valid_suffixes)
+                CliUtils.print_rich(f"Supported {file_description_text} file types:")
+                CliUtils.print_rich(valid_suffixes)
 
         return path_list
     else:

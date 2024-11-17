@@ -2,7 +2,6 @@ from importlib import import_module
 from pathlib import Path
 
 import typer
-from rich import print
 from typing_extensions import Annotated
 
 from .cli_utils import CliUtils
@@ -614,19 +613,19 @@ def list_languages(
         ),
     ] = False,
 ):
-    print(SupportedLanguages.common_explanation)
-    print(SupportedLanguages.get_common_languages())
+    CliUtils.print_rich(SupportedLanguages.common_explanation)
+    CliUtils.print_rich(SupportedLanguages.get_common_languages())
 
     if detailed:
-        print("\n")
-        print(SupportedLanguages.whisper_explanation)
-        print(SupportedLanguages.whisper_languages)
-        print("\n")
-        print(SupportedLanguages.spacy_explanation)
-        print(SupportedLanguages.spacy_languages)
-        print("\n")
-        print(SupportedLanguages.argos_explanation)
-        print(SupportedLanguages.argos_languages)
+        CliUtils.print_rich("\n")
+        CliUtils.print_rich(SupportedLanguages.whisper_explanation)
+        CliUtils.print_rich(SupportedLanguages.whisper_languages)
+        CliUtils.print_rich("\n")
+        CliUtils.print_rich(SupportedLanguages.spacy_explanation)
+        CliUtils.print_rich(SupportedLanguages.spacy_languages)
+        CliUtils.print_rich("\n")
+        CliUtils.print_rich(SupportedLanguages.argos_explanation)
+        CliUtils.print_rich(SupportedLanguages.argos_languages)
 
 
 @app.command(no_args_is_help=True, rich_help_panel="Configuration", help=HelpText.set_defaults)
@@ -665,7 +664,7 @@ Define callbacks and subcommands.
 def version_callback(value: bool):
     """Return version number"""
     if value:
-        print(get_version_number())
+        CliUtils.print_rich(get_version_number())
         raise typer.Exit()
 
 

@@ -4,7 +4,6 @@ import argos_spacy_compatibility.package as pkg
 import argos_spacy_compatibility.translate as argos
 import pandas as pd
 from argos_spacy_compatibility.package import Package as pkg_type
-from rich import print
 from rich.progress import track
 
 from .cli_utils import CliUtils
@@ -83,7 +82,8 @@ def install(from_lang: str, to_lang: str) -> bool:
         # If we do have a translation route, install the languages
         install_languages(required_packages)
 
-    print("Translation route achieved: ", required_packages)
+    CliUtils.print_rich("Translation route achieved:")
+    CliUtils.print_rich(required_packages)
 
     return True
 
@@ -92,7 +92,7 @@ def install_languages(required_packages: list[pkg_type]):
     """Install each argos package in the list"""
 
     for package in required_packages:
-        print("Installing ", package)
+        CliUtils.print_rich(f"Installing {str(package)}")
 
         pkg.install_from_path(package.download())
 
