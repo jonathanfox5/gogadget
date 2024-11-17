@@ -36,7 +36,8 @@ Primary commands
 """
 # TODO: [Release] Sort arguments into a sensible order
 # TODO: [Release] Test on an audio only file
-# TODO: Windows install system
+# TODO: [Release] Windows install system
+# TODO: [Release] Fully test new config system
 
 
 @app.command(
@@ -591,7 +592,6 @@ def install(
         sub_format=CONFIG.transcriber.subtitle_format,
     )
 
-    # TODO: [Release] uv doesn't like one of these two. Have a look into it
     CliUtils.print_status("Initialising lemmatiser")
     lemmatiser = import_module(".lemmatiser", APP_NAME)
     lemmatiser.lemma_dummy(language)
