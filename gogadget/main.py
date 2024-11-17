@@ -34,10 +34,8 @@ CONFIG.read_defaults()
 """
 Primary commands
 """
-# TODO: [Release] Sort arguments into a sensible order
 # TODO: [Release] Test on an audio only file
 # TODO: [Release] Windows install system
-# TODO: [Release] Fully test new config system
 
 
 @app.command(
@@ -324,7 +322,6 @@ def download_subtitles(
             callback=CliUtils.clean_string,
             help=HelpText.ytdlp_subtitles_required,
             rich_help_panel="Required",
-            show_default=False,
         ),
     ] = CONFIG.downloader.subtitle_language,
     output_directory: Annotated[
