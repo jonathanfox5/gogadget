@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gogadget"
-version = "0.1.1"
+version = "0.1.2"
 description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
 authors = ["Jonathan Fox"]
 readme = "README.md"
@@ -27,6 +27,9 @@ numpy = "^2"
 argos-spacy-compatibility = "*"
 whisperx-numpy2-compatibility = "*"
 pip = "*"
+tomli = "^2.1.0"
+rtoml = "^0.11.0"
+tomlkit = "^0.13.2"
 
 [tool.poetry.scripts]
 gogadget = "gogadget.main:app"
