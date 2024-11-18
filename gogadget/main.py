@@ -660,6 +660,17 @@ def version_callback(value: bool):
     """Return version number"""
     if value:
         CliUtils.print_rich(get_version_number())
+
+        transcriber = import_module(".transcriber", APP_NAME)
+
+        cuda = transcriber.cuda_available()
+        if cuda:
+            CliUtils.print_rich("CUDA enabled, can use GPU processing")
+        else:
+            CliUtils.print_rich("CUDA disabled, using CPU processing")
+
+        CliUtils.print_rich(f"\n{HelpText.license}")
+
         raise typer.Exit()
 
 
