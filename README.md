@@ -824,7 +824,7 @@ Configure your default paths so that don't need to specify them each time.
    gogadget set-defaults --factory
    ```
 
-**~~WARNING~~** It is possible to break the tool by setting incorrect values in the config file.
+**WARNING** It is possible to break the tool by setting incorrect values in the config file.
 Reset to factory defaults if you experience errors or unexpected behaviour.
 
 **Usage**:
