@@ -42,6 +42,8 @@ poetry publish
 - macOS (latest available release)
 - Ubuntu Server 24.04.1 LTS (primarily because I don't have a linux desktop machine and a large proportion of desktop linux is Ubuntu)
 
+ARM based Windows is not officially supported and the installer only targets 64 bit x86. However, Windows ARM users can follow the custom installation steps if they wish.
+
 # Running from source
 
 First, please note the package requirements at the top of this document.
