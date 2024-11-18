@@ -1,0 +1,11 @@
+updating yt-dlp
+- ignore for now
+- how to update package within a uv tool env?
+
+include cuda on windows
+- update build
+- probably best to do this with poetry but can probably do with uv
+
+update windows installation instructions
+
+Add start menu item which has a powershell launcher

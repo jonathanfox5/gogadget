@@ -22,5 +22,5 @@ def run_command(command: list[str], print_command: bool = False) -> None:
         command_string = " ".join(command)
         CliUtils.print_status(f"Running command: {command_string}")
 
-    process = subprocess.Popen(command)
+    process = subprocess.Popen(command, shell=True)
     process.wait()
