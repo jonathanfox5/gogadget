@@ -1,5 +1,0 @@
-uv
-uvx
-ffmpeg
-
-Download these before building an installer
