@@ -35,25 +35,25 @@ Please see the [Youtube Tutorial](#youtube-tutorial) for demonstrations of the f
 2. Automatically create subtitles for a video / folder of videos that are in English (`en`):
 
    ```sh
-   gogadget transcribe --input-path "your folder or filename" --language en
+   gogadget transcribe --input "your folder or filename" --language en
    ```
 
 3. Generate Anki cards from a full season of an Italian (`it`) program. Include images / audio on the cards, translate the sentences to the default language (English) and exclude the 1000 most common Italian words:
 
    ```sh
-   gogadget anki-deck --input-directory "folder name" --language it --excluded-words "ita_top_1000_words.xlsx"
+   gogadget anki-deck --input "folder name" --language it --excluded-words "ita_top_1000_words.xlsx"
    ```
 
 4. You can set default parameters using `gogadget set-defaults --custom`. Once you have set up your defaults, this would allow you to type the following for example (3):
 
    ```sh
-   gogadget anki-deck --input-directory "folder name"
+   gogadget anki-deck --input "folder name"
    ```
 
 5. Commands have both a "standard" form and a "short" form. You can use whatever works best for you! The following two lines are equivalent:
 
    ```sh
-   gogadget download --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos" --subtitle_language en
+   gogadget download --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos" --subtitle_language en
    gogadget download -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos" -l en
    ```
 
@@ -81,6 +81,7 @@ Coming in a few days...
   - [Windows](#windows)
   - [macOS](#macos)
   - [Linux](#linux)
+  - [Enabling GPU powered transcription](#enabling-gpu-powered-transcription)
   - [Custom Installation Notes](#custom-installation-notes)
 - [Quick Start](#quick-start)
   - [Understanding Commands](#understanding-commands)
@@ -113,20 +114,19 @@ Coming in a few days...
 
 Installation instructions for Windows:
 
-1. Download the latest version of gogadget by clicking [here](https://github.com/jonathanfox5/gogadget/archive/refs/tags/gogadget_windows_v0.1.0.zip).
-2. Extract the zip folder to wherever is convenient to you. Inside the folder, you will find `windows_installer.ps1`. Double click it, wait for it to complete and you are done!
+1. Download the latest version of the gogadget installer from [this page](https://github.com/jonathanfox5/gogadget/releases).
 
-3. You can then run the tool by typing the following command into command prompt or powershell:
+2. Run the installer. It's highly recommended that you accept all of the default settings unless you know what you are doing!
 
-```sh
-gogadget
-```
+3. You can run gogadget from the desktop shortcut, from the start menu or by right clicking inside a folder and selecting "Open gogadget here".
 
 4. _[Optional]_ You can install all of the models required for your chosen language. Type the following to get the instructions:
 
 ```sh
 gogadget install
 ```
+
+If you want to enable GPU transcription of subtitles, please enable "CUDA" in the installer. It is likely that you will also need to do further configuration - please see here: [Enabling GPU powered transcription](#enabling-gpu-powered-transcription)
 
 ## macOS
 
@@ -147,7 +147,7 @@ brew install ffmpeg uv
 3. Install gogadget, using Terminal:
 
 ```sh
-uv tool install gogadget --python3.12
+uv tool install gogadget --python 3.12 --update
 ```
 
 4. You can then run the tool by typing the following command into Terminal:
@@ -181,7 +181,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 3. Install gogadget using uv:
 
 ```sh
-uv tool install gogadget --python3.12
+uv tool install gogadget --python 3.12 --update
 ```
 
 4. You can then run the tool by typing the following command into your terminal:
@@ -194,6 +194,44 @@ gogadget
 
 ```sh
 gogadget install
+```
+
+6. _[Optional]_ If you have CUDA installed and configured on your system, you can run:
+
+```sh
+uv tool install gogadget --python 3.12 --update
+uv tool install gogadget --python 3.12 --with 'torch==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
+uv tool install gogadget --python 3.12 --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
+```
+
+You will probably also need to do some additional configuration - [Enabling GPU powered transcription](#enabling-gpu-powered-transcription)
+
+## Enabling GPU powered transcription
+
+To enable GPU powered transcription of subtitles, you will need:
+
+- A CUDA enabled NVIDIA gpu with a decent amount of VRAM (>=8 GB)
+- Windows or Linux
+- NVIDIA's CUDA toolkit installed: https://developer.nvidia.com/cuda-toolkit
+- NVIDIA's cuDNN toolkit installed: https://developer.nvidia.com/cudnn
+- It's also worth ensuring that you have up to date GPU drivers installed
+
+These requirements are the same for all Whisper based transcription tools. Therefore, there will be plenty of guides to help you if you get stuck!
+
+If you are using Windows, you will need to make sure that you tick "CUDA" in the installer.
+
+If you are running Linux or are manually configuring it on Windows, you will need to follow the final step of the [Linux](#linux) installation instructions.
+
+You will need to then specify `--gpu` when running any transcription tasks e.g.:
+
+```sh
+gogadget transcribe -i "input file or folder" -l "code for your language" --gpu
+```
+
+Alternatively, you can change the value of `whisper_use_gpu` in the settings file to `"True"`. You can access the settings by running:
+
+```sh
+gogadget set-defaults --custom
 ```
 
 ## Custom Installation Notes
@@ -242,7 +280,7 @@ gogadget list-languages
 All parameters in all commands have both a "standard" form and a "short" form. You can use whatever works best for you! The following two lines are equivalent.
 
 ```sh
-gogadget download --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos" --subtitle_language en
+gogadget download --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos" --subtitle_language en
 gogadget download -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos" -l en
 ```
 
@@ -459,13 +497,13 @@ gogadget set-defaults --custom
 1. Normal usage using standard names where your target language is italian and your native language is English.
 
    ```sh
-   gogadget anki-deck --input-directory "folder containing subtitles and media files" --language it --translation-language en
+   gogadget anki-deck --input "folder containing subtitles and media files" --language it --translation-language en
    ```
 
 2. As per (1) but uses dictionary, word exclude list and word audio bank. Also uses --exclude-no-definition to filter out proper nouns / non-target language words.
 
    ```sh
-   gogadget anki-deck --input-directory "folder containing subtitles and media files" --language it --translation-language en --dictionary "dictionary.json" --word_audio "folder_name" --excluded-words "excel_name.xlsx" --exclude-no-definition
+   gogadget anki-deck --input "folder containing subtitles and media files" --language it --translation-language en --dictionary "dictionary.json" --word_audio "folder_name" --excluded-words "excel_name.xlsx" --exclude-no-definition
    ```
 
 3. Equivalent of (2) using short names.
@@ -488,7 +526,7 @@ $ gogadget anki-deck [OPTIONS]
 
 **Options**:
 
-- `-i, --input-directory PATH`: Directory (folder) containing the video file(s) and subtitle files(s) to be turned into an Anki deck.
+- `-i, --input PATH`: Directory (folder) containing the video file(s) and subtitle files(s) to be turned into an Anki deck.
 - `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
 - `-t, --translation-language TEXT`: [Optional] Language to use for translations. Translation quality is generally best if either the target language or the translation is set to `en` (English). This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
 - `-f, --offset INTEGER`: [Optional] Time, in milliseconds, to offset the subtitles by when extracting audio. Not normally required if subtitles were generated by gogadget transcribe.
@@ -518,7 +556,7 @@ Download a video or playlist from a website URL.
 2. More advanced usage using standard names.
 
    ```sh
-   gogadget download --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos" --subtitle_language en --format "best"
+   gogadget download --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos" --subtitle_language en --format "best"
    ```
 
 3. Equivalent of (2) using short names.
@@ -536,7 +574,7 @@ $ gogadget download [OPTIONS]
 **Options**:
 
 - `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md).
-- `-o, --output-directory PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
+- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
 - `-f, --format TEXT`: [Optional] Specify the format of the video. Accepts [yt-dlp's](https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#format-selection) format options.
 - `-l, --subtitle-language TEXT`: [Optional] Language of subtitles to download. If you want to download these, you should enter a two letter language code such as `en`, `es` or `it`. It will try to download manual subtitles first and fallback to automatically generated subtitles if these aren't found.
 - `-a, --advanced-options TEXT`: [Optional][Advanced] Custom yt-dlp options, should accept any command line arguments on the [github page](https://github.com/yt-dlp/yt-dlp). Please format these as a string, enclosed by quotes.
@@ -557,7 +595,7 @@ Download a video or playlist from a website URL and convert it to an audio file.
 2. More advanced usage using standard names.
 
    ```sh
-   gogadget download-audio --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos"
+   gogadget download-audio --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos"
    ```
 
 3. Equivalent of (2) using short names.
@@ -575,7 +613,7 @@ $ gogadget download-audio [OPTIONS]
 **Options**:
 
 - `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md).
-- `-o, --output-directory PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
+- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
 - `-a, --advanced-options TEXT`: [Optional][Advanced] Custom yt-dlp options, should accept any command line arguments on the [github page](https://github.com/yt-dlp/yt-dlp). Please format these as a string, enclosed by quotes.
 - `--help`: Show this message and exit.
 
@@ -607,7 +645,7 @@ $ gogadget download-subtitles [OPTIONS]
 
 - `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md).
 - `-l, --subtitle-language TEXT`: Language of subtitles to download. If you want to download these, you should enter a two letter language code such as `en`, `es` or `it`. It will try to download manual subtitles first and fallback to automatically generated subtitles if these aren't found.
-- `-o, --output-directory PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
+- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
 - `-a, --advanced-options TEXT`: [Optional][Advanced] Custom yt-dlp options, should accept any command line arguments on the [github page](https://github.com/yt-dlp/yt-dlp). Please format these as a string, enclosed by quotes.
 - `--help`: Show this message and exit.
 
@@ -627,13 +665,13 @@ gogadget set-defaults --custom
 1. Normal usage using standard names where your target language is italian.
 
    ```sh
-   gogadget frequency-analysis --input-directory "folder containing subtitles and media files" --language it
+   gogadget frequency-analysis --input "folder containing subtitles and media files" --language it
    ```
 
 2. As per (1) but uses word exclude list.
 
    ```sh
-   gogadget frequency-analysis --input-directory "folder containing subtitles and media files" --language it --excluded-words "excel_name.xlsx"
+   gogadget frequency-analysis --input "folder containing subtitles and media files" --language it --excluded-words "excel_name.xlsx"
    ```
 
 3. Equivalent of (2) using short names.
@@ -656,9 +694,9 @@ $ gogadget frequency-analysis [OPTIONS]
 
 **Options**:
 
-- `-i, --input-path PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
+- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
 - `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
-- `-o, --output-directory PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
+- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
 - `-e, --excluded-words PATH`: [Optional] Spreadsheet containing words to exclude from the analysis (e.g. the most common words in a language, words already learned). Words should be in the first column of the spreadsheet but can be split across multiple sub-sheets within the file.
 - `-m, --lemma / -n, --no-lemma`: [Optional] Enable or disable lemmatisation. If supported for your language, this is generally recommended.
 - `-s, --stop-words / -p, --no-stop-words`: [Optional] If lemmatisation is enabled, you can include or exclude stop words. Stop words are short 'function' words such as 'the', 'that', 'which', etc.
@@ -679,13 +717,13 @@ You can also reduce runtime (at the expense of accuracy) by specifying `--whispe
 1. Transcribe a media file or folder of media files that is in English.
 
    ```sh
-   gogadget transcribe --input-path "path to media file or folder containing media files" --language en
+   gogadget transcribe --input "path to media file or folder containing media files" --language en
    ```
 
 2. As per (1) but using the GPU to process the model.
 
    ```sh
-   gogadget transcribe --input-path "path to media file or folder containing media files" --language en --gpu
+   gogadget transcribe --input "path to media file or folder containing media files" --language en --gpu
    ```
 
 3. Example using short names where the output folder is also specified.
@@ -702,9 +740,9 @@ $ gogadget transcribe [OPTIONS]
 
 **Options**:
 
-- `-i, --input-path PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
+- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
 - `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
-- `-o, --output-directory PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
+- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
 - `-w, --whisper-model TEXT`: [Optional] Specify the whisper model to use for transcription. By default, this is large-v3 turbo but setting this to `small` can significantly speed the process up at the cost of accuracy.
 - `-a, --align-model TEXT`: [Optional] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you.
 - `-g, --gpu / -c, --cpu`: [Optional] You can specify `--gpu` if you have a CUDA enabled Nvidia graphics card to significantly speed up the processing.
@@ -973,7 +1011,7 @@ Pull requests are welcome. Some basic requirements:
 
 # Acknowledgements
 
-[gogadget](https://https://github.com/jonathanfox5/gogadget) by Jonathan Fox is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1). All materials in this repository are covered by CC BY-NC-SA 4.0, unless specifically noted below:
+[gogadget](https://https://github.com/jonathanfox5/gogadget) © Jonathan Fox is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1). All materials in this repository are covered by CC BY-NC-SA 4.0, unless specifically noted below:
 
 - [gogadget/ytdlp_cli_to_api.py](gogadget/ytdlp_cli_to_api.py) has been directly reproduced from [yt-dlp's github page](https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py) ([license](https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE)) without modification.
 - The Windows installer bundles the binaries for both [FFMPEG](https://ffmpeg.org) ([license](https://ffmpeg.org/legal.html)) and [uv](https://github.com/astral-sh/uv) ([license](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)).

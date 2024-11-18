@@ -44,7 +44,7 @@ def transcriber(
                 """You have requested --gpu but CUDA is not configured.
                 Troubleshooting:
                 - If you are on windows, did you check the CUDA option in the installer?
-                - 
+                - Please see readme for more information
                 """
             )
             CliUtils.print_warning("Falling back to --cpu")
