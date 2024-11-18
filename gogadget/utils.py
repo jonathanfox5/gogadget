@@ -1,6 +1,5 @@
 import html
 import json
-import shlex
 from pathlib import Path
 
 import pandas as pd
@@ -71,13 +70,6 @@ def import_first_column_from_sheets(file_path: Path) -> pd.DataFrame:
         df = pd.concat([df, new_rows], ignore_index=True)
 
     return df
-
-
-def arg_string_to_list(argument_string: str) -> list[str]:
-    """Converts a string of arguments into a list"""
-
-    arg_list = shlex.split(argument_string)
-    return arg_list
 
 
 def list_files_with_extension(
