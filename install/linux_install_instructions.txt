@@ -17,3 +17,7 @@ gogadget
 
 5. [Optional] You can install all of the models required for your chosen language. Type the following to get the instructions:
 gogadget install
+
+6. [Optional] If you have an NVIDIA GPU and have your system set up for CUDA, install CUDA libraries for gogadget:
+uv tool install gogadget --python 3.12 --with "torch==2.5.1+cu124" --index "https://download.pytorch.org/whl/cu124"
+uv tool install gogadget --python 3.12 --with "torchaudio==2.5.1+cu124" --index "https://download.pytorch.org/whl/cu124"

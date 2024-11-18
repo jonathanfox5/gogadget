@@ -1,9 +1,10 @@
 #define MyAppName "gogadget"
-#define MyAppVersion "0.1.2"
+#define MyAppVersion "0.2.1"
 #define MyAppPublisher "Jonathan Fox"
 #define MyAppURL "https://github.com/jonathanfox5/gogadget"
 #define BaseLaunchBat "gogadget_launcher.bat"
 #define ContextLaunchBat "gogadget_context.bat"
+#define WheelName "gogadget-0.2.1-py3-none-any.whl"
 
 [Setup]
 AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}
@@ -38,6 +39,7 @@ Name: "custom"; Description: "Custom installation"; Flags: iscustom
 Name: "program"; Description: "{#MyAppName}"; Types: full compact custom; Flags: fixed
 Name: "ffmpeg"; Description: "FFMPEG (Required)"; Types: full
 Name: "uv"; Description: "uv (Required)"; Types: full
+Name: "cuda"; Description: "CUDA: Add gpu processing to compatible systems (Optional, see readme)"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
@@ -45,12 +47,15 @@ Name: "addcontextmenu"; Description: "Add {#MyAppName} to right-click context me
 
 [Files]
 Source: "bin\*.bat"; DestDir: "{app}"; Flags: ignoreversion; Components: program
+Source: "bin\*.whl"; DestDir: "{app}"; Flags: ignoreversion; Components: program
 Source: "bin\ffmpeg.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Components: ffmpeg
 Source: "bin\uv*.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Components: uv
 
 [Run]
-Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install gogadget>={#MyAppVersion} --python 3.12 --upgrade";
+Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12";
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool update-shell"; Flags: runhidden
+Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12 --with torch==2.5.1+cu124 --index https://download.pytorch.org/whl/cu124"; Components: cuda
+Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12 --with torchaudio==2.5.1+cu124 --index https://download.pytorch.org/whl/cu124"; Components: cuda
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"
