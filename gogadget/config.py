@@ -75,7 +75,6 @@ class ConfigFile:
         if not config_file.exists():
             self.create_config_file()
 
-        # TODO: [Release] Check this works on windows. Check both code and notepad
         config_file_str = str(config_file.resolve())
 
         platform = import_module("platform")
