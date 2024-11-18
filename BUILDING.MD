@@ -30,3 +30,11 @@ mv install/output/*.exe dist/
 # Step just for people called "Jonathan Fox" ;) Updates pypi index.
 poetry publish
 ```
+
+# Targets for testing for each release
+
+- Windows 11 with CUDA
+- Windows 11 without CUDA
+- Windows 11 without any tools in path or python installed
+- macOS (latest available release)
+- Ubuntu Server 24.04.1 LTS (primarily because I don't have a linux desktop machine and a large proportion of desktop linux is Ubuntu)

@@ -28,7 +28,7 @@ class HelpText:
 
     [u]Advanced[/u]
     Commands have both a "standard" form and a "short" form. You can use whatever works best for you! The following two lines are equivalent.
-    [b magenta]gogadget download --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos" --subtitle_language en
+    [b magenta]gogadget download --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos" --subtitle_language en
     gogadget download -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos" -l en[/]
     
     Note: Regardless of the "standard" name, all commands follow the same logic for their "short" names. The item that is being used as input is -i, the output is -o and the language is -l. Normally you don't need any more than this!
@@ -93,7 +93,7 @@ class HelpText:
     gogadget download --url "https://www.videosite.com/watch?v=videoid"
     
     2. More advanced usage using standard names.
-    gogadget download --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos" --subtitle_language en --format "best"
+    gogadget download --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos" --subtitle_language en --format "best"
 
     3. Equivalent of (2) using short names.
     gogadget download -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos" -l en -f "best"
@@ -107,7 +107,7 @@ class HelpText:
     gogadget download-audio --url "https://www.videosite.com/watch?v=videoid"
     
     2. More advanced usage using standard names.
-    gogadget download-audio  --url "https://www.videosite.com/watch?v=videoid" --output-directory "immersion videos"
+    gogadget download-audio  --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos"
 
     3. Equivalent of (2) using short names.
     gogadget download-audio  -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos"
@@ -125,7 +125,7 @@ class HelpText:
     transcribe = """
     Produce subtitle file(s) from audio or video using whisperX.
 
-    [bright_white]--input_path and -i accept both files and directories of files.
+    [bright_white]--input and -i accept both files and directories of files.
 
     If you have an NVIDIA GPU that is set up for CUDA, it's strongly recommended to pass the --gpu flag as this significantly speeds up the tool.
 
@@ -133,10 +133,10 @@ class HelpText:
 
     [i][u]Examples:[/u]
     1. Transcribe a media file or folder of media files that is in English.
-    gogadget transcribe --input-path "path to media file or folder containing media files" --language en
+    gogadget transcribe --input "path to media file or folder containing media files" --language en
 
     2. As per (1) but using the GPU to process the model.
-    gogadget transcribe --input-path "path to media file or folder containing media files" --language en --gpu
+    gogadget transcribe --input "path to media file or folder containing media files" --language en --gpu
 
     3. Example using short names where the output folder is also specified.
     gogadget transcribe -i "path to media file or folder containing media files" -o "folder to save to" -l en -g
@@ -150,10 +150,10 @@ class HelpText:
 
     [u]Examples:[/u]
     1. Normal usage using standard names where your target language is italian and your native language is English.
-    gogadget anki-deck --input-directory "folder containing subtitles and media files" --language it --translation-language en
+    gogadget anki-deck --input "folder containing subtitles and media files" --language it --translation-language en
 
     2. As per (1) but uses dictionary, word exclude list and word audio bank. Also uses --exclude-no-definition to filter out proper nouns / non-target language words.
-    gogadget anki-deck --input-directory "folder containing subtitles and media files" --language it --translation-language en --dictionary "dictionary.json" --word_audio "folder_name" --excluded-words "excel_name.xlsx" --exclude-no-definition
+    gogadget anki-deck --input "folder containing subtitles and media files" --language it --translation-language en --dictionary "dictionary.json" --word_audio "folder_name" --excluded-words "excel_name.xlsx" --exclude-no-definition
     
     3. Equivalent of (2) using short names.
     gogadget anki-deck -i "folder containing subtitles and media files" -l it -t en -d "dictionary.json" -w "folder_name" -e "excel_name.xlsx" -h
@@ -170,10 +170,10 @@ class HelpText:
 
     [u]Examples:[/u]
     1. Normal usage using standard names where your target language is italian.
-    gogadget frequency-analysis --input-directory "folder containing subtitles and media files" --language it
+    gogadget frequency-analysis --input "folder containing subtitles and media files" --language it
 
     2. As per (1) but uses word exclude list.
-    gogadget frequency-analysis --input-directory "folder containing subtitles and media files" --language it --excluded-words "excel_name.xlsx"
+    gogadget frequency-analysis --input "folder containing subtitles and media files" --language it --excluded-words "excel_name.xlsx"
     
     3. Equivalent of (2) using short names.
     gogadget frequency-analysis -i "folder containing subtitles and media files" -l it -e "excel_name.xlsx"
