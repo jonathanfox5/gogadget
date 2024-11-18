@@ -1,4 +1,8 @@
-# To build:
+# Building
+
+## Required packages
+
+[Poetry](https://python-poetry.org) is used to build the packages, the installers use [uv](https://docs.astral.sh/uv/) to run the tool in its own virtual environment and the only non-Python dependency is [ffmpeg](https://ffmpeg.org). [Innosetup](https://jrsoftware.org/isinfo.php) is used to build the Windows installer.
 
 ## Settings things up
 
@@ -9,7 +13,7 @@ Assumes building on Windows. If you are building on mac / linux, just skip the i
 3. Make sure `poetry` and `innosetup` are installed and in path. (innosetup isn't by default, need to add the root innosetup directory in program files)
 4. Download latest windows builds of ffmpeg and uv and put the binaries directly in [install/bin/](install/bin/)
 
-## Commands
+## Build commands
 
 (these are in bash, convert them to whatever shell you are using)
 
@@ -31,10 +35,38 @@ mv install/output/*.exe dist/
 poetry publish
 ```
 
-# Targets for testing for each release
+## Targets for testing for each release
 
 - Windows 11 with CUDA
 - Windows 11 without CUDA
 - Windows 11 without any tools in path or python installed
 - macOS (latest available release)
 - Ubuntu Server 24.04.1 LTS (primarily because I don't have a linux desktop machine and a large proportion of desktop linux is Ubuntu)
+
+# Running from source
+
+First, please note the package requirements at the top of this document.
+
+To download and run the code from source, run the following commands:
+
+```sh
+# Download the repo and enter it
+git clone https://github.com/jonathanfox5/gogadget
+cd gogadget
+
+# Create the virtual environment and install packages
+poetry install
+
+# Enter the virtual environment
+poetry shell
+
+# Run the tool
+gogadget
+```
+
+# Requirements for pull requests
+
+Pull requests are welcome. Some basic requirements.
+
+- All python code should be linted / formatted using [ruff](https://docs.astral.sh/ruff/). The `pyproject.toml` file in the repository contains project specific settings that should be automatically picked up by both the command line version and VSCode extension versions of ruff. The main requirements are 100 line length, 4 spaces as intent, import linting and double quotes.
+- All code should be type checked by [mypy](https://www.mypy-lang.org). Support for `import-untyped` checking is disabled in `pyproject.toml` to avoid the need to generate stubs for third party libraries.

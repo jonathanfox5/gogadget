@@ -103,9 +103,7 @@ Coming in a few days...
   - [`gogadget set-defaults`](#gogadget-set-defaults)
   - [`gogadget update-downloader`](#gogadget-update-downloader)
 - [Default Parameters](#default-parameters)
-- [Developer](#developer)
-  - [Running from source](#running-from-source)
-  - [Contributing](#contributing)
+- [Developer Information](#developer-information)
 - [Acknowledgements](#acknowledgements)
 
 # Installation
@@ -979,35 +977,9 @@ subtitle_format = "vtt"
 whisper_use_gpu = "False"
 ```
 
-# Developer
+# Developer Information
 
-## Running from source
-
-[Poetry](https://python-poetry.org) is used to build the packages, the installers use [uv](https://docs.astral.sh/uv/) to run the tool in its own virtual environment and the only non-Python dependency is [ffmpeg](https://ffmpeg.org).
-
-To download and run the code from source, run the following commands:
-
-```sh
-# Download the repo and enter it
-git clone https://github.com/jonathanfox5/gogadget
-cd gogadget
-
-# Create the virtual environment and install packages
-poetry install
-
-# Enter the virtual environment
-poetry shell
-
-# Run the tool
-gogadget
-```
-
-## Contributing
-
-Pull requests are welcome. Some basic requirements:
-
-- All code should be linted / formatted using [ruff](https://docs.astral.sh/ruff/). The `pyproject.toml` file in the repository contains project specific settings that should be automatically picked up by both the command line version and VSCode extension versions of ruff. The main requirements are 100 line length, 4 spaces as intent, import linting and double quotes.
-- All code should be type checked by [mypy](https://www.mypy-lang.org). Support for `import-untyped` checking is disabled in `pyproject.toml` to avoid the need to generate stubs for third party libraries.
+Pull requests are welcome. Please see [BUILDING.MD](BUILDING.MD) for more detailed information.
 
 # Acknowledgements
 
