@@ -21,7 +21,6 @@ Assumes building on Windows. If you are building on mac / linux, just skip the i
 # Clear out any wheels and existing installers that we have
 rm dist/*
 rm install/bin/*.whl
-rm install/output/*.exe
 
 # Build new wheel and copy to bin folder
 poetry build

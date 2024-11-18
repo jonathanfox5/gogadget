@@ -1,6 +1,6 @@
 # Overview
 
-gogadget is a toolkit for producing immersion and priming materials for language learning.
+Gogadget is a toolkit for producing immersion and priming materials for language learning.
 
 - It tries to solve the problem that many of the most powerful tools available are hard to install, difficult to use or are paywalled.
 - It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions.
