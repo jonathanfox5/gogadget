@@ -34,8 +34,6 @@ CONFIG.read_defaults()
 """
 Primary commands
 """
-# TODO: [Release] Test on an audio only file
-# TODO: [Release] Windows install system
 
 
 @app.command(

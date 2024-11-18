@@ -4,7 +4,7 @@
 #define MyAppURL "https://github.com/jonathanfox5/gogadget"
 
 [Setup]
-AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}
+AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
