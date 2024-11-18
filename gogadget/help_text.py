@@ -12,6 +12,9 @@ class HelpText:
     """Contains the description of commands and parameters for each of the user facing functions
     Error text is handled within individual functions"""
 
+    # General info
+    license = "[blue bold link=https://https://github.com/jonathanfox5/gogadget]gogadget[/] © Jonathan Fox is licensed under [blue bold link=https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1]CC BY-NC-SA 4.0[/]."
+
     # Commands
     main = """
     gogadget is a toolkit for producing immersion and priming tools for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions.
@@ -213,6 +216,7 @@ class HelpText:
     list_languages_detailed = (
         "[cyan][Optional][/] List the languages supported by each module of the tool."
     )
+    install_gpu = "[cyan][Optional][/][red][Advanced][/] Install CUDA for an NVIDIA gpu to speed up transcription."
 
     # .toml file
     toml_instructions = """IMPORTANT INFORMATION

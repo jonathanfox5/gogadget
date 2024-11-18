@@ -36,8 +36,18 @@ def transcriber(
     compute_type = "int8"
     device = "cpu"
     if use_gpu:
-        device == "gpu"
-        compute_type = "float16"
+        if cuda_available():
+            device = "cuda"
+            compute_type = "float16"
+        else:
+            CliUtils.print_warning(
+                """You have requested --gpu but CUDA is not configured.
+                Troubleshooting:
+                - If you are on windows, did you check the CUDA option in the installer?
+                - 
+                """
+            )
+            CliUtils.print_warning("Falling back to --cpu")
 
     # Run for each file
     for file_path in path_list:
@@ -48,6 +58,8 @@ def transcriber(
             file_str,
             "--compute_type",
             compute_type,
+            "--device",
+            device,
             "--language",
             language,
             "--model",
@@ -66,3 +78,23 @@ def transcriber(
         run_command(command, print_command=True)
 
     return path_list
+
+
+def cuda_available() -> bool:
+    from torch.cuda import is_available
+
+    return is_available()
+
+
+# def configure_cuda() -> None:
+#     if not cuda_available():
+#         install_package(
+#             package_name="torch==2.5.1+cu124",
+#             package_index="https://download.pytorch.org/whl/cu124",
+#             app_name=APP_NAME,
+#         )
+#         install_package(
+#             package_name="torchaudio==2.5.1+cu124",
+#             package_index="https://download.pytorch.org/whl/cu124",
+#             app_name=APP_NAME,
+#         )

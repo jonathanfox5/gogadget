@@ -11,22 +11,30 @@ def program_exists(tool_name: str) -> bool:
     return result
 
 
-def install_package(package_name: str | list[str], app_name: str) -> None:
-    # Convert to string if we have a list
-    if isinstance(package_name, list):
-        package_name = " ".join(package_name)
+# Mothballed for now, causes the package to become corrupted
+# Fixed using installer for now
+#
+# def install_package(
+#     package_name: str | list[str], app_name: str, package_index: str | None = None
+# ) -> None:
+#     # Convert to string if we have a list
+#     if isinstance(package_name, list):
+#         package_name = " ".join(package_name)
 
-    update_command: str | None = None
-    if program_exists("uv"):
-        result = get_command_output("uv tool list")
-        # Double check that we have installed it with uv
-        if app_name in result:
-            update_command = f"uv tool install {app_name} --with {package_name}"
+#     update_command: str | None = None
+#     if program_exists("uv"):
+#         result = get_command_output("uv tool list")
+#         # Double check that we have installed it with uv
+#         if app_name in result:
+#             update_command = f"uv tool update {app_name} --with {package_name}"
 
-    if update_command:
-        run_command(update_command, True)
-    else:
-        CliUtils.print_warning(f"Not installing {package_name}, manual installation detected.")
+#             if package_index:
+#                 update_command += f" --index {package_index}"
+
+#     if update_command:
+#         run_command(update_command, True)
+#     else:
+#         CliUtils.print_warning(f"Not installing {package_name}, manual installation detected.")
 
 
 def update_package(package_name: str, app_name: str) -> None:
