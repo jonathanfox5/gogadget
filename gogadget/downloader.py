@@ -3,8 +3,8 @@ from pathlib import Path
 import yt_dlp
 
 from .cli_utils import CliUtils
-from .command_runner import update_package
-from .utils import arg_string_to_list
+from .command_runner import arg_string_to_list, update_package
+from .config import APP_NAME
 from .ytdlp_cli_to_api import cli_to_api
 
 
@@ -148,4 +148,4 @@ def downloader_dummy() -> None:
 
 def downloader_update() -> None:
     """Update the yt-dlp python package"""
-    update_package("yt-dlp")
+    update_package("yt-dlp", APP_NAME)
