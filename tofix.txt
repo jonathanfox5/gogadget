@@ -10,6 +10,7 @@ TODO: update windows installation instructions
 TODO: Add start menu item which has a powershell launcher. Can we make the shortcut also echo the instruction to type gogadget?
 TODO: Add option to install cuda
 TODO: Add option to run gogadget post install
+TODO: Add to context menu
 
 TODO: Check the formatting of the guid for innosetup, how many brackets on each side?
 
@@ -18,3 +19,5 @@ TODO: Add [UninstallRun] https://documentation.help/Inno-Setup/topic_runsection.
     uv uninstall tool
 
 TODO: Check everything works with python not installed
+
+TODO: Update HelpText and readme for shortened version of --input and --output

@@ -173,5 +173,4 @@ output/
 .ignore/
 test/
 temp_test.py
-install/bin/*
-!install/bin/required_exes.txt
+install/bin/*.exe

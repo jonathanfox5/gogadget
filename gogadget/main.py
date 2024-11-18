@@ -46,7 +46,7 @@ def anki_deck(
     input_directory: Annotated[
         Path,
         typer.Option(
-            "--input-directory",
+            "--input",
             "-i",
             callback=CliUtils.validate_directory,
             help=HelpText.input_directory_anki,
@@ -192,7 +192,7 @@ def download(
     output_directory: Annotated[
         Path,
         typer.Option(
-            "--output-directory",
+            "--output",
             "-o",
             callback=CliUtils.validate_directory,
             help=HelpText.output_directory,
@@ -266,7 +266,7 @@ def download_audio(
     output_directory: Annotated[
         Path,
         typer.Option(
-            "--output-directory",
+            "--output",
             "-o",
             callback=CliUtils.validate_directory,
             help=HelpText.output_directory,
@@ -325,7 +325,7 @@ def download_subtitles(
     output_directory: Annotated[
         Path,
         typer.Option(
-            "--output-directory",
+            "--output",
             "-o",
             callback=CliUtils.validate_directory,
             help=HelpText.output_directory,
@@ -368,7 +368,7 @@ def frequency_analysis(
     input_path: Annotated[
         Path,
         typer.Option(
-            "--input-path",
+            "--input",
             "-i",
             help=HelpText.transcribe_path,
             show_default=False,
@@ -389,7 +389,7 @@ def frequency_analysis(
     output_directory: Annotated[
         Path,
         typer.Option(
-            "--output-directory",
+            "--output",
             "-o",
             callback=CliUtils.validate_directory,
             help=HelpText.output_directory,
@@ -456,7 +456,7 @@ def transcribe(
     input_path: Annotated[
         Path,
         typer.Option(
-            "--input-path",
+            "--input",
             "-i",
             help=HelpText.transcribe_path,
             show_default=False,
@@ -477,7 +477,7 @@ def transcribe(
     output_directory: Annotated[
         Path,
         typer.Option(
-            "--output-directory",
+            "--output",
             "-o",
             callback=CliUtils.validate_directory,
             help=HelpText.output_directory,
