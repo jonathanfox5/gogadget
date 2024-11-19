@@ -1,6 +1,5 @@
 import importlib.metadata
 import re
-from importlib import import_module
 from pathlib import Path
 from typing import Any
 
@@ -8,7 +7,7 @@ import rtoml
 import typer
 
 from .cli_utils import CliUtils
-from .command_runner import program_exists, run_command
+from .command_runner import get_platform, program_exists, run_command
 from .help_text import HelpText
 
 """Metadata"""
@@ -77,8 +76,7 @@ class ConfigFile:
 
         config_file_str = str(config_file.resolve())
 
-        platform = import_module("platform")
-        if platform.system() == "Windows":
+        if get_platform() == "Windows":
             # Try to open with vscode. If not available, open in notepad
             if program_exists("code"):
                 run_command(["code", config_file_str])

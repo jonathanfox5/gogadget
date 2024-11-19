@@ -1,8 +1,13 @@
+import platform
 import shlex
 import subprocess
 from shutil import which
 
 from .cli_utils import CliUtils
+
+
+def get_platform() -> str:
+    return platform.system()
 
 
 def program_exists(tool_name: str) -> bool:
@@ -63,7 +68,11 @@ def run_command(command: str | list[str], print_command: bool = False) -> None:
         command_string = " ".join(command)
         CliUtils.print_status(f"Running command: {command_string}")
 
-    process = subprocess.Popen(command, shell=True)
+    if get_platform() == "Windows":
+        process = subprocess.Popen(command, shell=True)
+    else:
+        process = subprocess.Popen(command)
+
     process.wait()
 
 
@@ -79,7 +88,11 @@ def get_command_output(command: str | list[str]) -> str:
         command = arg_string_to_list(command)
 
     try:
-        runner = subprocess.run(command, capture_output=True, text=True, shell=True)
+        if get_platform() == "Windows":
+            runner = subprocess.run(command, capture_output=True, text=True, shell=True)
+        else:
+            runner = subprocess.run(command, capture_output=True, text=True)
+
         result = runner.stdout
 
         return str(result)
