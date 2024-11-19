@@ -2,7 +2,7 @@
 
 # Update system and install binary requirements
 sudo apt update -y && sudo apt install -y
-sudo apt install ffmpeg build-essential python3-dev git tree
+sudo apt install ffmpeg build-essential python3-dev git tree -y
 
 # Install uv and poetry
 curl -LsSf https://astral.sh/uv/install.sh | sh
