@@ -16,7 +16,7 @@ repository = "https://github.com/jonathanfox5/gogadget"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 typer = "*"
-lemon_tizer = "*"
+lemon_tizer = "^0.0.5"
 yt-dlp = "*"
 genanki = "*"
 ffmpeg-python = "*"
