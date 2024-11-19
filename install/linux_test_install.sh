@@ -22,5 +22,4 @@ if [ -z "$whl_file" ]; then
     exit 1
 fi
 
-uv tool install "$whl_file" --python 3.10 --update
-
+uv tool install "$whl_file" --python 3.10
