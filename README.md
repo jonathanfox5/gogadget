@@ -170,36 +170,42 @@ Installation instructions for Linux:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-2. Install ffmpeg using your package manager. This will depend on your distribution. For example:
+2. Install required packages (if you don't already have them) using your package manager. This will depend on your distribution. For example:
 
-- Ubuntu based distributions: `apt install ffmpeg`
-- Fedora based distributions: `dnf install ffmpeg`
-- Arch based distributions: `pacman -S ffmpeg`
+- Ubuntu based distributions: `sudo apt install ffmpeg build-essential python3-dev`
+- Fedora based distributions: `sudo dnf install ffmpeg gcc @development-tools python3-devel`
+- Arch based distributions: `sudo pacman -S ffmpeg base-devel`
 
-3. Install gogadget using uv:
+1. Configure your paths if they aren't already set up:
 
 ```sh
-uv tool install gogadget --python 3.12 --update
+source $HOME/.local/bin/env
 ```
 
-4. You can then run the tool by typing the following command into your terminal:
+4. Install gogadget using uv. Note that we are using python 3.10 instead of 3.12 that the other commands are using. This is to ensure that all dependencies build on ARM cpus.
+
+```sh
+uv tool install gogadget --python 3.10 --update
+```
+
+5. You can then run the tool by typing the following command into your terminal:
 
 ```sh
 gogadget
 ```
 
-5. _[Optional]_ You can install all of the models required for your chosen language. Type the following to get the instructions:
+6. _[Optional]_ You can install all of the models required for your chosen language. Type the following to get the instructions:
 
 ```sh
 gogadget install
 ```
 
-6. _[Optional]_ If you have CUDA installed and configured on your system, you can run:
+7. _[Optional]_ If you have CUDA installed and configured on your system, you can run:
 
 ```sh
-uv tool install gogadget --python 3.12 --update
-uv tool install gogadget --python 3.12 --with 'torch==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
-uv tool install gogadget --python 3.12 --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
+uv tool install gogadget --python 3.10 --update
+uv tool install gogadget --python 3.10 --with 'torch==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
+uv tool install gogadget --python 3.10 --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
 ```
 
 You will probably also need to do some additional configuration - [Enabling GPU powered transcription](#enabling-gpu-powered-transcription)
@@ -238,9 +244,11 @@ You should ignore this section if you are using the installation instructions fo
 
 Notes on Python version:
 
-- The tool is currently compatible with Python `3.10`, `3.11` and `3.12`.
+- The tool is currently compatible with Python `3.10`, `3.11` and `3.12`. Some dependencies have issues when you build them on newer python versions so its generally safest to install `3.10`.
 - `3.13` is **not** supported as the dependencies `ctranslate2` and `torch` do not currently provide compatible packages.
 - If you manually install gogadget and you get errors about either of these packages, a Python version issue is probably the cause.
+
+You may get some ideas for custom installations from my [script](install/linux_test_install.sh) that I use to test on clean installs of linux
 
 # Quick Start
 

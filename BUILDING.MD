@@ -1,5 +1,10 @@
 # Building
 
+## Reference
+
+- [Linux install from source script](install/linux_test_install.sh)
+- [Windows build script](install/windows_build.sh)
+
 ## Required packages
 
 [Poetry](https://python-poetry.org) is used to build the packages, the installers use [uv](https://docs.astral.sh/uv/) to run the tool in its own virtual environment and the only non-Python dependency is [ffmpeg](https://ffmpeg.org). [Innosetup](https://jrsoftware.org/isinfo.php) is used to build the Windows installer.
@@ -14,6 +19,8 @@ Assumes building on Windows. If you are building on mac / linux, just skip the i
 4. Download latest windows builds of ffmpeg and uv and put the binaries directly in [install/bin/](install/bin/)
 
 ## Build commands
+
+Also available [here](install/windows_build.sh).
 
 (these are in bash, convert them to whatever shell you are using)
 
@@ -39,14 +46,14 @@ poetry publish
 - Windows 11 with CUDA
 - Windows 11 without CUDA
 - Windows 11 without any tools in path or python installed
-- macOS (latest available release)
-- Ubuntu Server 24.04.1 LTS (primarily because I don't have a linux desktop machine and a large proportion of desktop linux is Ubuntu)
+- macOS: latest available release
+- Linux: Ubuntu Server 24.04.1 LTS ARM
 
 ARM based Windows is not officially supported and the installer only targets 64 bit x86. However, Windows ARM users can follow the custom installation steps if they wish.
 
 # Running from source
 
-First, please note the package requirements at the top of this document.
+First, please note the package requirements at the top of this document. You may also be interested in: [Linux install from source script](install/linux_test_install.sh)
 
 To download and run the code from source, run the following commands:
 
