@@ -71,5 +71,5 @@ Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\co
 Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}";  ValueType: string; ValueName: ""; ValueData: "Open {#MyAppName} here"; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
 
 [UninstallRun]
-Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "cache clean"; RunOnceId: "ClearUvCache"; Components: uv
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool uninstall gogadget"; RunOnceId: "UninstallTool"; Flags: runhidden
+Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "cache clean"; RunOnceId: "ClearUvCache"; Components: uv
