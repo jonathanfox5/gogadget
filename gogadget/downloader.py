@@ -25,9 +25,14 @@ def downloader(
         subs_available = check_subs_available(url, subtitle_language)
 
     if (not subs_available) and subs_only:
-        CliUtils.print_error(
-            "Exiting, no subtitles available for download. You can use [cyan bold]gogadget transcribe[/] to generate your own subtitles."
-        )
+        if subtitle_language.strip() == "":
+            CliUtils.print_error(
+                "Exiting, no subtitles available for download as value of `--subtitle-language` was blank. You can use [cyan bold]gogadget transcribe[/] to generate your own subtitles."
+            )
+        else:
+            CliUtils.print_error(
+                f"Exiting, no subtitles available for download for chosen language `{subtitle_language}`. You can use [cyan bold]gogadget transcribe[/] to generate your own subtitles."
+            )
         return []
 
     # Work out the command line arguments that we want to use
