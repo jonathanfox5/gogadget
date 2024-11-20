@@ -401,7 +401,7 @@ def frequency_analysis(
         typer.Option(
             "--excluded-words",
             "-e",
-            callback=CliUtils.validate_optional_directory,
+            callback=CliUtils.validate_optional_file,
             help=HelpText.exclude_sheet,
             rich_help_panel="Optional",
         ),
@@ -571,12 +571,20 @@ def install(
     CliUtils.print_status("Initialiser downloader")
     downloader.downloader_dummy()
 
+    CliUtils.print_status("Checking CUDA status")
+    transcriber = import_module(".transcriber", APP_NAME)
+
+    cuda = transcriber.cuda_available()
+    if cuda:
+        CliUtils.print_rich("CUDA enabled, can use GPU processing")
+    else:
+        CliUtils.print_rich("CUDA disabled, using CPU processing")
+
     CliUtils.print_status("Initialising transcriber")
     CliUtils.print_warning(
         "This may appear to freeze for a few minutes if you haven't run it before!"
     )
     dummy_transcribe_file = get_resources_directory() / "a.mp3"
-    transcriber = import_module(".transcriber", APP_NAME)
     transcriber.transcriber(
         input_path=dummy_transcribe_file,
         output_directory=get_resources_directory(),
@@ -660,14 +668,6 @@ def version_callback(value: bool):
     """Return version number"""
     if value:
         CliUtils.print_rich(get_version_number())
-
-        transcriber = import_module(".transcriber", APP_NAME)
-
-        cuda = transcriber.cuda_available()
-        if cuda:
-            CliUtils.print_rich("CUDA enabled, can use GPU processing")
-        else:
-            CliUtils.print_rich("CUDA disabled, using CPU processing")
 
         CliUtils.print_rich(f"\n{HelpText.license}")
 
