@@ -49,8 +49,8 @@ Name: "addcontextmenu"; Description: "Add {#MyAppName} to right-click context me
 [Files]
 Source: "bin\*.bat"; DestDir: "{app}"; Flags: ignoreversion; Components: program
 Source: "bin\*.whl"; DestDir: "{app}"; Flags: ignoreversion; Components: program
-Source: "bin\ffmpeg.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Components: ffmpeg
-Source: "bin\uv*.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Components: uv
+Source: "bin\ffmpeg.exe"; DestDir: "{%USERPROFILE}\.local\bin" uninsneveruninstall; Components: ffmpeg
+Source: "bin\uv*.exe"; DestDir: "{%USERPROFILE}\.local\bin" uninsneveruninstall; Components: uv
 
 [Run]
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12";
