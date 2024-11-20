@@ -10,6 +10,7 @@
 AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
+VersionInfoVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -18,11 +19,11 @@ DefaultDirName="{localappdata}\{#MyAppName}"
 DefaultGroupName={#MyAppName}
 PrivilegesRequired=lowest
 OutputBaseFilename={#MyAppName}_windows_installer_v{#MyAppVersion}
-Compression=lzma
-SolidCompression=yes
 WizardStyle=modern
 DisableDirPage=yes
 ChangesEnvironment=true
+Compression=zip
+SolidCompression=yes
 
 [Dirs]
 Name: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall
