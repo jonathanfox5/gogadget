@@ -7,7 +7,6 @@ from lemon_tizer import LemonTizer
 from rich.progress import track
 
 from .cli_utils import CliUtils
-from .command_runner import get_platform
 from .config import SUPPORTED_SUB_EXTS, ConfigFile
 from .lemmatiser import language_supported
 from .utils import (
@@ -114,11 +113,6 @@ def generate_frequency_analysis(
     df_freq_table = pd.DataFrame(
         columns=["word", "example", "example_source", "example_start", "example_end", "frequency"]
     )
-
-    if get_platform() == "Windows":
-        CliUtils.print_warning("""In certain configurations, there is a bug in one of the external packages that this function relies on.
-If this appears to quit early, please run the command again and it should work.
-If you are very, very unlucky, you may need to run it a few times!""")
 
     for index, row in track(
         df_input.iterrows(),

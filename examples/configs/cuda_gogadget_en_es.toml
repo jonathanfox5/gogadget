@@ -1,0 +1,111 @@
+[instructions]
+# IMPORTANT INFORMATION
+# =====================
+# - All values are text and should be therefore be wrapped in double quotes. Valid examples:
+#       language = "en"
+#       lemmatise = "True"
+#       lemmatise = "False"
+#       subs_offset_ms = "0"
+#       subs_offset_ms = "50"
+# - If you don't want to a specify a value, just type two double quotes beside each other e.g.:
+#       language = ""
+#       word_exclude_spreadsheet = ""
+# - If you are on Windows, any paths will need to have any backslashes replaces with a double backslash e.g.:
+#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"
+#   Since this is easy to forget about, the tool will try to fix it for you. However, it's always best if it is correct to begin with!
+#
+# WARNING
+# =======
+# It is possible to break the tool by setting incorrect values in here.
+# However, the script will attempt to fall back to sensible defaults if it can't read your values.
+# If your setting appears to not be read by the tool, this is probably the reason!
+# Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour
+
+[general]
+# language and language_for_translations either be a valid two letter language code or be set to "". 
+# Valid examples:
+#       language = "en"
+#       language = ""
+# For a list of supported languages, please see the readme or run `gogadget list-languages` (without quotes)
+#
+# output_directory needs to be a valid folder on your system.
+# You can use a dot "." if you want to use the current directory that you are running commands from.
+# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
+# The tool will try to fix it if you forget but it's best to get it correct to begin with!
+# Valid examples:
+#       output_directory = ""                         # No default, you will have to specify when running the command
+#       output_directory = "."                        # The outputs of the command will be written to the current folder
+#       output_directory = "immersion_videos"         # Outputs will be written to a sub folder called "immersion_videos"
+#       output_directory = "C:\\immersion_videos\\"   # Outputs will be written to a specific folder on the C:\ drive
+
+language = "en"
+language_for_translations = "es"
+output_directory = "."
+
+[external_resources]
+# These can be set to "" if you don't want to use them or want to specify them every time.
+# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
+# The tool will try to fix it if you forget but it's best to get it correct to begin with!
+# Valid examples:
+#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"     # This will load a specific spreadsheet
+#       word_exclude_spreadsheet = ""                           # Don't use an exclude spreadsheet or only use when specified in the command
+
+word_exclude_spreadsheet = "C:\\languages\\en\\en_exclude.xlsx"
+dictionary_file = "C:\\languages\\en\\en_to_es.json"
+word_audio_directory = "C:\\languages\\en\\word_audio"
+
+[anki]
+# extract_media and include_words_with_no_definition should either be set to "True" or "False" and MUST be wrapped in quotes. 
+# Valid examples:
+#       extract_media = "True"
+#       include_words_with_no_definition = "False"
+#
+# subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes. 
+# Valid examples:
+#       subs_offset_ms = "0"
+#       subs_buffer_ms = "50
+
+extract_media = "True"
+include_words_with_no_definition = "False"
+subs_offset_ms = "0"
+subs_buffer_ms = "50"
+max_cards_in_deck = "100"
+
+[lemmatiser]
+# All values should be set to "True" or "False" and MUST be wrapped in quotes.
+# Valid examples:
+#       lemmatise = "True"
+#       lemmatise = "False"
+
+lemmatise = "True"
+filter_out_non_alpha = "True"
+filter_out_stop_words = "True"
+convert_input_to_lower = "True"
+convert_output_to_lower = "True"
+return_just_first_word_of_lemma = "True"
+
+[downloader]
+# These should either wrapped in quotes or set to double quotes to leave it blank. 
+# Valid examples:
+#       format = "best[ext=mp4]"
+#       format = ""
+
+advanced_options = ""
+format = ""
+subtitle_language = ""
+
+[transcriber]
+# whisper_use_gpu should either be set to "True" or "False" and MUST be wrapped in quotes. 
+# Valid examples:
+#       whisper_use_gpu = "False"
+#       whisper_use_gpu = "True"
+#
+# The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
+# These settings are best left alone unless you know what you are doing! Valid examples:
+#       whisper_model = "small"
+#       alignment_model = ""
+
+whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
+alignment_model = ""
+subtitle_format = "vtt"
+whisper_use_gpu = "True"
