@@ -11,6 +11,3 @@ cp dist/*.whl install/bin/
 # Build windows installer and move to dist folder
 iscc install/gogadget_windows.iss
 mv install/output/*.exe dist/
-
-# Step just for people called "Jonathan Fox" ;) Updates pypi index.
-poetry publish

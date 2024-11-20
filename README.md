@@ -176,7 +176,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 - Fedora based distributions: `sudo dnf install ffmpeg gcc @development-tools python3-devel`
 - Arch based distributions: `sudo pacman -S ffmpeg base-devel`
 
-1. Configure your paths if they aren't already set up:
+3. Configure your paths if they aren't already set up:
 
 ```sh
 source $HOME/.local/bin/env
@@ -200,7 +200,7 @@ gogadget
 gogadget install
 ```
 
-7. _[Optional]_ If you have CUDA installed and configured on your system, you can run:
+7. _[Optional]_ If you wish to use your GPU instead of your CPU and you have CUDA installed and configured on your system, you can run:
 
 ```sh
 uv tool install gogadget --python 3.10 --update
@@ -208,7 +208,7 @@ uv tool install gogadget --python 3.10 --with 'torch==2.5.1+cu124' --index 'http
 uv tool install gogadget --python 3.10 --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
 ```
 
-You will probably also need to do some additional configuration - [Enabling GPU powered transcription](#enabling-gpu-powered-transcription)
+For more information on (optionally) using your GPU, please see [Enabling GPU powered transcription](#enabling-gpu-powered-transcription).
 
 ## Enabling GPU powered transcription
 
@@ -217,14 +217,13 @@ To enable GPU powered transcription of subtitles, you will need:
 - A CUDA enabled NVIDIA gpu with a decent amount of VRAM (>=8 GB)
 - Windows or Linux
 - NVIDIA's CUDA toolkit installed: https://developer.nvidia.com/cuda-toolkit
-- NVIDIA's cuDNN toolkit installed: https://developer.nvidia.com/cudnn
 - It's also worth ensuring that you have up to date GPU drivers installed
 
-These requirements are the same for all Whisper based transcription tools. Therefore, there will be plenty of guides to help you if you get stuck!
+These requirements are the same for most Whisper based transcription tools. Therefore, there will be plenty of guides to help you if you get stuck!
 
 If you are using Windows, you will need to make sure that you tick "CUDA" in the installer.
 
-If you are running Linux or are manually configuring it on Windows, you will need to follow the final step of the [Linux](#linux) installation instructions.
+If you are running Linux or are **manually** configuring it on Windows, you will need to follow the final step of the [Linux](#linux) installation instructions.
 
 You will need to then specify `--gpu` when running any transcription tasks e.g.:
 
@@ -244,7 +243,7 @@ You should ignore this section if you are using the installation instructions fo
 
 Notes on Python version:
 
-- The tool is currently compatible with Python `3.10`, `3.11` and `3.12`. Some dependencies have issues when you build them on newer python versions so its generally safest to install `3.10`.
+- The tool is currently compatible with Python `3.10`, `3.11` and `3.12`. On some platforms, some dependencies have issues when you build them on newer python versions so its generally safest to install `3.10`.
 - `3.13` is **not** supported as the dependencies `ctranslate2` and `torch` do not currently provide compatible packages.
 - If you manually install gogadget and you get errors about either of these packages, a Python version issue is probably the cause.
 
@@ -322,7 +321,7 @@ gogadget set-defaults --custom
 
 ## Example use case
 
-The following example is my personal use case for producing priming materials prior to immersing in them. My target language is Italian (`it`) and my native language is English(`en`). I have set up a json dictionary, word audio and an exclude list as described in [Getting dictionary, word audio and exclude lists](#getting-dictionary-word-audio-and-exclude-lists).
+The following example is my personal use case for producing priming materials prior to immersing in them. My target language is Italian (`it`) and my native language is English(`en`). I have downloaded a json dictionary, word audio and an exclude list as described in [Getting dictionary, word audio and exclude lists](#getting-dictionary-word-audio-and-exclude-lists).
 
 As a "one off" task, I set up my default settings by running `gogadget set-defaults --custom`. I changed the following settings from the defaults. [the defaults are set for the widest compatibility, not for a specific workflow]
 
@@ -366,7 +365,7 @@ format = ""
 subtitle_language = ""
 
 [transcriber]
-# Change `whisper_use_gpu` to True on my windows PC which has an Nvidia GPU. This massively speeds up transcription but isn't compatible unless you have a GPU that can run CUDA
+# I have changed `whisper_use_gpu` to "True" on my windows PC which has an Nvidia GPU. This massively speeds up transcription but it does require a GPU that can run CUDA
 whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
 alignment_model = ""
 subtitle_format = "vtt"
@@ -991,7 +990,7 @@ Pull requests are welcome. Please see [BUILDING.MD](BUILDING.MD) for more detail
 
 # Acknowledgements
 
-[gogadget](https://https://github.com/jonathanfox5/gogadget) © Jonathan Fox is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1). All materials in this repository are covered by CC BY-NC-SA 4.0, unless specifically noted below:
+[gogadget](https://https://github.com/jonathanfox5/gogadget) is © Jonathan Fox and is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1). All materials in this repository are covered by CC BY-NC-SA 4.0, unless specifically noted below:
 
 - [gogadget/ytdlp_cli_to_api.py](gogadget/ytdlp_cli_to_api.py) has been directly reproduced from [yt-dlp's github page](https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py) ([license](https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE)) without modification.
 - The Windows installer bundles the binaries for both [FFMPEG](https://ffmpeg.org) ([license](https://ffmpeg.org/legal.html)) and [uv](https://github.com/astral-sh/uv) ([license](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)).
