@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Clear out any wheels and existing installers that we have
-rm dist/*
-rm install/bin/*.whl
+rm -f dist/* && rm -f install/bin/*.whl
 
 # Build new wheel and copy to bin folder
 poetry build
