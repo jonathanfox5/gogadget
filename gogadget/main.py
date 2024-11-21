@@ -597,7 +597,11 @@ def install(
 
     CliUtils.print_status("Initialising lemmatiser")
     lemmatiser = import_module(".lemmatiser", APP_NAME)
-    lemmatiser.lemma_dummy(language)
+    if lemmatiser.language_supported(language=language):
+        lemmatiser.lemma_dummy(language)
+        print(f"Supported {language}")
+    else:
+        CliUtils.print_warning(f"Lemmatisation is not currently supported for language {language}")
 
     CliUtils.print_status("Initialising translator")
     translator = import_module(".translator", APP_NAME)
