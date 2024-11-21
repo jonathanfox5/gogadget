@@ -1,4 +1,3 @@
-import re
 from pathlib import Path
 
 import pandas as pd
@@ -14,6 +13,7 @@ from .utils import (
     generate_output_path,
     import_first_column_from_sheets,
     list_files_with_extension,
+    remove_punctuation,
 )
 
 
@@ -181,19 +181,6 @@ def split_sentence(input_str: str, filter_punctuation: bool) -> list[dict[str, s
         processed_word = word.strip()
         result.append({processed_word: processed_word})
     return result
-
-
-def remove_punctuation(input_string: str) -> str:
-    """Remove punctuation from a string. Used if lemmatiser isn't being used.
-    Only allow letters/numbers, hyphens, apostrophes and whitespace
-    Untested on languages that don't use the latin alphabet but google seems to claim it works...
-    """
-
-    pattern = r"[^\w\s'-]"
-
-    output_string = re.sub(pattern, "", input_string)
-
-    return output_string
 
 
 def subs_to_dataframe(
