@@ -1,5 +1,6 @@
 import html
 import json
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -12,11 +13,25 @@ def generate_output_path(
 ) -> Path:
     """Create a standardised file path based upon a source media file or directory"""
 
-    file_stem = source_material_path.stem
+    file_stem = sanitise_string_html(remove_punctuation(source_material_path.stem).strip())
+
+    if file_stem == "":
+        file_stem = "_"
+
     video_suffix = source_material_path.suffix.replace(".", "")
     output_path = output_directory / f"{file_stem}_{video_suffix}_{file_description}.{file_format}"
 
     return output_path
+
+
+def remove_punctuation(input_string: str) -> str:
+    """Remove punctuation from a string."""
+
+    pattern = r"[^\w\s'-]"
+
+    output_string = re.sub(pattern, "", input_string)
+
+    return output_string
 
 
 def write_to_json(data: dict | list, file_path: Path) -> None:
