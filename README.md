@@ -59,7 +59,7 @@ Please see the [Youtube Tutorial](#youtube-tutorial) for demonstrations of the f
 
 All commands will produce help text by default, eliminating the need to remember syntax. For example:
 
-![Example Help Text](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/help_text.png?raw=true)
+![Example Help Text](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/help_text.png)
 
 ## Worked Example
 
@@ -185,7 +185,7 @@ source $HOME/.local/bin/env
 4. Install gogadget using uv. Note that we are using python 3.10 instead of 3.12 that the other commands are using. This is to ensure that all dependencies build on ARM cpus.
 
 ```sh
-uv tool install gogadget --python 3.10 --update
+uv tool install gogadget --python 3.10 --upgrade
 ```
 
 5. You can then run the tool by typing the following command into your terminal:
@@ -203,7 +203,7 @@ gogadget install
 7. _[Optional]_ If you wish to use your GPU instead of your CPU and you have CUDA installed and configured on your system, you can run:
 
 ```sh
-uv tool install gogadget --python 3.10 --update
+uv tool install gogadget --python 3.10 --upgrade
 uv tool install gogadget --python 3.10 --with 'torch==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
 uv tool install gogadget --python 3.10 --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
 ```
@@ -262,11 +262,11 @@ This is a written overview on how to use the tool. If this isn't your thing, you
 
 The intended behaviour is that the tool itself will guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:
 
-![Main menu](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/main_menu.png?raw=true)
+![Main menu](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/main_menu.png)
 
 All commands are listed in the `Primary Functions` box and have their own documentation. Each command has parameters associated with it. These can be listed by just typing `gogadget` then the name of the command that you are interested in. For example, `gogadget download` produces:
 
-![Download Help Text](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/download_help.png?raw=true)
+![Download Help Text](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/download_help.png)
 
 You will see from the output of that command that you can just run the following to download a video:
 
@@ -316,7 +316,7 @@ gogadget set-defaults --custom
    find . -type f -name "*.ogg" -exec sh -c 'ffmpeg -i "$1" "${1%.*}.mp3" && rm "$1"' _ {} \;
   ```
 
-- `--excluded-words` is a spreadsheet with words that you don't want included in your deck. This is useful to make sure that you aren't wasting time reviewing words that you already know. [Wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) is a good source for frequency lists but you could also export your known words from Anki to get a more personalised experience. The only requirement is that the words that you want to filter out should be in column `A` of the spreadsheet though you can use multiple sub-sheets in the file if you wish to organise them.
+- `--excluded-words` is a spreadsheet with words that you don't want included in your deck. This is useful to make sure that you aren't wasting time reviewing words that you already know. [Wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists) is a good source for frequency lists but you could also export your known words from Anki to get a more personalised experience. The only requirement is that the words that you want to filter out should be in column `A` of the spreadsheet though you can use multiple sub-sheets in the file if you wish to organise them. I've uploaded example exclude lists [here](https://github.com/jonathanfox5/gogadget/tree/main/examples/exclude_lists/)
 
 ## Example use case
 
