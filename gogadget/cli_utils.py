@@ -70,6 +70,15 @@ class CliUtils:
         return lang
 
     @staticmethod
+    def validate_greater_than_zero(number: int) -> int:
+        """Forces language code to lower case without trailing whitespace,"""
+
+        if number <= 0:
+            raise typer.BadParameter(f"Must be a positive integer, user input was `{number}`.")
+
+        return number
+
+    @staticmethod
     def validate_optional_directory(path: Path | None) -> Path | None:
         """Checks that a directory path is theoretically valid, if specified"""
         if path is None:

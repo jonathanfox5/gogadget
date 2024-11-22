@@ -20,6 +20,7 @@ app = typer.Typer(
     no_args_is_help=True,
     rich_markup_mode="rich",
     add_completion=False,
+    pretty_exceptions_enable=False,
 )
 
 CONFIG = ConfigFile()

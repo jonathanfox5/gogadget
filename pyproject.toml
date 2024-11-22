@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gogadget"
-version = "0.2.3"
+version = "0.2.4"
 description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
 authors = ["Jonathan Fox"]
 readme = "README.md"
@@ -36,7 +36,6 @@ faster-whisper = "==1.0.3"
 
 [tool.poetry.scripts]
 gogadget = "gogadget.main:app"
-whispergg = "gogadget.whisper:cli"
 
 [build-system]
 requires = ["poetry-core"]

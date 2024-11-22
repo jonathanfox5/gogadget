@@ -1,9 +1,15 @@
+import gc
 from pathlib import Path
 
+import whisperx_numpy2_compatibility as whisperx
+from torch.cuda import empty_cache as empty_cuda_cache
+from torch.cuda import is_available as is_cuda_available
+from whisperx_numpy2_compatibility.SubtitlesProcessor import SubtitlesProcessor
+from whisperx_numpy2_compatibility.utils import get_writer as get_whisperx_writer
+
 from .cli_utils import CliUtils
-from .command_runner import run_command
 from .config import SUPPORTED_AUDIO_EXTS, SUPPORTED_VIDEO_EXTS
-from .utils import list_files_with_extension
+from .utils import get_cpu_cores, list_files_with_extension
 
 
 def transcriber(
@@ -14,9 +20,11 @@ def transcriber(
     whisper_model: str,
     alignment_model: str,
     sub_format: str,
+    max_line_length: int = 100,
+    sub_split_threshold: int = 70,
 ) -> list:
     """Main entry point for the media file transcriber"""
-
+    # TODO: Supress warning messages
     # Get media files in path (path could be a file or a directory)
     supported_formats = SUPPORTED_VIDEO_EXTS + SUPPORTED_AUDIO_EXTS
     path_list = list_files_with_extension(
@@ -31,8 +39,14 @@ def transcriber(
         CliUtils.print_rich(supported_formats)
         return []
 
-    # Configure settings
-    output_dir_str = str(output_directory.resolve())
+    # Create output directory if it doesn't already exist
+    output_directory.mkdir(parents=True, exist_ok=True)
+
+    # Whisper settings that we aren't exposing to the user
+    batch_size = 8
+    verbose = True
+
+    # Configure other settings based upon user input
     compute_type = "int8"
     device = "cpu"
     if use_gpu:
@@ -48,52 +62,209 @@ Troubleshooting:
             )
             CliUtils.print_warning("Falling back to --cpu")
 
-    # Run for each file
-    for file_path in path_list:
-        file_str = str(file_path.resolve())
+    # Do the main transcription step
+    stage_1_results = stage1_transcription(
+        input_paths=path_list,
+        language=language,
+        device=device,
+        compute_type=compute_type,
+        whisper_model_name=whisper_model,
+        batch_size=batch_size,
+        cpu_cores=get_cpu_cores(minus_one=False),
+        verbose=verbose,
+    )
 
-        command = [
-            "whispergg",
-            file_str,
-            "--compute_type",
-            compute_type,
-            "--device",
-            device,
-            "--language",
-            language,
-            "--model",
-            whisper_model,
-            "--print_progress",
-            "True",
-            "--output_format",
-            sub_format,
-            "--output_dir",
-            output_dir_str,
-        ]
+    # If we are using CUDA, we need to clear the model from memory before running the next one
+    reclaim_memory_transcriber()
 
-        if alignment_model != "":
-            command += ["--align_model", alignment_model]
+    # Check we have something, otherwise error
+    if not stage_1_results:
+        CliUtils.print_error("Could not transcribe files, failed stage 1")
+        return []
 
-        run_command(command, print_command=True)
+    # Do the alignment step
+    stage_2_results = stage2_transcription(
+        stage1_results=stage_1_results,
+        language=language,
+        device=device,
+        alignment_model_name=alignment_model,
+        verbose=verbose,
+    )
 
-    return path_list
+    # If we are using CUDA, we need to clear the model from memory before running the next one
+    reclaim_memory_transcriber()
+
+    # Check we have something, otherwise error
+    if not stage_2_results:
+        CliUtils.print_error("Could not transcribe files, failed stage 2")
+        return []
+
+    # Write subs to file, one for Anki use, one for normal use
+
+    write_subtitles_anki(
+        stage2_results=stage_2_results,
+        output_directory=output_directory,
+        subtitle_format=sub_format,
+    )
+    sub_paths = write_subtitles_split(
+        stage2_results=stage_2_results,
+        output_directory=output_directory,
+        subtitle_format=sub_format,
+        max_line_length=max_line_length,
+        sub_split_threshold=sub_split_threshold,
+    )
+
+    return sub_paths
+
+
+def stage1_transcription(
+    input_paths: list[Path],
+    language: str,
+    device: str,
+    compute_type: str,
+    whisper_model_name: str,
+    batch_size: int,
+    cpu_cores: int,
+    verbose: bool,
+) -> list[dict]:
+    # Load transcription model
+    CliUtils.print_status("Transcriber: Loading stage 1 model")
+    model = whisperx.load_model(
+        whisper_arch=whisper_model_name,
+        device=device,
+        compute_type=compute_type,
+        language=language,
+        threads=cpu_cores,
+    )
+
+    results: list[dict] = []
+    for file_path in input_paths:
+        CliUtils.print_status(f"Transcriber: Processing {file_path}, stage 1 of 3")
+        audio = whisperx.load_audio(str(file_path.resolve()))
+        result = model.transcribe(
+            audio=audio, batch_size=batch_size, language=language, print_progress=verbose
+        )
+        result["language"] = language
+
+        result_dict = {
+            "path": file_path,
+            "audio_object": audio,
+            "stage1_output": result,
+            "language": language,
+        }
+
+        results.append(result_dict)
+
+    # Reclaim memory before running the next model
+    del model
+
+    return results
+
+
+def stage2_transcription(
+    stage1_results: list[dict],
+    language: str,
+    device: str,
+    alignment_model_name: str | None,
+    verbose: bool,
+) -> list[dict]:
+    # Process arguments. Whisperx needs a model to be None to activate its own chooser
+    if isinstance(alignment_model_name, str):
+        if alignment_model_name.strip() == "":
+            alignment_model_name = None
+
+    model, metadata = whisperx.load_align_model(
+        language_code=language, device=device, model_name=alignment_model_name
+    )
+
+    results: list[dict] = []
+    for result_dict in stage1_results:
+        CliUtils.print_status(f"Transcriber: Processing {result_dict["path"]}, stage 2 of 3")
+        stage2_result = whisperx.align(
+            transcript=result_dict["stage1_output"]["segments"],
+            model=model,
+            align_model_metadata=metadata,
+            audio=result_dict["audio_object"],
+            device=device,
+            return_char_alignments=False,
+            print_progress=verbose,
+        )
+        stage2_result["language"] = language
+
+        result_dict["stage2_output"] = stage2_result
+
+        results.append(result_dict)
+
+    # Reclaim memory before running the next model
+    del model
+
+    return results
+
+
+def write_subtitles_split(
+    stage2_results: list[dict],
+    output_directory: Path,
+    subtitle_format: str,
+    max_line_length: int,
+    sub_split_threshold: int,
+) -> list:
+    CliUtils.print_status("Transcriber: Processing, stage 3 of 3")
+
+    # TODO: Deal with these options better
+
+    is_vtt = False
+    if subtitle_format.lower() == "vtt":
+        is_vtt = True
+
+    output_paths: list[Path] = []
+    for result_dict in stage2_results:
+        media_path: Path = result_dict["path"]
+        output_path = output_directory / f"{media_path.stem}.{subtitle_format}"
+
+        CliUtils.print_rich(f"Writing subtitles for {media_path}")
+
+        subtitles_proccessor = SubtitlesProcessor(
+            result_dict["stage2_output"]["segments"],
+            result_dict["language"],
+            max_line_length=max_line_length,
+            min_char_length_splitter=sub_split_threshold,
+            is_vtt=is_vtt,
+        )
+
+        subtitles_proccessor.save(output_path, advanced_splitting=True)
+
+        output_paths.append(output_path)
+
+    return output_paths
+
+
+def write_subtitles_anki(
+    stage2_results: list[dict], output_directory: Path, subtitle_format: str
+) -> list:
+    CliUtils.print_status("Transcriber: Processing, stage 3 of 3")
+
+    # We don't care about these but the function forces us to include them
+    writer_args = {"highlight_words": False, "max_line_count": None, "max_line_width": None}
+
+    writer = get_whisperx_writer(
+        output_format=subtitle_format, output_dir=str(output_directory.resolve())
+    )
+
+    for result_dict in stage2_results:
+        media_path: Path = result_dict["path"]
+        CliUtils.print_rich(f"Writing subtitles for {media_path}")
+
+        output_path = media_path.with_suffix(f".anki{media_path.suffix}")
+        writer(result_dict["stage2_output"], str(output_path.resolve()), writer_args)
+
+    return []
+
+
+def reclaim_memory_transcriber():
+    gc.collect()
+    if cuda_available():
+        empty_cuda_cache()
 
 
 def cuda_available() -> bool:
-    from torch.cuda import is_available
-
-    return is_available()
-
-
-# def configure_cuda() -> None:
-#     if not cuda_available():
-#         install_package(
-#             package_name="torch==2.5.1+cu124",
-#             package_index="https://download.pytorch.org/whl/cu124",
-#             app_name=APP_NAME,
-#         )
-#         install_package(
-#             package_name="torchaudio==2.5.1+cu124",
-#             package_index="https://download.pytorch.org/whl/cu124",
-#             app_name=APP_NAME,
-#         )
+    return is_cuda_available()

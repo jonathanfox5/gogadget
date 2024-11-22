@@ -1,11 +1,26 @@
 import html
 import json
+import multiprocessing
 import re
 from pathlib import Path
 
 import pandas as pd
 
 from .cli_utils import CliUtils
+
+
+def get_cpu_cores(minus_one: bool = False):
+    """Get the number of logical cores in the system. minus_one can be set to leave a core unused to improve system responsiveness"""
+
+    cores = multiprocessing.cpu_count()
+
+    if minus_one:
+        cores -= 1
+
+        # Deal with situations where we only have a single cpu core
+        cores = cores or 1
+
+    return cores
 
 
 def generate_output_path(
