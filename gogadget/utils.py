@@ -13,7 +13,10 @@ def generate_output_path(
 ) -> Path:
     """Create a standardised file path based upon a source media file or directory"""
 
+    # Remove punctuation before and after sanitise string to minimise garbage
     file_stem = sanitise_string_html(remove_punctuation(source_material_path.stem).strip())
+    file_stem = remove_punctuation(file_stem).strip()
+    file_stem = file_stem[0:30]
 
     if file_stem == "":
         file_stem = "_"
