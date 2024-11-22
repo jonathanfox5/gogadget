@@ -66,11 +66,13 @@ def match_subtitles_to_media(input_directory: Path) -> dict[Path, Path]:
     """Based upon file name, try to match subtitles with media files.
     If both video and audio have the same file name, prioritise video"""
 
+    supported_subs = SUPPORTED_SUB_EXTS + [".gg"]
+
     result: dict[Path, Path] = {}
 
     all_subs: list[Path] = list_files_with_extension(
         input_path=input_directory,
-        valid_suffixes=SUPPORTED_SUB_EXTS,
+        valid_suffixes=supported_subs,
         file_description_text="subtitles",
         search_subdirectories=False,
         print_errors=False,
@@ -92,7 +94,7 @@ def match_subtitles_to_media(input_directory: Path) -> dict[Path, Path]:
 
     if len(all_subs) == 0:
         CliUtils.print_warning("No supported subtitles in directory. Supported formats:")
-        CliUtils.print_rich(SUPPORTED_SUB_EXTS)
+        CliUtils.print_rich(supported_subs)
         return result
 
     if (len(all_videos) + len(all_audio)) == 0:
