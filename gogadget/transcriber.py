@@ -139,7 +139,9 @@ def stage1_transcription(
 
     results: list[dict] = []
     for file_path in input_paths:
-        CliUtils.print_status(f"Transcriber: Processing {file_path}, stage 1 of 3")
+        CliUtils.print_status(
+            f"Transcriber: Processing {file_path}, stage 1 of 3, this may take a while depending file length and your computer hardware"
+        )
         audio = whisperx.load_audio(str(file_path.resolve()))
         result = model.transcribe(
             audio=audio, batch_size=batch_size, language=language, print_progress=verbose

@@ -539,7 +539,9 @@ def transcribe(
     ] = CONFIG.transcriber.subtitle_format,
 ):
     CliUtils.print_status("Transcriber: starting")
-
+    CliUtils.print_warning(
+        "Some transcriber functions may appear to freeze for a few minutes if you haven't run them before!"
+    )
     transcriber = import_module(".transcriber", APP_NAME)
     transcriber.transcriber(
         input_path=input_path,
@@ -594,7 +596,11 @@ def install(
     CliUtils.print_status("Initialiser downloader")
     downloader.downloader_dummy()
 
-    CliUtils.print_status("Checking CUDA status")
+    CliUtils.print_status("Initialising transcriber")
+    CliUtils.print_warning(
+        "Some transcriber functions may appear to freeze for a few minutes if you haven't run them before!"
+    )
+    CliUtils.print_status("Transcriber: Checking CUDA status")
     transcriber = import_module(".transcriber", APP_NAME)
 
     cuda = transcriber.cuda_available()
@@ -603,10 +609,7 @@ def install(
     else:
         CliUtils.print_rich("CUDA disabled, using CPU processing")
 
-    CliUtils.print_status("Initialising transcriber")
-    CliUtils.print_warning(
-        "This may appear to freeze for a few minutes if you haven't run it before!"
-    )
+    CliUtils.print_status("Transcriber: Initialising models")
     dummy_transcribe_file = get_resources_directory() / "a.mp3"
     transcriber.transcriber(
         input_path=dummy_transcribe_file,
@@ -616,6 +619,8 @@ def install(
         whisper_model=CONFIG.transcriber.whisper_model,
         alignment_model=CONFIG.transcriber.alignment_model,
         sub_format=CONFIG.transcriber.subtitle_format,
+        max_line_length=CONFIG.transcriber.max_subtitle_length,
+        sub_split_threshold=CONFIG.transcriber.subtitle_split_threshold,
     )
 
     CliUtils.print_status("Initialising lemmatiser")
