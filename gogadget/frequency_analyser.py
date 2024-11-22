@@ -26,7 +26,7 @@ def frequency_analyser(
     exclude_spreadsheet_path: Path | None = None,
 ) -> pd.DataFrame:
     """Main entry point for the frequency analyser function"""
-    # TODO: Deal with .anki subtitle files
+
     # Sort out paths
     sub_sheet_save_path = generate_output_path(input_path, output_directory, "subs", "xlsx")
     frequency_analysis_save_path = generate_output_path(
@@ -189,13 +189,35 @@ def subs_to_dataframe(
 ) -> pd.DataFrame:
     """Pull subtitle data from files into a dataframe"""
 
-    path_list = list_files_with_extension(
-        input_path, valid_suffixes=SUPPORTED_SUB_EXTS, file_description_text="subtitle"
+    # Get list of .gg and "standard" subtitle files
+    sub_file_list: list[Path] = list_files_with_extension(
+        input_path,
+        valid_suffixes=SUPPORTED_SUB_EXTS,
+        file_description_text="subtitle",
+        print_errors=False,
     )
-    if len(path_list) == 0:
+    gg_file_list: list[Path] = list_files_with_extension(
+        input_path,
+        valid_suffixes=[".gg"],
+        file_description_text="subtitle",
+        print_errors=False,
+    )
+
+    if (len(sub_file_list) + len(gg_file_list)) == 0:
+        CliUtils.print_error("No supported subtitle files in directory")
         return None
 
-    df_subs = _extract_subs(path_list)
+    # If a gg file is found, remove any vtt or srt with the same from the list to avoid duplication
+    reference_names: list[Path] = []
+    for path in gg_file_list:
+        reference_names.append(path.with_suffix(""))
+
+    combined_file_list: list[Path] = gg_file_list
+    for path in sub_file_list:
+        if path not in reference_names:
+            combined_file_list.append(path)
+
+    df_subs = _extract_subs(combined_file_list)
 
     if spreadsheet_output_path is not None:
         dataframe_to_excel(df_subs, spreadsheet_output_path)
@@ -210,7 +232,18 @@ def _extract_subs(path_list: list[Path]) -> pd.DataFrame:
     for path in path_list:
         filename = str(path)
 
-        subs = pysubs2.load(path.resolve())
+        # Get the type of file from the extension
+        try:
+            filetype = path.suffix
+            if filetype == ".gg":
+                filetype = path.with_suffix("").suffix
+
+            filetype = filetype[1:]
+        except Exception:
+            # We haven't been able to work out the file type, see if pysubs2 can instead
+            filetype = None
+
+        subs = pysubs2.load(path.resolve(), format_=filetype)
         for sub in subs:
             add_row = pd.DataFrame(
                 [{"filename": filename, "start": sub.start, "end": sub.end, "text": sub.text}]

@@ -20,8 +20,8 @@ def transcriber(
     whisper_model: str,
     alignment_model: str,
     sub_format: str,
-    max_line_length: int = 100,
-    sub_split_threshold: int = 70,
+    max_line_length: int,
+    sub_split_threshold: int,
 ) -> list:
     """Main entry point for the media file transcriber"""
     # TODO: Supress warning messages
@@ -100,7 +100,7 @@ Troubleshooting:
         return []
 
     # Write subs to file, one for Anki use, one for normal use
-
+    CliUtils.print_status("Transcriber: Processing, stage 3 of 3")
     write_subtitles_anki(
         stage2_results=stage_2_results,
         output_directory=output_directory,
@@ -208,10 +208,6 @@ def write_subtitles_split(
     max_line_length: int,
     sub_split_threshold: int,
 ) -> list:
-    CliUtils.print_status("Transcriber: Processing, stage 3 of 3")
-
-    # TODO: Deal with these options better
-
     is_vtt = False
     if subtitle_format.lower() == "vtt":
         is_vtt = True
@@ -221,7 +217,7 @@ def write_subtitles_split(
         media_path: Path = result_dict["path"]
         output_path = output_directory / f"{media_path.stem}.{subtitle_format}"
 
-        CliUtils.print_rich(f"Writing subtitles for {media_path}")
+        CliUtils.print_rich(f"Writing split (normal) subtitles to {output_path}")
 
         subtitles_proccessor = SubtitlesProcessor(
             result_dict["stage2_output"]["segments"],
@@ -241,8 +237,6 @@ def write_subtitles_split(
 def write_subtitles_anki(
     stage2_results: list[dict], output_directory: Path, subtitle_format: str
 ) -> list:
-    CliUtils.print_status("Transcriber: Processing, stage 3 of 3")
-
     # We don't care about these but the function forces us to include them
     writer_args = {"highlight_words": False, "max_line_count": None, "max_line_width": None}
 
@@ -252,10 +246,16 @@ def write_subtitles_anki(
 
     for result_dict in stage2_results:
         media_path: Path = result_dict["path"]
-        CliUtils.print_rich(f"Writing subtitles for {media_path}")
+        intermediate_path = media_path.with_suffix(f".{subtitle_format}.{subtitle_format}")
+        final_path = intermediate_path.with_suffix(".gg")
+        CliUtils.print_rich(f"Writing long form subtitles (for Anki use) to {final_path}")
 
-        output_path = media_path.with_suffix(f".anki{media_path.suffix}")
-        writer(result_dict["stage2_output"], str(output_path.resolve()), writer_args)
+        # Write subtitles
+        writer(result_dict["stage2_output"], str(intermediate_path.resolve()), writer_args)
+
+        # Rename the subtitles so that mpv, etc. don't automatically pick them up
+        if intermediate_path.exists():
+            intermediate_path.rename(final_path)
 
     return []
 
