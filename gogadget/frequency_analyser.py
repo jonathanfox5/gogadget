@@ -26,7 +26,7 @@ def frequency_analyser(
     exclude_spreadsheet_path: Path | None = None,
 ) -> pd.DataFrame:
     """Main entry point for the frequency analyser function"""
-
+    # TODO: Deal with .anki subtitle files
     # Sort out paths
     sub_sheet_save_path = generate_output_path(input_path, output_directory, "subs", "xlsx")
     frequency_analysis_save_path = generate_output_path(
