@@ -747,10 +747,12 @@ $ gogadget transcribe [OPTIONS]
 - `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
 - `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
 - `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
+- `-m, --max-length INTEGER`: [Optional] The absolute maximum length that a subtitle can be. [default: 94]
+- `-s, --split-length INTEGER`: [Optional] The length at which the tool considers splitting a subtitle. [default: 70]
 - `-w, --whisper-model TEXT`: [Optional] Specify the whisper model to use for transcription. By default, this is large-v3 turbo but setting this to `small` can significantly speed the process up at the cost of accuracy.
 - `-a, --align-model TEXT`: [Optional] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you.
 - `-g, --gpu / -c, --cpu`: [Optional] You can specify `--gpu` if you have a CUDA enabled Nvidia graphics card to significantly speed up the processing.
-- `-f, --subtitle-format TEXT`: [Optional] File format for the subtitles. You can specify `vtt`, `srt`, `json`, `txt`, `tsv` or `aud`. `vtt` is the preferred format of the other tools in this suite.
+- `-f, --subtitle-format TEXT`: [Optional] File format for the subtitles. You can specify `vtt` or `srt`.
 - `--help`: Show this message and exit.
 
 ## `gogadget install`

@@ -100,6 +100,10 @@ subtitle_language = ""
 #       whisper_use_gpu = "False"
 #       whisper_use_gpu = "True"
 #
+# max_subtitle_length and subtitle_split_threshold should be a number wrapped in quotes. 
+# Valid examples:
+#       max_subtitle_length = "100"
+#
 # The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
 # These settings are best left alone unless you know what you are doing! Valid examples:
 #       whisper_model = "small"
@@ -108,4 +112,6 @@ subtitle_language = ""
 whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
 alignment_model = ""
 subtitle_format = "vtt"
+max_subtitle_length = "94"
+subtitle_split_threshold = "70"
 whisper_use_gpu = "True"

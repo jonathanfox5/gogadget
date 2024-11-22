@@ -217,6 +217,10 @@ class HelpText:
         "[cyan][Optional][/] List the languages supported by each module of the tool."
     )
     install_gpu = "[cyan][Optional][/][red][Advanced][/] Install CUDA for an NVIDIA gpu to speed up transcription."
+    max_subtitle_length = "[cyan][Optional][/] The absolute maximum length that a subtitle can be."
+    subtitle_split_threshold = (
+        "[cyan][Optional][/] The length at which the tool considers splitting a subtitle."
+    )
 
     # .toml file
     toml_instructions = """IMPORTANT INFORMATION
@@ -271,7 +275,7 @@ class HelpText:
 # subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes. 
 # Valid examples:
 #       subs_offset_ms = "0"
-#       subs_buffer_ms = "50
+#       subs_buffer_ms = "50"
 """
     toml_lemmatiser = """All values should be set to "True" or "False" and MUST be wrapped in quotes.
 # Valid examples:
@@ -287,6 +291,10 @@ class HelpText:
 # Valid examples:
 #       whisper_use_gpu = "False"
 #       whisper_use_gpu = "True"
+#
+# max_subtitle_length and subtitle_split_threshold should be a number wrapped in quotes. 
+# Valid examples:
+#       max_subtitle_length = "100"
 #
 # The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
 # These settings are best left alone unless you know what you are doing! Valid examples:

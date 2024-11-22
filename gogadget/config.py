@@ -30,6 +30,7 @@ SUPPORTED_VIDEO_EXTS = [
 ]
 SUPPORTED_AUDIO_EXTS = [".mp3", ".ogg", ".wav", ".opus", ".m4a", ".aac", ".aiff", ".flac"]
 SUPPORTED_SUB_EXTS = [".srt", ".vtt"]
+SYNTHETIC_SUB_EXTS = [".gg"]
 SUPPORTED_WORD_AUDIO_EXTS = [".mp3"]
 
 
@@ -308,6 +309,12 @@ class ConfigFile:
             self.transcriber.whisper_use_gpu = self.read_bool(
                 transcriber, "whisper_use_gpu", self.transcriber.whisper_use_gpu
             )
+            self.transcriber.max_subtitle_length = self.read_int(
+                transcriber, "max_subtitle_length", self.transcriber.max_subtitle_length
+            )
+            self.transcriber.subtitle_split_threshold = self.read_int(
+                transcriber, "subtitle_split_threshold", self.transcriber.subtitle_split_threshold
+            )
 
         except Exception as e:
             CliUtils.print_error(
@@ -430,4 +437,6 @@ class ConfigFile:
         whisper_model: str = "deepdml/faster-whisper-large-v3-turbo-ct2"
         alignment_model: str = ""
         subtitle_format: str = "vtt"
+        max_subtitle_length: int = 94  # Industry standard of 47, then multiplied by 2
+        subtitle_split_threshold: int = 70  # 75% of the above
         whisper_use_gpu: bool = False

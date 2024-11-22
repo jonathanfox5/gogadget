@@ -485,6 +485,26 @@ def transcribe(
             rich_help_panel="Optional",
         ),
     ] = CONFIG.general.output_directory,
+    max_length: Annotated[
+        int,
+        typer.Option(
+            "--max-length",
+            "-m",
+            callback=CliUtils.validate_greater_than_zero,
+            help=HelpText.max_subtitle_length,
+            rich_help_panel="Optional",
+        ),
+    ] = CONFIG.transcriber.max_subtitle_length,
+    split_length: Annotated[
+        int,
+        typer.Option(
+            "--split-length",
+            "-s",
+            callback=CliUtils.validate_greater_than_zero,
+            help=HelpText.subtitle_split_threshold,
+            rich_help_panel="Optional",
+        ),
+    ] = CONFIG.transcriber.subtitle_split_threshold,
     whisper_model: Annotated[
         str,
         typer.Option(
@@ -529,6 +549,8 @@ def transcribe(
         whisper_model=whisper_model,
         alignment_model=align_model,
         sub_format=subtitle_format,
+        max_line_length=max_length,
+        sub_split_threshold=split_length,
     )
 
 
