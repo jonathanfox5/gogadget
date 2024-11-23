@@ -443,7 +443,6 @@ def frequency_analysis(
 #     epilog=ffmpeg_warning(),
 # )
 # def interactive_transcript():
-#     # TODO: [V2] Implement
 #     return
 
 

@@ -82,6 +82,8 @@ Coming in a few days...
   - [macOS](#macos)
   - [Linux](#linux)
   - [Enabling GPU powered transcription](#enabling-gpu-powered-transcription)
+    - [Requirements](#requirements)
+    - [Running with GPU enabled](#running-with-gpu-enabled)
   - [Custom Installation Notes](#custom-installation-notes)
 - [Quick Start](#quick-start)
   - [Understanding Commands](#understanding-commands)
@@ -212,20 +214,25 @@ For more information on (optionally) using your GPU, please see [Enabling GPU po
 
 ## Enabling GPU powered transcription
 
+### Requirements
+
 To enable GPU powered transcription of subtitles, you will need:
 
 - A CUDA enabled NVIDIA gpu with a decent amount of VRAM (>=8 GB)
 - Windows or Linux
-- NVIDIA's CUDA toolkit installed: https://developer.nvidia.com/cuda-toolkit
-- It's also worth ensuring that you have up to date GPU drivers installed
+- Up to date GPU drivers installed
 
 These requirements are the same for most Whisper based transcription tools. Therefore, there will be plenty of guides to help you if you get stuck!
 
-If you are using Windows, you will need to make sure that you tick "CUDA" in the installer.
+If you are using **Windows**, you will need to make sure that you tick "CUDA" in the installer.
 
-If you are running Linux or are **manually** configuring it on Windows, you will need to follow the final step of the [Linux](#linux) installation instructions.
+If you are running **Linux** or are **manually** configuring it on Windows, you will need to follow the final step of the [Linux](#linux) installation instructions.
 
-You will need to then specify `--gpu` when running any transcription tasks e.g.:
+On most systems, there should be no need to install the CUDA toolkit as it the required runtimes should be provided by your drivers. However, you may wish to try installing the toolkit manually if you run into any problems: [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit)
+
+### Running with GPU enabled
+
+You will need to specify `--gpu` when running any transcription tasks e.g.:
 
 ```sh
 gogadget transcribe -i "input file or folder" -l "code for your language" --gpu
@@ -368,6 +375,8 @@ subtitle_language = ""
 whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
 alignment_model = ""
 subtitle_format = "vtt"
+max_subtitle_length = "94"
+subtitle_split_threshold = "70"
 whisper_use_gpu = "True"
 ```
 
@@ -937,7 +946,7 @@ word_audio_directory = ""
 # subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes.
 # Valid examples:
 #       subs_offset_ms = "0"
-#       subs_buffer_ms = "50
+#       subs_buffer_ms = "50"
 
 extract_media = "True"
 include_words_with_no_definition = "True"
@@ -974,6 +983,10 @@ subtitle_language = ""
 #       whisper_use_gpu = "False"
 #       whisper_use_gpu = "True"
 #
+# max_subtitle_length and subtitle_split_threshold should be a number wrapped in quotes.
+# Valid examples:
+#       max_subtitle_length = "100"
+#
 # The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
 # These settings are best left alone unless you know what you are doing! Valid examples:
 #       whisper_model = "small"
@@ -982,6 +995,8 @@ subtitle_language = ""
 whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
 alignment_model = ""
 subtitle_format = "vtt"
+max_subtitle_length = "94"
+subtitle_split_threshold = "70"
 whisper_use_gpu = "False"
 ```
 

@@ -37,6 +37,7 @@ def translate_all_sentences(
 def translate_sentence(sentence: str, from_lang: str, to_lang: str) -> str:
     """Translate an individual sentence"""
 
+    # Suppress stanza warnings so that we can see more important output in the console
     warnings.filterwarnings("ignore", category=FutureWarning, module="stanza")
     try:
         translation = argos.translate(sentence, from_lang, to_lang)

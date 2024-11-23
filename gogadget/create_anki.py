@@ -35,7 +35,7 @@ def create_anki(
     excluded_words: Path | None = None,
 ) -> Path | None:
     """Main entry point for the anki deck builder"""
-    # TODO: Fix misalignment between words and media
+
     # Config
     CliUtils.print_status("Anki builder: configuring paths")
     anki_media_dir = input_directory / "media"
