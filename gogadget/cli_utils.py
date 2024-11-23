@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Any
 
 import typer
-from rich import print
+from rich import print as printr
 from rich.text import Text
 
 
@@ -18,14 +18,19 @@ class CliUtils:
         return cleaned
 
     @staticmethod
+    def print_plain(item: Any) -> None:
+        """Print an object using the standard library function"""
+        print(item)
+
+    @staticmethod
     def print_rich(item: Any) -> None:
         """Print an object using rich's formatting"""
-        print(item)
+        printr(item)
 
     @staticmethod
     def print_status(message: str) -> None:
         """Print status message using rich"""
-        print(
+        printr(
             Text(
                 f"~~~ {message} ~~~",
                 style="bold blue",
@@ -35,7 +40,7 @@ class CliUtils:
     @staticmethod
     def print_warning(message: str) -> None:
         """Print warning message using rich"""
-        print(
+        printr(
             Text(
                 f"### {message} ###",
                 style="bold red",
@@ -50,7 +55,7 @@ class CliUtils:
         if e is not None:
             error_text = f"{str(e)}"
 
-        print(
+        printr(
             Text(
                 f"### {message} ###\n{error_text}",
                 style="bold red",

@@ -222,7 +222,7 @@ def write_subtitles_split(
         if output_path.exists():
             output_path.unlink(missing_ok=True)
 
-        CliUtils.print_rich(f"Writing split (normal) subtitles: {output_path}")
+        CliUtils.print_plain(f"Writing split (normal) subtitles: {output_path}")
 
         subtitles_proccessor = SubtitlesProcessor(
             result_dict["stage2_output"]["segments"],
@@ -260,7 +260,7 @@ def write_subtitles_anki(
         if final_path.exists():
             final_path.unlink(missing_ok=True)
 
-        CliUtils.print_rich(f"Writing long form subtitles (for Anki use): {final_path}")
+        CliUtils.print_plain(f"Writing long form subtitles (for Anki use): {final_path}")
 
         # Write subtitles
         writer(result_dict["stage2_output"], str(intermediate_path.resolve()), writer_args)
