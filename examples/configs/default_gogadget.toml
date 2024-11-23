@@ -63,7 +63,7 @@ word_audio_directory = ""
 # subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes. 
 # Valid examples:
 #       subs_offset_ms = "0"
-#       subs_buffer_ms = "50
+#       subs_buffer_ms = "50"
 
 extract_media = "True"
 include_words_with_no_definition = "True"

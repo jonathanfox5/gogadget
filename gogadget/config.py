@@ -117,7 +117,7 @@ class ConfigFile:
         config_file = self.get_config_file_path()
 
         if config_file.exists() and config_file.is_file():
-            config_file.unlink()
+            config_file.unlink(missing_ok=True)
             CliUtils.print_rich(
                 "Config file deleted. Will be re-generated next time the program is launched."
             )

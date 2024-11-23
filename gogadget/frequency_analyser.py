@@ -91,8 +91,6 @@ def generate_frequency_analysis(
 ) -> pd.DataFrame:
     """Main helper function to do the frequency analysis"""
 
-    # TODO: [V2] Generalise so that it will work with things that aren't subs
-
     CliUtils.print_status("Frequency analysis: loading language model")
 
     CONFIG = ConfigFile()
@@ -103,7 +101,7 @@ def generate_frequency_analysis(
         lt = LemonTizer(language=language, model_size="lg")
         lt.set_lemma_settings(
             filter_out_non_alpha=filter_punctuation,
-            filter_out_common=CONFIG.lemmatiser.filter_out_stop_words,
+            filter_out_common=filter_stop_words,
             convert_input_to_lower=CONFIG.lemmatiser.convert_input_to_lower,
             convert_output_to_lower=CONFIG.lemmatiser.convert_output_to_lower,
             return_just_first_word_of_lemma=CONFIG.lemmatiser.return_just_first_word_of_lemma,
