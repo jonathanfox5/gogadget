@@ -181,7 +181,7 @@ def stage2_transcription(
 
     results: list[dict] = []
     for result_dict in stage1_results:
-        CliUtils.print_status(f"Transcriber: Processing {result_dict["path"]}, stage 2 of 3")
+        CliUtils.print_status(f"Transcriber: Processing {result_dict['path']}, stage 2 of 3")
         stage2_result = whisperx.align(
             transcript=result_dict["stage1_output"]["segments"],
             model=model,
