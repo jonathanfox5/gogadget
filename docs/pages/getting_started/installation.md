@@ -12,9 +12,9 @@ Installation instructions for Windows:
 
 4. _[Optional]_ You can install all of the models required for your chosen language. Type the following to get the instructions:
 
-```sh
-gogadget install
-```
+   ```sh
+   gogadget install
+   ```
 
 !!! note "GPU Powered Transcription"
 
@@ -60,39 +60,39 @@ Installation instructions for Linux:
 
 1. Install uv using the following terminal command. uv is a python package manager that is used to keep gogadget packages separate so that they don't interfere with your existing python installation.
 
-```sh
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+   ```sh
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
 
 2. Install required packages (if you don't already have them) using your package manager. This will depend on your distribution. For example:
 
-- Ubuntu based distributions: `sudo apt install ffmpeg build-essential python3-dev`
-- Fedora based distributions: `sudo dnf install ffmpeg @development-tools python3-devel`
-- Arch based distributions: `sudo pacman -S ffmpeg base-devel`
+   - Ubuntu based distributions: `sudo apt install ffmpeg build-essential python3-dev`
+   - Fedora based distributions: `sudo dnf install ffmpeg @development-tools python3-devel`
+   - Arch based distributions: `sudo pacman -S ffmpeg base-devel`
 
 3. Configure your paths if they aren't already set up:
 
-```sh
-source $HOME/.local/bin/env
-```
+   ```sh
+   source $HOME/.local/bin/env
+   ```
 
 4. Install gogadget using uv. Note that we are using python 3.10 instead of 3.12 that the other commands are using. This is to ensure that all dependencies build on ARM CPUs.
 
-```sh
-uv tool install gogadget --python 3.10 --upgrade
-```
+   ```sh
+   uv tool install gogadget --python 3.10 --upgrade
+   ```
 
 5. You can then run the tool by typing the following command into your terminal:
 
-```sh
-gogadget
-```
+   ```sh
+   gogadget
+   ```
 
 6. _[Optional]_ You can install all of the models required for your chosen language. Type the following to get the instructions:
 
-```sh
-gogadget install
-```
+   ```sh
+   gogadget install
+   ```
 
 !!! note "GPU Powered Transcription"
 
