@@ -140,7 +140,7 @@ def stage1_transcription(
     results: list[dict] = []
     for file_path in input_paths:
         CliUtils.print_status(
-            f"Transcriber: Processing {file_path}, stage 1 of 3, this may take a while depending file length and your computer hardware"
+            f"Transcriber: Processing {file_path}, stage 1 of 3, this may take a while depending on file length and your computer hardware"
         )
         audio = whisperx.load_audio(str(file_path.resolve()))
         result = model.transcribe(
@@ -261,10 +261,6 @@ def write_subtitles_anki(
 
         if final_path.exists():
             final_path.unlink(missing_ok=True)
-
-        print(f"{media_path=}")
-        print(f"{intermediate_path=}")
-        print(f"{final_path=}")
 
         CliUtils.print_plain(f"Writing long form subtitles (for Anki use): {final_path}")
 
