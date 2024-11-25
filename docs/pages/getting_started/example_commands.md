@@ -24,7 +24,7 @@ gogadget transcribe --input "your folder or filename" --language en
 
     If you have followed the steps in [the installation instructions](../getting_started/installation.md) to enable GPU transcription, add `--gpu` to the end of the command to significantly speed up the transcription.
 
-## Create Anki Deck
+## Create Anki deck
 
 Generate Anki cards from a full season of an Italian (`it`) program. Include images / audio on the cards, translate the sentences to the default language (English) and exclude the 1000 most common Italian words:
 
@@ -42,4 +42,4 @@ See [this section](../getting_started/getting_resources.md) for details on how t
     gogadget anki-deck --input "folder name"
     ```
 
-    An example for setting defaults can be found [here](example_use_case.md).
+    An example workflow where defaults are set can be found [here](../getting_started/example_use_case.md).

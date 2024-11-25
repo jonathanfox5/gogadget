@@ -1,4 +1,4 @@
-## Understanding Commands
+## Understanding commands
 
 The intended behaviour is that the tool itself will guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:
 
@@ -36,9 +36,9 @@ You can also configure defaults so that you don't need to specify as many parame
 gogadget set-defaults --custom
 ```
 
-An example for setting defaults can be found [here](../getting_started/example_use_case.md).
+An example workflow where defaults are set can be found [here](../getting_started/example_use_case.md).
 
-## Short Names
+## Short names
 
 All parameters in all commands have both a "standard" form and a "short" form. You can use whatever works best for you! The following two lines are equivalent.
 

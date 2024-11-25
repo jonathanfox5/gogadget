@@ -1,5 +1,3 @@
-# Settings
-
 ## Accessing settings
 
 The settings can be accessed with the following command. It will open the settings file in your default GUI text editor on macOS / Linux or in notepad / VSCode on Windows.

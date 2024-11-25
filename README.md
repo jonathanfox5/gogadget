@@ -9,7 +9,7 @@
 - It tries to solve the problem that many of the most powerful tools available are hard to install, difficult to use or require lots of effort to configure for optimal results.
 - It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions.
 
-## Quick Start
+## Quick start
 
 Full documentation is available in the [manual](https://jonathanfox5.github.io/gogadget/). If you want to dive straight in, you may find the following useful:
 
@@ -18,11 +18,11 @@ Full documentation is available in the [manual](https://jonathanfox5.github.io/g
 - **[Detailed command reference](https://jonathanfox5.github.io/gogadget/reference/command_reference/)**: Every command listed with all possible parameters and examples. Warning - could be overwhelming!
 - **[Video tutorial](https://jonathanfox5.github.io/gogadget/getting_started/video_tutorial/)**: A video tutorial covering the installation of the tool and an overview of its functions.
 
-## Video Tutorial
+## Video tutorial
 
 Coming in a few days...
 
-## Key Features
+## Key features
 
 - Simple, well documented interface that is consistent across each of its tools.
 - Download video, audio and subtitle files.
@@ -34,12 +34,12 @@ Coming in a few days...
   - Include automatic translations of sentences and definitions of words.
   - Can be built for an individual episode or a whole season.
 - Create word frequency analyses for priming purposes.
-- One click installer for Windows and simple installation steps for macOS and Linux.
+- [One click installer](https://github.com/jonathanfox5/gogadget/releases/) for Windows and [simple installation steps](https://jonathanfox5.github.io/gogadget/getting_started/installation/) for macOS and Linux.
 - Ability to save defaults so that commands can be kept as short and memorable as possible.
-- It supports 19 languages fully with partial support for many more.
+- It supports 19 [languages](https://jonathanfox5.github.io/gogadget/getting_started/supported_languages/) fully with partial support for many more.
 - Once you have installed the resources for your language, all modules apart from `gogadget download` are fully offline. This makes it useful for travelling or processing personal conversations as there is no server involved.
 
-## Example Commands
+## Example commands
 
 You may prefer to watch the [Youtube Tutorial](https://jonathanfox5.github.io/gogadget/getting_started/video_tutorial/) for demonstrations of the features, including configuration for more advanced users.
 
@@ -63,7 +63,7 @@ gogadget transcribe --input "your folder or filename" --language en
 
 Note: If you have followed the steps in [the installation instructions](https://jonathanfox5.github.io/gogadget/getting_started/installation/) to enable GPU transcription, add `--gpu` to the end of the command to significantly speed up the transcription.
 
-### Create Anki Deck
+### Create Anki deck
 
 Generate Anki cards from a full season of an Italian (`it`) program. Include images / audio on the cards, translate the sentences to the default language (English) and exclude the 1000 most common Italian words:
 
@@ -220,6 +220,10 @@ Alternatively, you can change the value of `whisper_use_gpu` in the settings fil
 ```sh
 gogadget set-defaults --custom
 ```
+
+## More information
+
+Full documentation is available in the [manual](https://jonathanfox5.github.io/gogadget/).
 
 ## Acknowledgements
 

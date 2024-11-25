@@ -14,11 +14,11 @@
     - [Detailed command reference](reference/command_reference.md)
     - [Video tutorial](getting_started/video_tutorial.md)
 
-## Video Tutorial
+## Video tutorial
 
 Coming in a few days...
 
-## Key Features
+## Key features
 
 - Simple, well documented interface that is consistent across each of its tools.
 - Download video, audio and subtitle files.
@@ -30,9 +30,9 @@ Coming in a few days...
   - Include automatic translations of sentences and definitions of words.
   - Can be built for an individual episode or a whole season.
 - Create word frequency analyses for priming purposes.
-- One click installer for Windows and simple installation steps for macOS and Linux.
+- [One click installer](https://github.com/jonathanfox5/gogadget/releases/) for Windows and [simple installation steps](getting_started/installation.md) for macOS and Linux.
 - Ability to save defaults so that commands can be kept as short and memorable as possible.
-- It supports 19 languages fully with partial support for many more.
+- It supports 19 [languages](getting_started/supported_languages.md) fully with partial support for many more.
 - Once you have installed the resources for your language, all modules apart from `gogadget download` are fully offline. This makes it useful for travelling or processing personal conversations as there is no server involved.
 
 ## Acknowledgements

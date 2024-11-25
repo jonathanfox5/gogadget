@@ -10,7 +10,7 @@ You may also be interested in:
 
 - [Translate Horizon: Zero Dawn](https://github.com/jonathanfox5/translate_horizon_zero_dawn): A set of python scripts to build priming and reference materials directly from the game files.
 - [Plot Vowel Space](https://github.com/jonathanfox5/plot_vowel_space): A set of python scripts to plot your vowel positions and compare them against reference audio.
-- [lemon_tizer](https://github.com/jonathanfox5/lemon_tizer): A python library that wraps the `spacy` lemmatiser for use in other language learning tools.
+- [LemonTizer](https://github.com/jonathanfox5/lemon_tizer): A python library that wraps the `spacy` lemmatiser for use in other language learning tools.
 
 **Other projects**
 

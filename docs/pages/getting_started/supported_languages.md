@@ -1,5 +1,3 @@
-# Supported Languages
-
 | Language              | Code | All Modules | Lemmatiser | Transcriber | Translator |
 | --------------------- | ---- | ----------- | ---------- | ----------- | ---------- |
 | Albanian              | sq   |             |            |             | ✅         |
