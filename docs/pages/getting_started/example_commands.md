@@ -1,5 +1,4 @@
-
-Please see the [Youtube Tutorial](#youtube-tutorial) for demonstrations of the features, including configuration for more advanced users.
+Please see the [Youtube Tutorial](../getting_started/video_tutorial.md) for demonstrations of the features, including configuration for more advanced users.
 
 ## Download media
 
@@ -10,6 +9,7 @@ gogadget download --url "https://www.videosite.com/watch?v=videoid"
 ```
 
 !!! note
+
     The commands `gogadget download-audio` and `gogadget download-subtitles` are also available.
 
 ## Generate subtitles
@@ -21,6 +21,7 @@ gogadget transcribe --input "your folder or filename" --language en
 ```
 
 !!! note "GPU Powered Transcription"
+
     If you have followed the steps in [the installation instructions](installation.md) to enable GPU transcription, add `--gpu` to the end of the command to use it.
 
 ## Create Anki Deck
@@ -31,9 +32,10 @@ Generate Anki cards from a full season of an Italian (`it`) program. Include ima
 gogadget anki-deck --input "folder name" --language it --excluded-words "ita_top_1000_words.xlsx"
 ```
 
-See [this section](getting_resources.md) for details on how to obtain dictionaries, exclude word spreadsheets and word audio to use with this command.
+See [this section](../getting_started/getting_resources.md) for details on how to obtain dictionaries, exclude word spreadsheets and word audio to use with this command.
 
 !!! note "Setting defaults to make using commands easier"
+
     You can set default parameters using `gogadget set-defaults --custom`. Once you have set up your defaults, this would allow you use this shortened version of the command:
 
     ```sh

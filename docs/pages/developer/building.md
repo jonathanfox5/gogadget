@@ -34,3 +34,28 @@ Firstly, please note the package requirements at the top of this document. You c
 ```sh title="install/linux_test_install.sh"
 --8<-- "install/linux_test_install.sh"
 ```
+
+## Documentation
+
+The documentation uses mkdocs-material. You can install it with uv:
+
+```sh
+uv tool install mkdocs --with mkdocs-glightbox --with mkdocs-material --with mdx-truly-sane-lists --with mkdocs-minify-plugin
+```
+
+The command reference page can automatically be regenerated with:
+
+```sh
+poetry shell
+typer gogadget.main utils docs --name gogadget --output docs/pages/reference/command_reference.md
+```
+
+From the newly generated `docs/pages/reference/command_reference.md`, I then delete the first bit of help text that is shown in the command line version when typing `gogadget`. This is for aesthetic purposes only!
+
+A test server can be run with:
+
+```sh
+mkdocs serve -f docs/mkdocs.yml
+```
+
+There is a github action that rebuilds the documentation website on each commit.

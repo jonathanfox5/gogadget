@@ -2,11 +2,11 @@
 
 The intended behaviour is that the tool itself will guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:
 
-![Main menu](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/main_menu.png)
+![Main menu](../img/main_menu.png)
 
 All commands are listed in the `Primary Functions` box and have their own documentation. Each command has parameters associated with it. These can be listed by just typing `gogadget` then the name of the command that you are interested in. For example, `gogadget download` produces:
 
-![Download Help Text](https://github.com/jonathanfox5/gogadget/raw/main/examples/readme_images/download_help.png)
+![Download Help Text](../img/download_help.png)
 
 You will see from the output of that command that you can just run the following to download a video:
 
