@@ -43,7 +43,7 @@ def frequency_analyser(
         lemmatise_words = False
 
         CliUtils.print_warning(
-            f"Language {language} is not currently supported by the lemmatiser so lemmatisation has been disabled. However, the script will still function. Without lemmatisation, it is highly recommended to set --excluded-words to a spreadsheet of common words for {language} for functions that support it. Type [cyan bold]gogadget [command_name_here] --help[/] for more information for each individual command"
+            f"Language {language} is not currently supported by the lemmatiser so lemmatisation has been disabled. However, the script will still function. Without lemmatisation, it is highly recommended to set --excluded-words to a spreadsheet of common words for {language} for functions that support it. Type gogadget [command_name_here] --help for more information for each individual command"
         )
 
     # Get the list of words to filter
