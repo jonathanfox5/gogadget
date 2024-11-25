@@ -251,7 +251,9 @@ def write_subtitles_anki(
 
     for result_dict in stage2_results:
         media_path: Path = result_dict["path"]
-        intermediate_path = media_path.with_suffix(f".{subtitle_format}.{subtitle_format}")
+        intermediate_path = Path(
+            output_directory / f"{media_path.stem}.{subtitle_format}.{subtitle_format}"
+        )
         final_path = intermediate_path.with_suffix(".gg")
 
         if intermediate_path.exists():
@@ -260,6 +262,10 @@ def write_subtitles_anki(
         if final_path.exists():
             final_path.unlink(missing_ok=True)
 
+        print(f"{media_path=}")
+        print(f"{intermediate_path=}")
+        print(f"{final_path=}")
+
         CliUtils.print_plain(f"Writing long form subtitles (for Anki use): {final_path}")
 
         # Write subtitles
@@ -267,6 +273,7 @@ def write_subtitles_anki(
 
         # Rename the subtitles so that mpv, etc. don't automatically pick them up
         if intermediate_path.exists():
+            print("exists")
             intermediate_path.rename(final_path)
 
     return []
