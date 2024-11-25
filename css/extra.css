@@ -1,0 +1,12 @@
+.md-nav--secondary {
+  border-left: 0.05rem solid #777 !important;
+}
+
+.md-nav__link--active {
+  font-weight: bold !important;
+  color: #ddd !important;
+}
+
+.md-tabs__item--active {
+  font-weight: bold !important;
+}
