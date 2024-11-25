@@ -1,0 +1,102 @@
+site_name: gogadget
+site_url: https://jonathanfox5.github.io/gogadget
+site_author: Jonathan Fox
+site_description: >-
+  User friendly toolkit for generating immersion language learning tools including 
+  downloading media, generating subtitles and creating Anki decks.
+
+repo_url: https://github.com/jonathanfox5/gogadget
+repo_name: gogadget
+
+copyright: Copyright &copy; 2024 Jonathan Fox
+
+nav:
+  - Home: 
+    - Overview: index.md
+    - Installation & Usage: 
+      - Installation: getting_started/installation.md
+      - Using the Tool: getting_started/using_the_tool.md
+      - Example Commands: getting_started/example_commands.md
+      - "Example Use Case: Priming": getting_started/example_use_case.md
+    - Reference:
+      - Supported Languages: getting_started/supported_languages.md
+      - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
+    - Commands and Settings: 
+      - Command Reference: reference/command_reference.md
+      - Default Settings: reference/default_settings.md
+    - Developer:
+      - Building: developer/building.md
+      - Contributing: developer/contributing.md
+      - Report a bug or request a feature (Github): https://github.com/jonathanfox5/gogadget/issues
+  - Getting Started:
+    - Overview: getting_started/getting_started.md
+    - Installation & Usage: 
+      - Installation: getting_started/installation.md
+      - Using the Tool: getting_started/using_the_tool.md
+      - Example Commands: getting_started/example_commands.md
+      - "Example Use Case: Priming": getting_started/example_use_case.md
+    - Reference:
+      - Supported Languages: getting_started/supported_languages.md
+      - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
+      - Command Reference: reference/command_reference.md
+      - Default Settings: reference/default_settings.md
+  - Commands and Settings: 
+    - Command Reference: reference/command_reference.md
+    - Default Settings: reference/default_settings.md
+  - Developer:
+    - Building: developer/building.md
+    - Contributing: developer/contributing.md
+    - Report a bug or request a feature (Github): https://github.com/jonathanfox5/gogadget/issues
+
+
+theme:
+  name: material
+  palette:
+    primary: black
+    accent: indigo
+    scheme: slate
+  font: 
+    text: Source Sans 3
+    code: Source Code Pro
+  features:
+    - content.code.copy
+    - navigation.footer
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - search.suggest
+    - toc.integrate
+    - toc.follow
+
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - mdx_truly_sane_lists:
+      nested_indent: 2
+      truly_sane: true
+  - attr_list
+
+plugins:
+  - glightbox
+  - search:
+  - minify:
+      minify_html: true
+
+extra_css:
+  - css/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jonathanfox5/
+      name: jonathanfox5 on Github
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@jonathanfox5634
+      name: jonathanfox5 on YouTube
