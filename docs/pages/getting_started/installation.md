@@ -146,7 +146,7 @@ Alternatively, you can change the value of `whisper_use_gpu` in the settings fil
 gogadget set-defaults --custom
 ```
 
-## Custom Installation Notes
+## Custom installation notes
 
 You should ignore this section if you are using the installation instructions for Windows, macOS or Linux. This is only to help anyone doing their own custom installation.
 
