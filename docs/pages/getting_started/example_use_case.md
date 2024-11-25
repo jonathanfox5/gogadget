@@ -1,3 +1,7 @@
+!!! note "A note on commands"
+
+    This example uses the "short" version of the commands. Using the "standard" commands (that are referenced in some other parts of the documentation) is equally valid. More info [here](../getting_started/using_the_tool.md#short-names)
+
 ## Preparing Priming Materials
 
 The following example is my personal use case for producing priming materials prior to immersing in them. My target language is Italian (`it`) and my native language is English(`en`). I have downloaded a json dictionary, word audio and an exclude list as described in [Getting dictionary, word audio and exclude lists](../getting_started/getting_resources.md).
@@ -61,7 +65,7 @@ Now that these parameters are set, they no longer need to be specified in the co
 
 For this example, let's assume that I'm downloading a playlist of videos for a specific series that I want to learn the key vocabulary for. The URL of this hypothetical playlist is `https://www.videosite.com/playlist_name` and I'm storing everything in a folder called `immersion`.
 
-I would take the following steps. You can type the command without the extra parameters into your terminal (e.g. `gogadget download`) if you want to understand the specific options that I'm choosing.
+I would then run the following commands. You will notice that many of the parameters no longer need to be entered as they have been covered by the defaults.
 
 1. Download the videos that are in the playlist:
 
