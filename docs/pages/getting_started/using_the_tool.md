@@ -1,10 +1,3 @@
-This is a written overview on how to use the tool. If this isn't your thing, you might find the following useful instead:
-
-- **If you prefer to watch a tutorial rather than follow written instructions, it is available here: [Youtube Tutorial](#youtube-tutorial)**
-- Examples of some of the functions are given here: [General Examples](#general-examples)
-- Full written documentation of every function in the tool is available here: [Command reference](#command-reference)
-- An explanation of the settings file is here: [Default Parameters](#default-parameters)
-
 ## Understanding Commands
 
 The intended behaviour is that the tool itself will guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:
