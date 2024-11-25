@@ -10,8 +10,9 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 keywords = ["language learning", "yt-dlp", "whisper", "anki", "frequency analysis", "priming"]
-homepage = "https://github.com/jonathanfox5/gogadget"
+homepage = "https://jonathanfox5.github.io/gogadget/"
 repository = "https://github.com/jonathanfox5/gogadget"
+documentation = "https://jonathanfox5.github.io/gogadget/"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"

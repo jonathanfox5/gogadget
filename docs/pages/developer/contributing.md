@@ -16,7 +16,7 @@ uv tool install mkdocs --with mkdocs-glightbox --with mkdocs-material --with mdx
 If you are in the root of the git repository, you can then run the following to run a test server:
 
 ```sh
-mkdocs serve
+mkdocs serve -f docs/mkdocs.yml
 ```
 
 There is a github action that rebuilds the documentation on each commit.
