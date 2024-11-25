@@ -67,7 +67,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 2. Install required packages (if you don't already have them) using your package manager. This will depend on your distribution. For example:
 
 - Ubuntu based distributions: `sudo apt install ffmpeg build-essential python3-dev`
-- Fedora based distributions: `sudo dnf install ffmpeg gcc @development-tools python3-devel`
+- Fedora based distributions: `sudo dnf install ffmpeg @development-tools python3-devel`
 - Arch based distributions: `sudo pacman -S ffmpeg base-devel`
 
 3. Configure your paths if they aren't already set up:
@@ -76,7 +76,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 ```
 
-4. Install gogadget using uv. Note that we are using python 3.10 instead of 3.12 that the other commands are using. This is to ensure that all dependencies build on ARM cpus.
+4. Install gogadget using uv. Note that we are using python 3.10 instead of 3.12 that the other commands are using. This is to ensure that all dependencies build on ARM CPUs.
 
 ```sh
 uv tool install gogadget --python 3.10 --upgrade
@@ -96,7 +96,7 @@ gogadget install
 
 !!! note "GPU Powered Transcription"
 
-    _[Optional]_ If you wish to use your GPU instead of your CPU and you have CUDA installed and configured on your system, after you run:
+    _[Optional]_ If you wish to use your GPU instead of your CPU and you have CUDA installed and configured on your system, **AFTER** you run:
 
     ```sh
     uv tool install gogadget --python 3.10 --upgrade
