@@ -1,0 +1,36 @@
+## Required packages
+
+[Poetry](https://python-poetry.org) is used to build the packages and [Innosetup](https://jrsoftware.org/isinfo.php) is used to build the Windows installer.
+
+The installers use [uv](https://docs.astral.sh/uv/) to run the tool in its own virtual environment and the only non-Python runtime dependency is [ffmpeg](https://ffmpeg.org).
+
+## Settings things up
+
+The following assumes building on Windows so that the Windows installer can be created in addition to the multi-platform wheel. If you are building on mac / linux, just skip the innosetup related steps.
+
+1. Set version number in [pyproject.toml](https://github.com/jonathanfox5/gogadget/blob/main/pyproject.toml)
+2. Set version number in [install/gogadget_windows.iss](https://github.com/jonathanfox5/gogadget/blob/main/install/gogadget_windows.iss)
+3. Make sure `poetry` and `innosetup` are installed and in path. (innosetup isn't by default, you will need to add the root innosetup directory that is located in program files)
+4. Download latest windows builds of `ffmpeg` and `uv` and put the binaries directly in [install/bin/](https://github.com/jonathanfox5/gogadget/tree/main/install/bin/)
+
+## Build commands (Windows)
+
+These commands are for Bash on Windows, you will need to convert them to whatever shell / platform you are using.
+
+```sh title="install/windows_build.sh"
+--8<-- "install/windows_build.sh"
+```
+
+## Running from source (generic)
+
+Firstly, please note the package requirements at the top of this document. You can then run:
+
+```sh title="install/run_from_source_example.sh"
+--8<-- "install/run_from_source_example.sh"
+```
+
+## Running from source (clean install of Ubuntu server)
+
+```sh title="install/linux_test_install.sh"
+--8<-- "install/linux_test_install.sh"
+```

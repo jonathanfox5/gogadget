@@ -9,4 +9,3 @@ cp dist/*.whl install/bin/
 
 # Build windows installer and move to dist folder
 iscc install/gogadget_windows.iss
-# mv install/output/*.exe dist/
