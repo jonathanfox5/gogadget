@@ -22,7 +22,7 @@ gogadget transcribe --input "your folder or filename" --language en
 
 !!! note "GPU Powered Transcription"
 
-    If you have followed the steps in [the installation instructions](installation.md) to enable GPU transcription, add `--gpu` to the end of the command to use it.
+    If you have followed the steps in [the installation instructions](../getting_started/installation.md) to enable GPU transcription, add `--gpu` to the end of the command to significantly speed up the transcription.
 
 ## Create Anki Deck
 

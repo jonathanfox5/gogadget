@@ -20,7 +20,7 @@ Several commands use a standardised two letter code to identify languages (e.g. 
 gogadget list-languages
 ```
 
-Alternatively, a list is available by clicking [here](supported_languages.md).
+Alternatively, a list is available by clicking [here](../getting_started/supported_languages.md).
 
 ## Configuration
 
@@ -36,7 +36,7 @@ You can also configure defaults so that you don't need to specify as many parame
 gogadget set-defaults --custom
 ```
 
-An example for setting defaults can be found [here](example_use_case.md).
+An example for setting defaults can be found [here](../getting_started/example_use_case.md).
 
 ## Short Names
 
