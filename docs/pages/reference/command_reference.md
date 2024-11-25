@@ -1,13 +1,9 @@
-# Command reference
-
-## `gogadget`
-
-Lists each of the available commands.
+# `gogadget`
 
 **Usage**:
 
 ```console
-$ gogadget [OPTIONS] COMMAND
+$ gogadget [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -17,53 +13,37 @@ $ gogadget [OPTIONS] COMMAND
 
 **Commands**:
 
-- `anki-deck`: Build an Anki deck using the most common vocabulary in a subtitles file or a folder of subtitles. Optionally include audio and / or screenshots from the source media file(s).
-- `download`: Download a video or playlist from a website URL.
-- `download-audio`: Download a video or playlist from a website URL and convert it to an audio file.
-- `download-subtitles`: Download subtitles from an online video service.
-- `frequency-analysis`: Produce a frequency analysis of the most common vocabulary in a subtitles file or a folder of subtitles. Useful for priming, also used as a pre-processing stage for some other functions.
-- `transcribe`: Produce subtitle file(s) from audio or video using whisperX.
-- `install`: Download models for a given `--language` and initialises tools.
+- `anki-deck`: Build an Anki deck using the most common...
+- `download`: Download a video or playlist from a...
+- `download-audio`: Download a video or playlist from a...
+- `download-subtitles`: Download subtitles from an online video...
+- `frequency-analysis`: Produce a frequency analysis of the most...
+- `transcribe`: Produce subtitle file(s) from audio or...
+- `install`: Download models for a given --language and...
 - `list-languages`: Display languages supported by the tool.
-- `set-defaults`: Configure your default paths so that don't need to specify them each time.
-- `update-downloader`: Update the downloader to use the latest version of yt-dlp.
+- `set-defaults`: Configure your default paths so that don&#x27;t...
+- `update-downloader`: Update the downloader to use the latest...
 
 ## `gogadget anki-deck`
 
 Build an Anki deck using the most common vocabulary in a subtitles file or a folder of subtitles. Optionally include audio and / or screenshots from the source media file(s).
 
-If you use this regularly, it's highly recommended to set the default paths to your dictionary, excluded words, etc. and preferred processing options to simplify the process.
-You can set your defaults using the following command:
+<span style="color: #ffffff; text-decoration-color: #ffffff">If you use this regularly, it&#x27;s highly recommended to set the default paths to your dictionary, excluded words, etc. and preferred processing options to simplify the process.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff">You can set your defaults using the following command: </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget set-defaults --custom</span>
 
-```sh
-gogadget set-defaults --custom
-```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Normal usage using standard names where your target language is italian and your native language is English.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget anki-deck --input &quot;folder containing subtitles and media files&quot; --language it --translation-language en</span>
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. As per (1) but uses dictionary, word exclude list and word audio bank. Also uses --exclude-no-definition to filter out proper nouns / non-target language words.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget anki-deck --input &quot;folder containing subtitles and media files&quot; --language it --translation-language en --dictionary &quot;dictionary.json&quot; --word_audio &quot;folder_name&quot; --excluded-words &quot;excel_name.xlsx&quot; --exclude-no-definition</span>
 
-1. Normal usage using standard names where your target language is italian and your native language is English.
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">3. Equivalent of (2) using short names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget anki-deck -i &quot;folder containing subtitles and media files&quot; -l it -t en -d &quot;dictionary.json&quot; -w &quot;folder_name&quot; -e &quot;excel_name.xlsx&quot; -h</span>
 
-   ```sh
-   gogadget anki-deck --input "folder containing subtitles and media files" --language it --translation-language en
-   ```
-
-2. As per (1) but uses dictionary, word exclude list and word audio bank. Also uses --exclude-no-definition to filter out proper nouns / non-target language words.
-
-   ```sh
-   gogadget anki-deck --input "folder containing subtitles and media files" --language it --translation-language en --dictionary "dictionary.json" --word_audio "folder_name" --excluded-words "excel_name.xlsx" --exclude-no-definition
-   ```
-
-3. Equivalent of (2) using short names.
-
-   ```sh
-   gogadget anki-deck -i "folder containing subtitles and media files" -l it -t en -d "dictionary.json" -w "folder_name" -e "excel_name.xlsx" -h
-   ```
-
-4. If you have set all of your defaults as described above, you can just run.
-
-   ```sh
-   gogadget anki-deck -i "folder containing subtitles and media files"
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">4. If you have set all of your defaults as described above, you can just run.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget anki-deck -i &quot;folder containing subtitles and media files&quot;</span>
 
 **Usage**:
 
@@ -73,44 +53,35 @@ $ gogadget anki-deck [OPTIONS]
 
 **Options**:
 
-- `-i, --input PATH`: Directory (folder) containing the video file(s) and subtitle files(s) to be turned into an Anki deck.
-- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
-- `-t, --translation-language TEXT`: [Optional] Language to use for translations. Translation quality is generally best if either the target language or the translation is set to `en` (English). This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
-- `-f, --offset INTEGER`: [Optional] Time, in milliseconds, to offset the subtitles by when extracting audio. Not normally required if subtitles were generated by gogadget transcribe.
-- `-b, --buffer INTEGER`: [Optional] Extra time, in milliseconds, to add to the extracted audio to avoid it being cut off. Not normally required if subtitles were generated by gogadget transcribe.
-- `-x, --max-cards INTEGER`: [Optional] Maximum number of cards to include in the deck.
-- `-w, --word-audio PATH`: [Optional] Directory of mp3 files of individual words to include in the Anki cards.
-- `-d, --dictionary PATH`: [Optional] Dictionary in json format to retrieve definitions from for the Anki cards.
-- `-e, --excluded-words PATH`: [Optional] Spreadsheet containing words to exclude from the analysis (e.g. the most common words in a language, words already learned). Words should be in the first column of the spreadsheet but can be split across multiple sub-sheets within the file.
-- `-m, --lemma / -n, --no-lemma`: [Optional] Enable or disable lemmatisation. If supported for your language, this is generally recommended.
-- `-s, --stop-words / -p, --no-stop-words`: [Optional] If lemmatisation is enabled, you can include or exclude stop words. Stop words are short 'function' words such as 'the', 'that', 'which', etc.
-- `-q, --media / -r, --no-media`: [Optional] Media to extract sentence audio and screenshots from to display on the Anki card. This can either be a video or audio only source.
-- `-g, --include-no-definition / -h, --exclude-no-definition`: [Optional] Include cards where the definition can't be found in the dictionary. Setting `--exclude-no-definition` may improve the quality of the deck as it will likely filter many proper nouns, words not from the target language, etc.
+- `-i, --input PATH`: Directory (folder) containing the video file(s) and subtitle files(s) to be turned into an Anki deck. [required]
+- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: it]
+- `-t, --translation-language TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Language to use for translations. Translation quality is generally best if either the target language or the translation is set to <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (English). This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: en]
+- `-f, --offset INTEGER`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Time, in milliseconds, to offset the subtitles by when extracting audio. Not normally required if subtitles were generated by <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget transcribe</span>. [default: 0]
+- `-b, --buffer INTEGER`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Extra time, in milliseconds, to add to the extracted audio to avoid it being cut off. Not normally required if subtitles were generated by <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget transcribe</span>. [default: 50]
+- `-x, --max-cards INTEGER`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Maximum number of cards to include in the deck. [default: 100]
+- `-w, --word-audio PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory of mp3 files of individual words to include in the Anki cards. [default: /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Audio]
+- `-d, --dictionary PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Dictionary in json format to retrieve definitions from for the Anki cards. [default: /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Dictionaries/Migaku/Vicon_Ita_to_Eng_Dictionary.json]
+- `-e, --excluded-words PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Spreadsheet containing words to exclude from the analysis (e.g. the most common words in a language, words already learned). Words should be in the first column of the spreadsheet but can be split across multiple sub-sheets within the file. [default: /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Frequency_lists/ita_exclude.xlsx]
+- `-m, --lemma / -n, --no-lemma`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Enable or disable lemmatisation. If supported for your language, this is generally recommended. [default: lemma]
+- `-s, --stop-words / -p, --no-stop-words`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> If lemmatisation is enabled, you can include or exclude stop words. Stop words are short &#x27;function&#x27; words such as &#x27;the&#x27;, &#x27;that&#x27;, &#x27;which&#x27;, etc. [default: no-stop-words]
+- `-q, --media / -r, --no-media`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Media to extract sentence audio and screenshots from to display on the Anki card. This can either be a video or audio only source. [default: media]
+- `-g, --include-no-definition / -h, --exclude-no-definition`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Include cards where the definition can&#x27;t be found in the dictionary. Setting --exclude-no-definition may improve the quality of the deck as it will likely filter many proper nouns, words not from the target language, etc. [default: exclude-no-definition]
 - `--help`: Show this message and exit.
 
 ## `gogadget download`
 
 Download a video or playlist from a website URL.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
 
-1. Normal usage using standard names.
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Normal usage using standard names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download --url &quot;https://www.videosite.com/watch?v=videoid&quot;</span>
 
-   ```sh
-   gogadget download --url "https://www.videosite.com/watch?v=videoid"
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. More advanced usage using standard names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download --url &quot;https://www.videosite.com/watch?v=videoid&quot; --output &quot;immersion videos&quot; --subtitle_language en --format &quot;best&quot;</span>
 
-2. More advanced usage using standard names.
-
-   ```sh
-   gogadget download --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos" --subtitle_language en --format "best"
-   ```
-
-3. Equivalent of (2) using short names.
-
-   ```sh
-   gogadget download -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos" -l en -f "best"
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">3. Equivalent of (2) using short names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download -i &quot;https://www.videosite.com/watch?v=videoid&quot; -o &quot;immersion videos&quot; -l en -f &quot;best&quot;</span>
 
 **Usage**:
 
@@ -120,36 +91,27 @@ $ gogadget download [OPTIONS]
 
 **Options**:
 
-- `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md).
-- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
-- `-f, --format TEXT`: [Optional] Specify the format of the video. Accepts [yt-dlp's](https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#format-selection) format options.
-- `-l, --subtitle-language TEXT`: [Optional] Language of subtitles to download. If you want to download these, you should enter a two letter language code such as `en`, `es` or `it`. It will try to download manual subtitles first and fallback to automatically generated subtitles if these aren't found.
-- `-a, --advanced-options TEXT`: [Optional][Advanced] Custom yt-dlp options, should accept any command line arguments on the [github page](https://github.com/yt-dlp/yt-dlp). Please format these as a string, enclosed by quotes.
+- `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md">yt-dlp</a></span>. [required]
+- `-o, --output PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from. [default: .]
+- `-f, --format TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Specify the format of the video. Accepts <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#format-selection">yt-dlp&#x27;s format options</a></span>.
+- `-l, --subtitle-language TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Language of subtitles to download. If you want to download these, you should enter a two letter language code such as <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span>. It will try to download manual subtitles first and fallback to automatically generated subtitles if these aren&#x27;t found.
+- `-a, --advanced-options TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span><span style="color: #800000; text-decoration-color: #800000">[Advanced]</span> Custom yt-dlp options, should accept any command line arguments on the <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp">github page</a></span>. Please format these as a string, enclosed by quotes.
 - `--help`: Show this message and exit.
 
 ## `gogadget download-audio`
 
 Download a video or playlist from a website URL and convert it to an audio file.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
 
-1. Normal usage using standard names.
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Normal usage using standard names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download-audio --url &quot;https://www.videosite.com/watch?v=videoid&quot;</span>
 
-   ```sh
-   gogadget download-audio --url "https://www.videosite.com/watch?v=videoid"
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. More advanced usage using standard names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download-audio --url &quot;https://www.videosite.com/watch?v=videoid&quot; --output &quot;immersion videos&quot;</span>
 
-2. More advanced usage using standard names.
-
-   ```sh
-   gogadget download-audio --url "https://www.videosite.com/watch?v=videoid" --output "immersion videos"
-   ```
-
-3. Equivalent of (2) using short names.
-
-   ```sh
-   gogadget download-audio -i "https://www.videosite.com/watch?v=videoid" -o "immersion videos"
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">3. Equivalent of (2) using short names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download-audio -i &quot;https://www.videosite.com/watch?v=videoid&quot; -o &quot;immersion videos&quot;</span>
 
 **Usage**:
 
@@ -159,28 +121,21 @@ $ gogadget download-audio [OPTIONS]
 
 **Options**:
 
-- `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md).
-- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
-- `-a, --advanced-options TEXT`: [Optional][Advanced] Custom yt-dlp options, should accept any command line arguments on the [github page](https://github.com/yt-dlp/yt-dlp). Please format these as a string, enclosed by quotes.
+- `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md">yt-dlp</a></span>. [required]
+- `-o, --output PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from. [default: .]
+- `-a, --advanced-options TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span><span style="color: #800000; text-decoration-color: #800000">[Advanced]</span> Custom yt-dlp options, should accept any command line arguments on the <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp">github page</a></span>. Please format these as a string, enclosed by quotes.
 - `--help`: Show this message and exit.
 
 ## `gogadget download-subtitles`
 
 Download subtitles from an online video service.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Download english subtitles for a given video.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download-subtitles --url &quot;https://www.videosite.com/watch?v=videoid&quot; --subtitle-language en</span>
 
-1. Download english subtitles for a given video.
-
-   ```sh
-   gogadget download-subtitles --url "https://www.videosite.com/watch?v=videoid" --subtitle-language en
-   ```
-
-2. Equivalent of (1) using short names.
-
-   ```sh
-   gogadget download-subtitles -i "https://www.videosite.com/watch?v=videoid" -l en
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. Equivalent of (1) using short names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget download-subtitles -i &quot;https://www.videosite.com/watch?v=videoid&quot; -l en</span>
 
 **Usage**:
 
@@ -190,48 +145,32 @@ $ gogadget download-subtitles [OPTIONS]
 
 **Options**:
 
-- `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by [yt-dlp](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md).
-- `-l, --subtitle-language TEXT`: Language of subtitles to download. If you want to download these, you should enter a two letter language code such as `en`, `es` or `it`. It will try to download manual subtitles first and fallback to automatically generated subtitles if these aren't found.
-- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
-- `-a, --advanced-options TEXT`: [Optional][Advanced] Custom yt-dlp options, should accept any command line arguments on the [github page](https://github.com/yt-dlp/yt-dlp). Please format these as a string, enclosed by quotes.
+- `-i, --url TEXT`: URL of the video or playlist. Supports any website supported by <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md">yt-dlp</a></span>. [required]
+- `-l, --subtitle-language TEXT`: Language of subtitles to download. You should enter a two letter language code such as <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span>. It will try to download manual subtitles first and fallback to automatically generated subtitles if these aren&#x27;t found.
+- `-o, --output PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from. [default: .]
+- `-a, --advanced-options TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span><span style="color: #800000; text-decoration-color: #800000">[Advanced]</span> Custom yt-dlp options, should accept any command line arguments on the <span style="color: #000080; text-decoration-color: #000080; text-decoration: underline"><a href="https://github.com/yt-dlp/yt-dlp">github page</a></span>. Please format these as a string, enclosed by quotes.
 - `--help`: Show this message and exit.
 
 ## `gogadget frequency-analysis`
 
 Produce a frequency analysis of the most common vocabulary in a subtitles file or a folder of subtitles. Useful for priming, also used as a pre-processing stage for some other functions.
 
-If you use this regularly, it's highly recommended to set the default paths to your excluded words and preferred processing options to simplify the process.
-You can set your defaults using the following command:
+<span style="color: #ffffff; text-decoration-color: #ffffff">If you use this regularly, it&#x27;s highly recommended to set the default paths to your excluded words and preferred processing options to simplify the process.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff">You can set your defaults using the following command: </span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget set-defaults --custom</span>
 
-```sh
-gogadget set-defaults --custom
-```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Normal usage using standard names where your target language is italian.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis --input &quot;folder containing subtitles and media files&quot; --language it</span>
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. As per (1) but uses word exclude list.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis --input &quot;folder containing subtitles and media files&quot; --language it --excluded-words &quot;excel_name.xlsx&quot;</span>
 
-1. Normal usage using standard names where your target language is italian.
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">3. Equivalent of (2) using short names.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis -i &quot;folder containing subtitles and media files&quot; -l it -e &quot;excel_name.xlsx&quot;</span>
 
-   ```sh
-   gogadget frequency-analysis --input "folder containing subtitles and media files" --language it
-   ```
-
-2. As per (1) but uses word exclude list.
-
-   ```sh
-   gogadget frequency-analysis --input "folder containing subtitles and media files" --language it --excluded-words "excel_name.xlsx"
-   ```
-
-3. Equivalent of (2) using short names.
-
-   ```sh
-   gogadget frequency-analysis -i "folder containing subtitles and media files" -l it -e "excel_name.xlsx"
-   ```
-
-4. If you have set all of your defaults as described above, you can just run.
-
-   ```sh
-   gogadget frequency-analysis -i "folder containing subtitles and media files"
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">4. If you have set all of your defaults as described above, you can just run.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis -i &quot;folder containing subtitles and media files&quot;</span>
 
 **Usage**:
 
@@ -241,43 +180,33 @@ $ gogadget frequency-analysis [OPTIONS]
 
 **Options**:
 
-- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
-- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
-- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
-- `-e, --excluded-words PATH`: [Optional] Spreadsheet containing words to exclude from the analysis (e.g. the most common words in a language, words already learned). Words should be in the first column of the spreadsheet but can be split across multiple sub-sheets within the file.
-- `-m, --lemma / -n, --no-lemma`: [Optional] Enable or disable lemmatisation. If supported for your language, this is generally recommended.
-- `-s, --stop-words / -p, --no-stop-words`: [Optional] If lemmatisation is enabled, you can include or exclude stop words. Stop words are short 'function' words such as 'the', 'that', 'which', etc.
+- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files. [required]
+- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: it]
+- `-o, --output PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from. [default: .]
+- `-e, --excluded-words PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Spreadsheet containing words to exclude from the analysis (e.g. the most common words in a language, words already learned). Words should be in the first column of the spreadsheet but can be split across multiple sub-sheets within the file. [default: /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Frequency_lists/ita_exclude.xlsx]
+- `-m, --lemma / -n, --no-lemma`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Enable or disable lemmatisation. If supported for your language, this is generally recommended. [default: lemma]
+- `-s, --stop-words / -p, --no-stop-words`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> If lemmatisation is enabled, you can include or exclude stop words. Stop words are short &#x27;function&#x27; words such as &#x27;the&#x27;, &#x27;that&#x27;, &#x27;which&#x27;, etc. [default: no-stop-words]
 - `--help`: Show this message and exit.
 
 ## `gogadget transcribe`
 
 Produce subtitle file(s) from audio or video using whisperX.
 
-`--input_path` and `-i` accept both files and directories of files.
+<span style="color: #ffffff; text-decoration-color: #ffffff">--input and -i accept both files and directories of files.</span>
 
-If you have an NVIDIA GPU that is set up for CUDA, it's strongly recommended to pass the `--gpu` flag as this significantly speeds up the tool.
+<span style="color: #ffffff; text-decoration-color: #ffffff">If you have an NVIDIA GPU that is set up for CUDA, it&#x27;s strongly recommended to pass the --gpu flag as this significantly speeds up the tool.</span>
 
-You can also reduce runtime (at the expense of accuracy) by specifying `--whisper-model small`
+<span style="color: #ffffff; text-decoration-color: #ffffff">You can also reduce runtime (at the expense of accuracy) by specifying --whisper-model small</span>
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Transcribe a media file or folder of media files that is in English.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget transcribe --input &quot;path to media file or folder containing media files&quot; --language en</span>
 
-1. Transcribe a media file or folder of media files that is in English.
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. As per (1) but using the GPU to process the model.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget transcribe --input &quot;path to media file or folder containing media files&quot; --language en --gpu</span>
 
-   ```sh
-   gogadget transcribe --input "path to media file or folder containing media files" --language en
-   ```
-
-2. As per (1) but using the GPU to process the model.
-
-   ```sh
-   gogadget transcribe --input "path to media file or folder containing media files" --language en --gpu
-   ```
-
-3. Example using short names where the output folder is also specified.
-
-   ```sh
-   gogadget transcribe -i "path to media file or folder containing media files" -o "folder to save to" -l en -g
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">3. Example using short names where the output folder is also specified.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget transcribe -i &quot;path to media file or folder containing media files&quot; -o &quot;folder to save to&quot; -l en -g</span>
 
 **Usage**:
 
@@ -287,34 +216,27 @@ $ gogadget transcribe [OPTIONS]
 
 **Options**:
 
-- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files.
-- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
-- `-o, --output PATH`: [Optional] Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from.
-- `-m, --max-length INTEGER`: [Optional] The absolute maximum length that a subtitle can be. [default: 94]
-- `-s, --split-length INTEGER`: [Optional] The length at which the tool considers splitting a subtitle. [default: 70]
-- `-w, --whisper-model TEXT`: [Optional] Specify the whisper model to use for transcription. By default, this is large-v3 turbo but setting this to `small` can significantly speed the process up at the cost of accuracy.
-- `-a, --align-model TEXT`: [Optional] Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you.
-- `-g, --gpu / -c, --cpu`: [Optional] You can specify `--gpu` if you have a CUDA enabled Nvidia graphics card to significantly speed up the processing.
-- `-f, --subtitle-format TEXT`: [Optional] File format for the subtitles. You can specify `vtt` or `srt`.
+- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files. [required]
+- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: it]
+- `-o, --output PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from. [default: .]
+- `-m, --max-length INTEGER`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> The absolute maximum length that a subtitle can be. [default: 94]
+- `-s, --split-length INTEGER`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> The length at which the tool considers splitting a subtitle. [default: 70]
+- `-w, --whisper-model TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Specify the whisper model to use for transcription. By default, this is large-v3 turbo but setting this to <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">small</span> can significantly speed the process up at the cost of accuracy. [default: deepdml/faster-whisper-large-v3-turbo-ct2]
+- `-a, --align-model TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Specify the model from hugging face to use to align the subtitles with the audio. For the most common languages, the tool will find this for you.
+- `-g, --gpu / -c, --cpu`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> You can specify --gpu if you have a CUDA enabled Nvidia graphics card to significantly speed up the processing. [default: cpu]
+- `-f, --subtitle-format TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> File format for the subtitles. You can specify vtt, srt, json, txt, tsv or aud. Vtt is the preferred format of the other tools in this suite. [default: vtt]
 - `--help`: Show this message and exit.
 
 ## `gogadget install`
 
-Download models for a given `--language` and initialises tools.
+Download models for a given --language and initialises tools.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Install modules to process Italian and produce English translations.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget install --language it --translation-language en</span>
 
-1. Install modules to process Italian and produce English translations.
-
-   ```sh
-   gogadget install --language it --translation-language en
-   ```
-
-2. To get a list of language codes to use in the command, run:
-
-   ```sh
-   gogadget list-languages
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. To get a list of language codes to use in the command, run:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget list-languages</span>
 
 **Usage**:
 
@@ -324,27 +246,20 @@ $ gogadget install [OPTIONS]
 
 **Options**:
 
-- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. en (for English), es (for Spanish) or it (Italian). Run gogadget list-languages for a list of supported languages.
-- `-t, --translation-language TEXT`: [Optional] Language to use for translations. Translation quality is generally best if either the target language or the translation is set to en (English). This should be a two letter language code, e.g. `en` (for English), `es` (for Spanish) or `it` (Italian). Run `gogadget list-languages` for a list of supported languages.
+- `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: it]
+- `-t, --translation-language TEXT`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Language to use for translations. Translation quality is generally best if either the target language or the translation is set to <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (English). This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: en]
 - `--help`: Show this message and exit.
 
 ## `gogadget list-languages`
 
 Display languages supported by the tool.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. List languages supported by all functions of the tool.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget list-languages</span>
 
-1. List languages supported by all functions of the tool.
-
-   ```sh
-   gogadget list-languages
-   ```
-
-2. List languages supported or partially supported by each module.
-
-   ```sh
-   gogadget list-languages --detailed
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. List languages supported or partially supported by each module.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget list-languages --detailed</span>
 
 **Usage**:
 
@@ -354,29 +269,23 @@ $ gogadget list-languages [OPTIONS]
 
 **Options**:
 
-- `-a, --detailed`: [Optional] List the languages supported by each module of the tool.
+- `-a, --detailed`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> List the languages supported by each module of the tool.
 - `--help`: Show this message and exit.
 
 ## `gogadget set-defaults`
 
-Configure your default paths so that don't need to specify them each time.
+Configure your default paths so that don&#x27;t need to specify them each time.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
 
-1. Open the settings file on your folder in your default text editor.
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Open the settings file on your folder in your default text editor.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget set-defaults --custom</span>
 
-   ```sh
-   gogadget set-defaults --custom
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. Reset to factory defaults.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget set-defaults --factory</span>
 
-2. Reset to factory defaults.
-
-   ```sh
-   gogadget set-defaults --factory
-   ```
-
-**WARNING** It is possible to break the tool by setting incorrect values in the config file.
-Reset to factory defaults if you experience errors or unexpected behaviour.
+<span style="color: #800000; text-decoration-color: #800000; font-weight: bold; font-style: italic">~~~~ WARNING ~~~~ It is possible to break the tool by setting incorrect values in the config file.</span>
+<span style="color: #800000; text-decoration-color: #800000; font-weight: bold; font-style: italic">Reset to factory defaults if you experience errors or unexpected behaviour.</span>
 
 **Usage**:
 
@@ -386,21 +295,18 @@ $ gogadget set-defaults [OPTIONS]
 
 **Options**:
 
-- `-f, --factory`: [Optional] Load factory default settings. These settings are chosen to be compatible with most systems and languages with minimal tweaking.
-- `-c, --custom`: [Optional] Set custom settings in a text file. Useful for setting default paths to resources.
+- `-f, --factory`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Load factory default settings. These settings are chosen to be compatible with most systems and languages with minimal tweaking.
+- `-c, --custom`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Set custom settings in a text file. Useful for setting default paths to resources.
 - `--help`: Show this message and exit.
 
 ## `gogadget update-downloader`
 
 Update the downloader to use the latest version of yt-dlp.
 
-**Examples**:
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
 
-1. Update downloader.
-
-   ```sh
-   gogadget update-downloader
-   ```
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Update downloader.</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget update-downloader</span>
 
 **Usage**:
 
@@ -411,125 +317,3 @@ $ gogadget update-downloader [OPTIONS]
 **Options**:
 
 - `--help`: Show this message and exit.
-
-# Default Parameters
-
-```toml
-[instructions]
-# IMPORTANT INFORMATION
-# =====================
-# - All values are text and should be therefore be wrapped in double quotes. Valid examples:
-#       language = "en"
-#       lemmatise = "True"
-#       lemmatise = "False"
-#       subs_offset_ms = "0"
-#       subs_offset_ms = "50"
-# - If you don't want to a specify a value, just type two double quotes beside each other e.g.:
-#       language = ""
-#       word_exclude_spreadsheet = ""
-# - If you are on Windows, any paths will need to have any backslashes replaces with a double backslash e.g.:
-#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"
-#   Since this is easy to forget about, the tool will try to fix it for you. However, it's always best if it is correct to begin with!
-#
-# WARNING
-# =======
-# It is possible to break the tool by setting incorrect values in here.
-# However, the script will attempt to fall back to sensible defaults if it can't read your values.
-# If your setting appears to not be read by the tool, this is probably the reason!
-# Run `gogadget set-defaults --factory` (without quotes) to reset this file if you run into errors or unexplained behaviour
-
-[general]
-# language and language_for_translations either be a valid two letter language code or be set to "".
-# Valid examples:
-#       language = "en"
-#       language = ""
-# For a list of supported languages, please see the readme or run `gogadget list-languages` (without quotes)
-#
-# output_directory needs to be a valid folder on your system.
-# You can use a dot "." if you want to use the current directory that you are running commands from.
-# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
-# The tool will try to fix it if you forget but it's best to get it correct to begin with!
-# Valid examples:
-#       output_directory = ""                         # No default, you will have to specify when running the command
-#       output_directory = "."                        # The outputs of the command will be written to the current folder
-#       output_directory = "immersion_videos"         # Outputs will be written to a sub folder called "immersion_videos"
-#       output_directory = "C:\\immersion_videos\\"   # Outputs will be written to a specific folder on the C:\ drive
-
-language = ""
-language_for_translations = "en"
-output_directory = "."
-
-[external_resources]
-# These can be set to "" if you don't want to use them or want to specify them every time.
-# Windows paths need to have backslashes replaced with double backslashes, see [instructions] at the top of this file.
-# The tool will try to fix it if you forget but it's best to get it correct to begin with!
-# Valid examples:
-#       word_exclude_spreadsheet = "C:\\data\\exclude.xlsx"     # This will load a specific spreadsheet
-#       word_exclude_spreadsheet = ""                           # Don't use an exclude spreadsheet or only use when specified in the command
-
-word_exclude_spreadsheet = ""
-dictionary_file = ""
-word_audio_directory = ""
-
-[anki]
-# extract_media and include_words_with_no_definition should either be set to "True" or "False" and MUST be wrapped in quotes.
-# Valid examples:
-#       extract_media = "True"
-#       include_words_with_no_definition = "False"
-#
-# subs_offset_ms, subs_buffer_ms and max_cards_in_deck should be a number wrapped in quotes.
-# Valid examples:
-#       subs_offset_ms = "0"
-#       subs_buffer_ms = "50"
-
-extract_media = "True"
-include_words_with_no_definition = "True"
-subs_offset_ms = "0"
-subs_buffer_ms = "50"
-max_cards_in_deck = "100"
-
-[lemmatiser]
-# All values should be set to "True" or "False" and MUST be wrapped in quotes.
-# Valid examples:
-#       lemmatise = "True"
-#       lemmatise = "False"
-
-lemmatise = "True"
-filter_out_non_alpha = "True"
-filter_out_stop_words = "True"
-convert_input_to_lower = "True"
-convert_output_to_lower = "True"
-return_just_first_word_of_lemma = "True"
-
-[downloader]
-# These should either wrapped in quotes or set to double quotes to leave it blank.
-# Valid examples:
-#       format = "best[ext=mp4]"
-#       format = ""
-
-advanced_options = ""
-format = ""
-subtitle_language = ""
-
-[transcriber]
-# whisper_use_gpu should either be set to "True" or "False" and MUST be wrapped in quotes.
-# Valid examples:
-#       whisper_use_gpu = "False"
-#       whisper_use_gpu = "True"
-#
-# max_subtitle_length and subtitle_split_threshold should be a number wrapped in quotes.
-# Valid examples:
-#       max_subtitle_length = "100"
-#
-# The other settings should be text wrapped in quotes or be set to "" if you want to specify them each time.
-# These settings are best left alone unless you know what you are doing! Valid examples:
-#       whisper_model = "small"
-#       alignment_model = ""
-
-whisper_model = "deepdml/faster-whisper-large-v3-turbo-ct2"
-alignment_model = ""
-subtitle_format = "vtt"
-max_subtitle_length = "94"
-subtitle_split_threshold = "70"
-whisper_use_gpu = "False"
-```
