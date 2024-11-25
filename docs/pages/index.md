@@ -8,7 +8,7 @@ Gogadget is a toolkit for producing immersion and priming materials for language
     - [Installation instructions](getting_started/installation.md)
     - [Example commands](getting_started/example_commands.md)
     - [Detailed command reference](reference/command_reference.md)
-    - [Video tutorial](#video-tutorial)
+    - [Video tutorial](getting_started/video_tutorial.md)
 
 ## Video Tutorial
 

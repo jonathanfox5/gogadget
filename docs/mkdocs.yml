@@ -19,7 +19,7 @@ nav:
       - Installation: getting_started/installation.md
       - Using the tool: getting_started/using_the_tool.md
       - Example commands: getting_started/example_commands.md
-      - "Example Use Case: Priming": getting_started/example_use_case.md
+      - "Example use case: priming": getting_started/example_use_case.md
     - Reference:
       - Supported languages: getting_started/supported_languages.md
       - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
@@ -38,13 +38,13 @@ nav:
       - Installation: getting_started/installation.md
       - Using the tool: getting_started/using_the_tool.md
       - Example commands: getting_started/example_commands.md
-      - "Example Use Case: Priming": getting_started/example_use_case.md
+      - "Example use case: priming": getting_started/example_use_case.md
     - Reference:
       - Supported languages: getting_started/supported_languages.md
       - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
       - Command reference: reference/command_reference.md
       - Default settings: reference/default_settings.md
-  - Commands and Settings: 
+  - Reference: 
     - Command reference: reference/command_reference.md
     - Default settings: reference/default_settings.md
   - Developer:
