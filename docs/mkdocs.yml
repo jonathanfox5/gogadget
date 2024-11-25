@@ -51,6 +51,7 @@ nav:
     - Building: developer/building.md
     - Contributing: developer/contributing.md
     - Report a bug or request a feature (Github): https://github.com/jonathanfox5/gogadget/issues
+  - Other projects: misc/other_projects.md
 
 
 theme:
