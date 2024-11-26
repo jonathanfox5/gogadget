@@ -33,7 +33,7 @@ Coming in a few days...
 - [One click installer](https://github.com/jonathanfox5/gogadget/releases/) for Windows and [simple installation steps](getting_started/installation.md) for macOS and Linux.
 - Ability to save defaults so that commands can be kept as short and memorable as possible.
 - It supports 19 [languages](getting_started/supported_languages.md) fully with partial support for many more.
-- Once you have installed the resources for your language, all modules apart from `gogadget download` are fully offline. This makes it useful for travelling or processing personal conversations as there is no server involved.
+- Once you have installed the resources for your language, all modules apart from `gogadget download` are fully offline. This makes it useful for travelling or for processing personal conversations as there is no server involved.
 
 ## Acknowledgements
 
