@@ -5,7 +5,7 @@ description = "gogadget is a toolkit for producing immersion and priming materia
 authors = ["Jonathan Fox"]
 maintainers = ["Jonathan Fox"]
 readme = "README.md"
-license = "AGPLv3+"
+license = "AGPL-3.0-or-later"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
