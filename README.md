@@ -1,4 +1,4 @@
-<img src = "https://jonathanfox5.github.io/gogadget/img/header_black.svg" align="center"></a>
+<a href = "https://jonathanfox5.github.io/gogadget/" alt="gogadget"><img src = "https://jonathanfox5.github.io/gogadget/img/header_black.svg" align="center"></a>
 
 <div align = "center">
   <a href = "https://github.com/jonathanfox5/gogadget/releases" alt = "Download"><img src = "https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue"></a>

@@ -1,3 +1,8 @@
+---
+cards_layout_options.title: Language learning tool kit
+cards_layout_options.description: Download media, generate subtitles, create Anki decks and more!
+---
+
 <img src = "img/header.svg" align="center"></a>
 
 #
