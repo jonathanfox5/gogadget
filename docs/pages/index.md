@@ -1,6 +1,12 @@
-[![Download](https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue)](https://github.com/jonathanfox5/gogadget/releases)
-[![Documentation](https://img.shields.io/badge/view-documentation-brightgreen)](https://jonathanfox5.github.io/gogadget/)
-[![PyPI - Version](https://img.shields.io/pypi/v/gogadget?color=%23BA55D3)](https://pypi.org/project/gogadget/)
+<img src = "img/header.svg" align="center"></a>
+
+#
+
+<div align = "center">
+  <a href = "https://github.com/jonathanfox5/gogadget/releases" alt = "Download"><img src = "https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue"></a>
+  <a href = "https://jonathanfox5.github.io/gogadget" alt = "Documentation"><img src = "https://img.shields.io/badge/view-documentation-brightgreen"></a>
+  <a href = "https://pypi.org/project/gogadget/" alt = "PyPI"><img src = "https://img.shields.io/pypi/v/gogadget?color=%23BA55D3"></a>
+</div>
 
 `gogadget` is a toolkit for producing immersion and priming materials for language learning.
 
