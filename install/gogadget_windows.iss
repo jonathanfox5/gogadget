@@ -1,10 +1,10 @@
 #define MyAppName "gogadget"
-#define MyAppVersion "0.2.7"
+#define MyAppVersion "0.2.8"
 #define MyAppPublisher "Jonathan Fox"
 #define MyAppURL "https://github.com/jonathanfox5/gogadget"
 #define BaseLaunchBat "gogadget_launcher.bat"
 #define ContextLaunchBat "gogadget_context.bat"
-#define WheelName "gogadget-0.2.7-py3-none-any.whl"
+#define WheelName "gogadget-0.2.8-py3-none-any.whl"
 
 [Setup]
 AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}
@@ -25,7 +25,8 @@ ChangesEnvironment=true
 Compression=zip
 SolidCompression=yes
 SetupIconFile="{#MyAppName}.ico"
-UninstallDisplayIcon="{#MyAppName}.ico"
+UninstallDisplayIcon="{app}\{#MyAppName}.ico"
+WizardSmallImageFile="WizardSmallImageFile.bmp"
 
 [Dirs]
 Name: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall
@@ -51,7 +52,7 @@ Name: "addcontextmenu"; Description: "Add {#MyAppName} to right-click context me
 [Files]
 Source: "bin\*.bat"; DestDir: "{app}"; Flags: ignoreversion; Components: program
 Source: "bin\*.whl"; DestDir: "{app}"; Flags: ignoreversion; Components: program
-Source: "{MyAppName}.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: program
+Source: "{#MyAppName}.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: program
 Source: "bin\ffmpeg.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall; Components: ffmpeg
 Source: "bin\uv*.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall; Components: uv
 
@@ -68,11 +69,12 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"; Tasks: d
 Filename: "{app}\{#BaseLaunchBat}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent unchecked
 
 [Registry]
+Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}"; Flags: uninsdeletekeyifempty
+Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\Command"; Flags: uninsdeletekey
 Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}";  ValueType: string; ValueName: ""; ValueData: "Open {#MyAppName} here"; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
 Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\Command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#ContextLaunchBat}"""; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
-Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\Icon"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppName}.ico"""; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
-Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}";  ValueType: string; ValueName: ""; ValueData: "Open {#MyAppName} here"; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
+Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}"; ValueType: string; ValueName: "Icon"; ValueData: """{app}\{#MyAppName}.ico"""; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
 
 [UninstallRun]
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool uninstall gogadget"; RunOnceId: "UninstallTool"; Flags: runhidden
-Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "cache clean"; RunOnceId: "ClearUvCache"; Components: uv
+;Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "cache clean"; RunOnceId: "ClearUvCache"; Components: uv
