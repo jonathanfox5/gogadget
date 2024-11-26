@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gogadget"
-version = "0.2.7"
+version = "0.2.8"
 description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
 authors = ["Jonathan Fox"]
 maintainers = ["Jonathan Fox"]
