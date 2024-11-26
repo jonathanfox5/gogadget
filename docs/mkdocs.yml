@@ -93,7 +93,10 @@ markdown_extensions:
 
 plugins:
   - glightbox
-  - search:
+  - search
+  - social
+    - cards_layout_options:
+      background_color: "#1E2129"
   - minify:
       minify_html: true
 
