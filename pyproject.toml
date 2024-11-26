@@ -1,3 +1,7 @@
+[project]
+name = "gogadget"
+version = "0.2.5"
+
 [tool.poetry]
 name = "gogadget"
 version = "0.2.5"
