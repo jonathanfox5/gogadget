@@ -63,7 +63,7 @@ theme:
   font: 
     text: Source Sans 3
     code: Source Code Pro
-  logo: img/logo_wide.svg
+  logo: img/header.svg
   favicon: img/logo_circle.png
 
   features:

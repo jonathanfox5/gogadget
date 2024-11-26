@@ -10,3 +10,7 @@
 .md-tabs__item--active {
   font-weight: bold !important;
 }
+
+.md-header__topic {
+  display: none !important;
+}
