@@ -24,6 +24,8 @@ DisableDirPage=yes
 ChangesEnvironment=true
 Compression=zip
 SolidCompression=yes
+SetupIconFile="{#MyAppName}.ico"
+UninstallDisplayIcon="{#MyAppName}.ico"
 
 [Dirs]
 Name: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall
@@ -49,6 +51,7 @@ Name: "addcontextmenu"; Description: "Add {#MyAppName} to right-click context me
 [Files]
 Source: "bin\*.bat"; DestDir: "{app}"; Flags: ignoreversion; Components: program
 Source: "bin\*.whl"; DestDir: "{app}"; Flags: ignoreversion; Components: program
+Source: "{MyAppName}.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: program
 Source: "bin\ffmpeg.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall; Components: ffmpeg
 Source: "bin\uv*.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Flags: uninsneveruninstall; Components: uv
 
@@ -58,15 +61,16 @@ Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool update-shell"; F
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12 --with torch==2.5.1+cu124 --with torchaudio==2.5.1+cu124 --index https://download.pytorch.org/whl/cu124"; Components: cuda
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"; Tasks: desktopicon
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"; IconFilename: "{app}\{#MyAppName}.ico"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"; Tasks: desktopicon; IconFilename: "{app}\{#MyAppName}.ico"
 
 [Run]
 Filename: "{app}\{#BaseLaunchBat}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent unchecked
 
 [Registry]
 Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}";  ValueType: string; ValueName: ""; ValueData: "Open {#MyAppName} here"; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
-Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#ContextLaunchBat}"""; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
+Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\Command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#ContextLaunchBat}"""; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
+Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}\Icon"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppName}.ico"""; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
 Root: HKCU; Subkey: "Software\Classes\Directory\Background\shell\{#MyAppName}";  ValueType: string; ValueName: ""; ValueData: "Open {#MyAppName} here"; Flags: createvalueifdoesntexist uninsdeletevalue; Tasks: addcontextmenu
 
 [UninstallRun]

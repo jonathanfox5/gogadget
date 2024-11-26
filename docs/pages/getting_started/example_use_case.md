@@ -4,7 +4,7 @@ The following example is my personal use case for producing priming materials pr
 
 ## Setting defaults
 
-As a "one off" task, I set up my default settings by running `gogadget set-defaults --custom`. I changed the following settings from the defaults. [the defaults are set for the widest compatibility, not for a specific workflow]
+As a "one off" task, I set up my default settings by running `gogadget set-defaults --custom`. I changed the following settings from the defaults _(the defaults are set for the widest compatibility, not for a specific workflow.)_
 
 ```toml
 [general]
@@ -15,14 +15,15 @@ output_directory = "."
 
 [external_resources]
 # Set the paths of the resources on my hard drive
-# Since this is the configuration for my windows pc, I need to replace backslashes with double backslashes
-# The tool *should* fix it if I only typed single backslashes but it's best to get it correct to begin with!
+# Since this is the configuration for my windows pc, I need to replace backslashes with double backslashes to make this a valid file
+# gogadget *should* automatically fix it if single backslashes are used but it's best to get it correct to begin with!
 word_exclude_spreadsheet = "C:\\languages\\it\\ita_exclude.xlsx"
 dictionary_file = "C:\\languages\\it\\it_to_en.json"
 word_audio_directory = "C:\\languages\\it\\word_audio"
 
 [anki]
-# Changed the `include_words_with_no_definition` to False. By filtering out words not in the dictionary, this has the effect of filtering out proper nouns and non-target language words
+# Changed the `include_words_with_no_definition` to False.
+# By filtering out words not in the dictionary, this has the effect of filtering out proper nouns and non-target language words
 # The reason why this is not default behaviour is that it would cause Anki decks to have no cards if the user hasn't set a dictionary
 extract_media = "True"
 include_words_with_no_definition = "False"
@@ -31,7 +32,7 @@ subs_buffer_ms = "50"
 max_cards_in_deck = "100"
 
 [lemmatiser]
-# Keep the settings in here as default but might be useful to tweak them for other languages
+# Kept the settings in here as default but it might be useful to tweak them for other languages
 lemmatise = "True"
 filter_out_non_alpha = "True"
 filter_out_stop_words = "True"
@@ -40,7 +41,7 @@ convert_output_to_lower = "True"
 return_just_first_word_of_lemma = "True"
 
 [downloader]
-# I keep subtitle_language blank as I prefer to generate my own using `gogadget transcribe`
+# I kept subtitle_language blank as I prefer to generate my own using `gogadget transcribe`
 advanced_options = ""
 format = ""
 subtitle_language = ""
@@ -73,7 +74,7 @@ I would then run the following commands. You will notice that many of the parame
    gogadget download -i "https://www.videosite.com/playlist_name" -o "immersion"
    ```
 
-2. Transcribe the Italian subtitles for all of the videos in the folder. I could have just downloaded them in the previous step by specifying a `--subtitle-language` in the command or in the defaults but I prefer the accuracy of transcribing them myself.
+2. Transcribe the Italian subtitles for all of the videos in the folder. If they were available from the website, I could have just downloaded them in the previous step by specifying a `--subtitle-language` in the command or in the defaults. In general, I prefer the accuracy of transcribing them myself if only auto-generated captions are available.
 
    ```sh
    gogadget transcribe -i "immersion" -o "immersion"
@@ -85,4 +86,4 @@ I would then run the following commands. You will notice that many of the parame
    gogadget anki-deck -i "immersion"
    ```
 
-An Anki deck will be written to `immersion/media/`. I can then just double click on the `.apkg` file in there and it will automatically be loaded.
+An Anki deck will be written to `immersion/media/`. Double click on the `.apkg` file in that folder and it will automatically be loaded.

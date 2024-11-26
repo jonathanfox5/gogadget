@@ -1,10 +1,10 @@
 ## Understanding commands
 
-The intended behaviour is that the tool itself will guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:
+The intended behaviour is that the tool itself should guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:
 
 ![Main menu](../img/main_menu.png)
 
-All commands are listed in the `Primary Functions` box and have their own documentation. Each command has parameters associated with it. These can be listed by just typing `gogadget` then the name of the command that you are interested in. For example, `gogadget download` produces:
+The main commands are listed in the `Primary Functions` box and have their own documentation. Each command has parameters associated with it. These can be listed by just typing `gogadget` then the name of the command that you are interested in. For example, `gogadget download` produces:
 
 ![Download Help Text](../img/download_help.png)
 
@@ -20,11 +20,13 @@ Several commands use a standardised two letter code to identify languages (e.g. 
 gogadget list-languages
 ```
 
-Alternatively, a list is available by clicking [here](../getting_started/supported_languages.md).
+Alternatively, you can view the list [here](../getting_started/supported_languages.md).
 
 ## Configuration
 
-It's recommended, but not required, that you fully install the models for the languages that you are interested in. e.g. To install Italian (target language) with English (native language) translations, run:
+It's recommended, but not required, that you fully install the models for the languages that you are interested in.
+
+Example: To install Italian (target language) with English (native language) translations, run:
 
 ```sh
 gogadget install --language it --translation-language en

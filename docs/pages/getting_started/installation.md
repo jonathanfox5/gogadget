@@ -39,7 +39,7 @@ Installation instructions for macOS:
 3. Install gogadget, using Terminal:
 
    ```sh
-   uv tool install gogadget --python 3.12 --update
+   uv tool install gogadget --python 3.12 --upgrade
    ```
 
 4. You can then run the tool by typing the following command into Terminal:
@@ -76,7 +76,7 @@ Installation instructions for Linux:
    source $HOME/.local/bin/env
    ```
 
-4. Install gogadget using uv. Note that we are using python 3.10 instead of 3.12 that the other commands are using. This is to ensure that all dependencies build on ARM CPUs.
+4. Install gogadget using uv. Note that we are using Python 3.10 instead of Python 3.12 that the other platforms are using. This is to ensure that all dependencies build correctly on ARM CPUs.
 
    ```sh
    uv tool install gogadget --python 3.10 --upgrade
@@ -96,19 +96,21 @@ Installation instructions for Linux:
 
 !!! note "GPU Powered Transcription"
 
-    _[Optional]_ If you wish to use your GPU instead of your CPU and you have CUDA installed and configured on your system, **AFTER** you run:
+    _[Optional]_ If you wish to use your GPU instead of your CPU and you have CUDA installed and configured on your system.
+
+    **AFTER** you run:
 
     ```sh
     uv tool install gogadget --python 3.10 --upgrade
     ```
 
-    You can then run:
+    You can **THEN** run:
 
     ```sh
     uv tool install gogadget --python 3.10 --with 'torch==2.5.1+cu124' --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
     ```
 
-    Note that both commands are required, in this order!
+    Note that **BOTH** commands are required, in this order!
 
     For more information, please see [here](#enabling-gpu-powered-transcription).
 
@@ -130,7 +132,7 @@ If you are running **Linux** or are **manually** configuring it on Windows, you 
 
 !!! note "Troubleshooting: CUDA Toolkit"
 
-    On most systems, there should be no need to install the CUDA toolkit as it the required runtimes should be provided by your drivers. However, you may wish to try installing the toolkit manually if you run into any problems: [Download link for CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit)
+    On most systems, there should be no need to install the CUDA toolkit as it the required runtimes should be provided by your drivers. However, you may wish to try installing the toolkit manually if you run into any problems: <https://developer.nvidia.com/cuda-toolkit>
 
 ### Running with GPU enabled
 
