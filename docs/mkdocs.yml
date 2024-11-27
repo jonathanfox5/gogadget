@@ -12,24 +12,7 @@ docs_dir: pages
 copyright: Copyright &copy; 2024 Jonathan Fox
 
 nav:
-  - Home: 
-    - Introduction:
-      - gogadget: index.md
-    - Installation & Usage: 
-      - Installation: getting_started/installation.md
-      - Using the tool: getting_started/using_the_tool.md
-      - Example commands: getting_started/example_commands.md
-      - "Example use case: priming": getting_started/example_use_case.md
-    - Reference:
-      - Supported languages: getting_started/supported_languages.md
-      - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
-    - Commands and Settings: 
-      - Command reference: reference/command_reference.md
-      - Default settings: reference/default_settings.md
-    - Developer:
-      - Building: developer/building.md
-      - Contributing: developer/contributing.md
-      - Report a bug or request a feature (Github): https://github.com/jonathanfox5/gogadget/issues
+  - Home: index.md
   - Getting Started:
     - Overview: 
       - Useful links: getting_started/getting_started.md
