@@ -161,16 +161,16 @@ Produce a frequency analysis of the most common vocabulary in a subtitles file o
 
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic; text-decoration: underline">Examples:</span>
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">1. Normal usage using standard names where your target language is italian.</span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis --input &quot;folder containing subtitles and media files&quot; --language it</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis --input &quot;folder containing subtitles&quot; --language it</span>
 
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">2. As per (1) but uses word exclude list.</span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis --input &quot;folder containing subtitles and media files&quot; --language it --excluded-words &quot;excel_name.xlsx&quot;</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis --input &quot;folder containing subtitles&quot; --language it --excluded-words &quot;excel_name.xlsx&quot;</span>
 
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">3. Equivalent of (2) using short names.</span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis -i &quot;folder containing subtitles and media files&quot; -l it -e &quot;excel_name.xlsx&quot;</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis -i &quot;folder containing subtitles&quot; -l it -e &quot;excel_name.xlsx&quot;</span>
 
 <span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">4. If you have set all of your defaults as described above, you can just run.</span>
-<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis -i &quot;folder containing subtitles and media files&quot;</span>
+<span style="color: #ffffff; text-decoration-color: #ffffff; font-style: italic">gogadget frequency-analysis -i &quot;folder containing subtitles&quot;</span>
 
 **Usage**:
 
@@ -180,7 +180,7 @@ $ gogadget frequency-analysis [OPTIONS]
 
 **Options**:
 
-- `-i, --input PATH`: Path to the video or audio file to transcribe. This can be either a specific video / audio file or a folder of files. [required]
+- `-i, --input PATH`: Directory (folder) containing the subtitle files(s) to be analysed. [required]
 - `-l, --language TEXT`: Language to use for processing. This should be a two letter language code, e.g. <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">en</span> (for English), <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">es</span> (for Spanish) or <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">it</span> (Italian). Run <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">gogadget list-languages</span> for a list of supported languages. [default: it]
 - `-o, --output PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Directory (aka folder) to save the files to. Defaults to the current working directory where the user is running the script from. [default: .]
 - `-e, --excluded-words PATH`: <span style="color: #008080; text-decoration-color: #008080">[Optional]</span> Spreadsheet containing words to exclude from the analysis (e.g. the most common words in a language, words already learned). Words should be in the first column of the spreadsheet but can be split across multiple sub-sheets within the file. [default: /Users/jonathan/Library/Mobile Documents/com~apple~CloudDocs/Italian/Dictionaries/Frequency_lists/ita_exclude.xlsx]

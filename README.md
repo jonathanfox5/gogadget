@@ -1,12 +1,14 @@
-<h1 align="center">
-  <a href="https://gogadget.jfox.io"><img src="https://gogadget.jfox.io/img/header_black.svg" alt="gogadget" style="max-width: 90%;" /></a>
-</h1>
+<h1>
+   <div align="center">
+   <a href="https://gogadget.jfox.io"><img src="https://gogadget.jfox.io/img/header_black.svg" alt="gogadget" /></a>
+   </div>
 
-<div align="center">
-  <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
-  <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
-  <a href="https://pypi.org/project/gogadget/"><img src="https://img.shields.io/pypi/v/gogadget?color=%23BA55D3" alt="PyPI" /></a>
-</div>
+   <div align="center">
+   <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
+   <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
+   <a href="https://pypi.org/project/gogadget/"><img src="https://img.shields.io/pypi/v/gogadget?color=%23BA55D3" alt="PyPI" /></a>
+   </div>
+</h1>
 
 ## Overview
 

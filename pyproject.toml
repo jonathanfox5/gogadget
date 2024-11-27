@@ -1,6 +1,6 @@
 [project]
 name = "gogadget"
-version = "0.2.11.1"
+version = "0.2.12"
 description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
 authors = [
     {name = "Jonathan Fox"},
@@ -47,6 +47,11 @@ keywords = [
     "frequency analysis",
     "priming",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
 
 [project.urls]
 homepage = "https://gogadget.jfox.io/"

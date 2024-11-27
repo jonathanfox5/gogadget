@@ -371,7 +371,7 @@ def frequency_analysis(
         typer.Option(
             "--input",
             "-i",
-            help=HelpText.transcribe_path,
+            help=HelpText.input_path_frequency_analysis,
             show_default=False,
             callback=CliUtils.validate_path_exists,
             rich_help_panel="Required",
