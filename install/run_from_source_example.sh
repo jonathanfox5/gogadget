@@ -11,4 +11,8 @@ uv sync
 source .venv/bin/activate
 
 # Run the tool
+uv run gogadget
+
+# Alternatively
+source .venv/bin/activate
 gogadget
