@@ -1,14 +1,12 @@
-<h1>
-   <div align="center">
+<div align="center">
    <a href="https://gogadget.jfox.io"><img src="https://gogadget.jfox.io/img/header_black.svg" alt="gogadget" /></a>
-   </div>
+</div>
 
-   <div align="center">
+<div align="center">
    <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
    <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
    <a href="https://pypi.org/project/gogadget/"><img src="https://img.shields.io/pypi/v/gogadget?color=%23BA55D3" alt="PyPI" /></a>
-   </div>
-</h1>
+</div>
 
 ## Overview
 
