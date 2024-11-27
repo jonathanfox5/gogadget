@@ -7,7 +7,7 @@ hide:
 ---
 
 <h1 align="center">
-  <a href="https://gogadget.jfox.io"><img src="img/header.svg" alt="gogadget" style="max-width: 90%;" /></a>
+  <a href="https://gogadget.jfox.io"><img src="img/header.svg" alt="gogadget" style="max-width: 1000px; width: 90%; height: auto" /></a>
 </h1>
 
 <div align="center">
