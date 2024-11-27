@@ -5,10 +5,10 @@ git clone https://github.com/jonathanfox5/gogadget
 cd gogadget
 
 # Create the virtual environment and install packages
-poetry install
+uv sync
 
 # Enter the virtual environment
-poetry shell
+source .venv/bin/activate
 
 # Run the tool
 gogadget

@@ -15,9 +15,9 @@ On tag commits:
 
 ### Required packages
 
-[Poetry](https://python-poetry.org) is used to build the packages and [Innosetup](https://jrsoftware.org/isinfo.php) is used to build the Windows installer.
+[`uv`](https://docs.astral.sh/uv/) is used to build the packages and [`Innosetup`](https://jrsoftware.org/isinfo.php) is used to build the Windows installer.
 
-The installers use [uv](https://docs.astral.sh/uv/) to run the tool in its own virtual environment and the only non-Python runtime dependency is [ffmpeg](https://ffmpeg.org).
+The installers use [`uv`](https://docs.astral.sh/uv/) to run the tool in its own virtual environment and the only non-Python runtime dependency is [`ffmpeg`](https://ffmpeg.org).
 
 ### Settings things up
 
@@ -25,7 +25,7 @@ The following assumes building on Windows so that the Windows installer can be c
 
 1. Set version number in [pyproject.toml](https://github.com/jonathanfox5/gogadget/blob/main/pyproject.toml)
 2. Set version number in [install/gogadget_windows.iss](https://github.com/jonathanfox5/gogadget/blob/main/install/gogadget_windows.iss)
-3. Make sure `poetry` and `innosetup` are installed and in path. (innosetup isn't by default, you will need to add the root innosetup directory that is located in program files)
+3. Make sure `uv` and `innosetup` are installed and in path. (innosetup isn't by default, you will need to add the root innosetup directory that is located in program files)
 4. Download latest windows builds of `ffmpeg` and `uv` and put the binaries directly in [install/bin/](https://github.com/jonathanfox5/gogadget/tree/main/install/bin/)
 
 ### Build commands (Windows)
@@ -47,8 +47,8 @@ uv tool install mkdocs --with mkdocs-glightbox --with mkdocs-material --with mdx
 The command reference page can automatically be regenerated with:
 
 ```sh
-poetry shell
-typer gogadget.main utils docs --name gogadget --output docs/pages/reference/command_reference.md
+uv sync
+uv run typer gogadget.main utils docs --name gogadget --output docs/pages/reference/command_reference.md
 ```
 
 From the newly generated `docs/pages/reference/command_reference.md`, I then delete the first bit of help text that is shown in the command line version when typing `gogadget`. This is for aesthetic purposes only!
