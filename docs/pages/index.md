@@ -3,13 +3,13 @@ cards_layout_options.title: Language learning tool kit
 cards_layout_options.description: Download media, generate subtitles, create Anki decks and more!
 ---
 
-<a href = "https://gogadget.jonathanfox.co.uk"><img src = "img/header.svg" align="center"></a>
+<a href = "https://gogadget.jfox.io"><img src = "img/header.svg" align="center"></a>
 
 #
 
 <div align = "center">
   <a href = "https://github.com/jonathanfox5/gogadget/releases" alt = "Download"><img src = "https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue"></a>
-  <a href = "https://gogadget.jonathanfox.co.uk" alt = "Documentation"><img src = "https://img.shields.io/badge/view-documentation-brightgreen"></a>
+  <a href = "https://gogadget.jfox.io" alt = "Documentation"><img src = "https://img.shields.io/badge/view-documentation-brightgreen"></a>
   <a href = "https://pypi.org/project/gogadget/" alt = "PyPI"><img src = "https://img.shields.io/pypi/v/gogadget?color=%23BA55D3"></a>
 </div>
 

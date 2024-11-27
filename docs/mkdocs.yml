@@ -1,5 +1,5 @@
 site_name: gogadget
-site_url: https://gogadget.jonathanfox.co.uk
+site_url: https://gogadget.jfox.io
 site_author: Jonathan Fox
 site_description: >-
   User friendly toolkit for generating immersion language learning tools including 
@@ -64,7 +64,7 @@ theme:
     text: Source Sans 3
     code: Source Code Pro
   logo: img/header.svg
-  favicon: img/logo_circle.png
+  favicon: img/logo_square.png
 
   features:
     - content.code.copy
