@@ -7,12 +7,9 @@ cd gogadget
 # Create the virtual environment and install packages
 uv sync
 
-# Enter the virtual environment
-source .venv/bin/activate
-
 # Run the tool
 uv run gogadget
 
-# Alternatively
+# Alternatively, you can enter the venv and then run the tool in any directory you like
 source .venv/bin/activate
 gogadget
