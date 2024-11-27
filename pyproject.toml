@@ -20,9 +20,9 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic"
 ]
 keywords = ["language learning", "yt-dlp", "whisper", "anki", "frequency analysis", "priming"]
-homepage = "https://jonathanfox5.github.io/gogadget/"
+homepage = "https://gogadget.jonathanfox.co.uk/"
 repository = "https://github.com/jonathanfox5/gogadget"
-documentation = "https://jonathanfox5.github.io/gogadget/"
+documentation = "https://gogadget.jonathanfox.co.uk/"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
