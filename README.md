@@ -1,8 +1,8 @@
-<a href = "https://jonathanfox5.github.io/gogadget/" alt="gogadget"><img src = "https://jonathanfox5.github.io/gogadget/img/header_black.svg" align="center"></a>
+<a href = "https://gogadget.jonathanfox.co.uk" alt="gogadget"><img src = "https://gogadget.jonathanfox.co.uk/gogadget/img/header_black.svg" align="center"></a>
 
 <div align = "center">
   <a href = "https://github.com/jonathanfox5/gogadget/releases" alt = "Download"><img src = "https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue"></a>
-  <a href = "https://jonathanfox5.github.io/gogadget" alt = "Documentation"><img src = "https://img.shields.io/badge/view-documentation-brightgreen"></a>
+  <a href = "https://gogadget.jonathanfox.co.uk" alt = "Documentation"><img src = "https://img.shields.io/badge/view-documentation-brightgreen"></a>
   <a href = "https://pypi.org/project/gogadget/" alt = "PyPI"><img src = "https://img.shields.io/pypi/v/gogadget?color=%23BA55D3"></a>
 </div>
 
@@ -15,12 +15,12 @@
 
 ## Quick start
 
-Full documentation is available in the [manual](https://jonathanfox5.github.io/gogadget/). If you want to dive straight in, you may find the following useful:
+Full documentation is available in the [manual](https://gogadget.jonathanfox.co.uk/). If you want to dive straight in, you may find the following useful:
 
-- **[Installation instructions](https://jonathanfox5.github.io/gogadget/getting_started/installation/)**: An installer is available for Windows and simple terminal commands are available for macOS
-- **[Example commands](https://jonathanfox5.github.io/gogadget/getting_started/example_commands/)**: Simple examples of the most common commands.
-- **[Detailed command reference](https://jonathanfox5.github.io/gogadget/reference/command_reference/)**: Every command listed with all possible parameters and examples. Warning - could be overwhelming!
-- **[Video tutorial](https://jonathanfox5.github.io/gogadget/getting_started/video_tutorial/)**: A video tutorial covering the installation of the tool and an overview of its functions.
+- **[Installation instructions](https://gogadget.jonathanfox.co.uk/getting_started/installation/)**: An installer is available for Windows and simple terminal commands are available for macOS
+- **[Example commands](https://gogadget.jonathanfox.co.uk/getting_started/example_commands/)**: Simple examples of the most common commands.
+- **[Detailed command reference](https://gogadget.jonathanfox.co.uk/reference/command_reference/)**: Every command listed with all possible parameters and examples. Warning - could be overwhelming!
+- **[Video tutorial](https://gogadget.jonathanfox.co.uk/getting_started/video_tutorial/)**: A video tutorial covering the installation of the tool and an overview of its functions.
 
 ## Video tutorial
 
@@ -38,14 +38,14 @@ Coming in a few days...
   - Include automatic translations of sentences and definitions of words.
   - Can be built for an individual episode or a whole season.
 - Create word frequency analyses for priming purposes.
-- [One click installer](https://github.com/jonathanfox5/gogadget/releases/) for Windows and [simple installation steps](https://jonathanfox5.github.io/gogadget/getting_started/installation/) for macOS and Linux.
+- [One click installer](https://github.com/jonathanfox5/gogadget/releases/) for Windows and [simple installation steps](https://gogadget.jonathanfox.co.uk/getting_started/installation/) for macOS and Linux.
 - Ability to save defaults so that commands can be kept as short and memorable as possible.
-- It supports 19 [languages](https://jonathanfox5.github.io/gogadget/getting_started/supported_languages/) fully with partial support for many more.
+- It supports 19 [languages](https://gogadget.jonathanfox.co.uk/getting_started/supported_languages/) fully with partial support for many more.
 - Once you have installed the resources for your language, all modules apart from `gogadget download` are fully offline. This makes it useful for travelling or for processing personal conversations as there is no server involved.
 
 ## Example commands
 
-You may prefer to watch the [Youtube Tutorial](https://jonathanfox5.github.io/gogadget/getting_started/video_tutorial/) for demonstrations of the features, including configuration for more advanced users.
+You may prefer to watch the [Youtube Tutorial](https://gogadget.jonathanfox.co.uk/getting_started/video_tutorial/) for demonstrations of the features, including configuration for more advanced users.
 
 ### Download media
 
@@ -65,7 +65,7 @@ Automatically generate subtitles for a video / folder of videos that are in Engl
 gogadget transcribe --input "your folder or filename" --language en
 ```
 
-Note: If you have followed the steps in [the installation instructions](https://jonathanfox5.github.io/gogadget/getting_started/installation/) to enable GPU transcription, add `--gpu` to the end of the command to significantly speed up the transcription.
+Note: If you have followed the steps in [the installation instructions](https://gogadget.jonathanfox.co.uk/getting_started/installation/) to enable GPU transcription, add `--gpu` to the end of the command to significantly speed up the transcription.
 
 ### Create Anki deck
 
@@ -75,7 +75,7 @@ Generate Anki cards from a full season of an Italian (`it`) program. Include ima
 gogadget anki-deck --input "folder name" --language it --excluded-words "ita_top_1000_words.xlsx"
 ```
 
-See [the manual](https://jonathanfox5.github.io/gogadget/getting_started/getting_resources/) for details on how to obtain dictionaries, exclude word spreadsheets and word audio to use with this command.
+See [the manual](https://gogadget.jonathanfox.co.uk/getting_started/getting_resources/) for details on how to obtain dictionaries, exclude word spreadsheets and word audio to use with this command.
 
 Note: You can set default parameters using `gogadget set-defaults --custom`. Once you have set up your defaults, this would allow you use this shortened version of the command:
 
@@ -83,7 +83,7 @@ Note: You can set default parameters using `gogadget set-defaults --custom`. Onc
 gogadget anki-deck --input "folder name"
 ```
 
-An example for setting defaults can be found [in the manual](https://jonathanfox5.github.io/gogadget/getting_started/example_use_case/).
+An example for setting defaults can be found [in the manual](https://gogadget.jonathanfox.co.uk/getting_started/example_use_case/).
 
 ## Installation
 
@@ -103,7 +103,7 @@ Installation instructions for Windows:
 gogadget install
 ```
 
-Note: If you want to enable GPU transcription of subtitles, please tick the "CUDA" checkbox in the installer. For more information, please see [here](https://jonathanfox5.github.io/gogadget/getting_started/installation/#enabling-gpu-powered-transcription).
+Note: If you want to enable GPU transcription of subtitles, please tick the "CUDA" checkbox in the installer. For more information, please see [here](https://gogadget.jonathanfox.co.uk/getting_started/installation/#enabling-gpu-powered-transcription).
 
 ### macOS
 
@@ -193,7 +193,7 @@ uv tool install gogadget --python 3.10 --with 'torch==2.5.1+cu124' --with 'torch
 
 Note that **BOTH** commands are required, in this order!
 
-For more information on using your GPU, please see [here](https://jonathanfox5.github.io/gogadget/getting_started/installation/#enabling-gpu-powered-transcription).
+For more information on using your GPU, please see [here](https://gogadget.jonathanfox.co.uk/getting_started/installation/#enabling-gpu-powered-transcription).
 
 ### Enabling GPU powered transcription
 
@@ -227,7 +227,7 @@ gogadget set-defaults --custom
 
 ## More information
 
-Full documentation is available in the [manual](https://jonathanfox5.github.io/gogadget/).
+Full documentation is available in the [manual](https://gogadget.jonathanfox.co.uk/).
 
 ## Acknowledgements
 
