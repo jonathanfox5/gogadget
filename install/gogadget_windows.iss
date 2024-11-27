@@ -1,10 +1,10 @@
 #define MyAppName "gogadget"
-#define MyAppVersion "0.2.8"
+#define MyAppVersion "0.2.10"
 #define MyAppPublisher "Jonathan Fox"
 #define MyAppURL "https://github.com/jonathanfox5/gogadget"
 #define BaseLaunchBat "gogadget_launcher.bat"
 #define ContextLaunchBat "gogadget_context.bat"
-#define WheelName "gogadget-0.2.8-py3-none-any.whl"
+#define WheelName "gogadget-0.2.10-py3-none-any.whl"
 
 [Setup]
 AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}
