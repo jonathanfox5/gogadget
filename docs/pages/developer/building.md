@@ -7,9 +7,9 @@ On every commit:
 On tag commits:
 
 - The python wheel will be
-  1. Built
-  2. Uploaded to PyPi & TestPyPi
-  3. Signed and added to a new Github release
+  - Built
+  - Uploaded to PyPi & TestPyPi
+  - Signed and added to a new Github release
 
 ## Manual build
 
