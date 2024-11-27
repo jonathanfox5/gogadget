@@ -13,7 +13,7 @@ class HelpText:
     Error text is handled within individual functions"""
 
     # General info
-    license = "[blue bold link=https://https://github.com/jonathanfox5/gogadget]gogadget[/] © 2024 Jonathan Fox is licensed under [blue bold link=https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1]CC BY-NC-SA 4.0[/]."
+    license = "[blue bold link=https://https://github.com/jonathanfox5/gogadget]gogadget[/] is Copyright © 2024 Jonathan Fox. It is licensed under [blue bold link=https://www.gnu.org/licenses/agpl-3.0.html]AGPL-3.0[/]."
 
     # Commands
     main = """
