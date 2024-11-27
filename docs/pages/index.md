@@ -1,16 +1,19 @@
 ---
 cards_layout_options.title: Language learning tool kit
 cards_layout_options.description: Download media, generate subtitles, create Anki decks and more!
+hide:
+  - navigation
+  - toc
 ---
 
-<a href = "https://gogadget.jfox.io"><img src = "img/header.svg" align="center"></a>
+<h1 align="center">
+  <a href="https://gogadget.jfox.io"><img src="img/header.svg" alt="gogadget" style="max-width: 90%;" /></a>
+</h1>
 
-#
-
-<div align = "center">
-  <a href = "https://github.com/jonathanfox5/gogadget/releases" alt = "Download"><img src = "https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue"></a>
-  <a href = "https://gogadget.jfox.io" alt = "Documentation"><img src = "https://img.shields.io/badge/view-documentation-brightgreen"></a>
-  <a href = "https://pypi.org/project/gogadget/" alt = "PyPI"><img src = "https://img.shields.io/pypi/v/gogadget?color=%23BA55D3"></a>
+<div>
+  <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
+  <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
+  <a href="https://pypi.org/project/gogadget/"><img src="https://img.shields.io/pypi/v/gogadget?color=%23BA55D3" alt="PyPI" /></a>
 </div>
 
 `gogadget` is a toolkit for producing immersion and priming materials for language learning.
