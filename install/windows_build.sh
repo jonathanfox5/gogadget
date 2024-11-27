@@ -3,8 +3,8 @@
 # Clear out any wheels and existing installers that we have
 rm -f dist/* && rm -f install/bin/*.whl
 
-# uv sync to check dependencies can be resolved
-uv sync
+# uv lock to check dependencies can be resolved
+uv lock
 
 # Build new wheel and copy to bin folder
 uv build
