@@ -3,8 +3,11 @@
 # Clear out any wheels and existing installers that we have
 rm -f dist/* && rm -f install/bin/*.whl
 
+# uv sync to check dependencies can be resolved
+uv sync
+
 # Build new wheel and copy to bin folder
-poetry build
+uv build
 cp dist/*.whl install/bin/
 
 # Build windows installer and move to dist folder
