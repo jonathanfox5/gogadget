@@ -1,34 +1,30 @@
----
-hide:
-  - nav
-  - toc
----
-
 <h1 align="center">
   <a href="https://gogadget.jfox.io"><img src="img/header.svg" alt="gogadget" style="max-width: 1000px; width: 90%; height: auto" /></a>
-</h1>
-
-<div align="center">
+  <br>
+  Language Learning Toolkit
+  <br>
   <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
   <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
   <a href="https://pypi.org/project/gogadget/"><img src="https://img.shields.io/pypi/v/gogadget?color=%23BA55D3" alt="PyPI" /></a>
-</div>
+</h1>
+
+## Overview
 
 `gogadget` is a toolkit for producing immersion and priming materials for language learning.
 
 - It tries to solve the problem that many of the most powerful tools available are hard to install, difficult to use or require lots of effort to configure for optimal results.
 - It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions.
 
-!!! note "Useful links"
-
-    - [Installation instructions](getting_started/installation.md)
-    - [Example commands](getting_started/example_commands.md)
-    - [Detailed command reference](reference/command_reference.md)
-    - [Video tutorial](getting_started/video_tutorial.md)
-
 ## Video tutorial
 
 Coming in a few days...
+
+## Useful links
+
+- [Installation instructions](getting_started/installation.md)
+- [Example commands](getting_started/example_commands.md)
+- [Detailed command reference](reference/command_reference.md)
+- [Video tutorial](getting_started/video_tutorial.md)
 
 ## Key features
 
