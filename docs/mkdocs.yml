@@ -39,6 +39,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     primary: black
     accent: indigo
@@ -76,7 +77,6 @@ markdown_extensions:
 
 plugins:
   - glightbox
-  - social
   - search
   - minify:
       minify_html: true
