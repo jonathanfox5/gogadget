@@ -8,23 +8,50 @@ authors = [
 readme = "README.md"
 requires-python = "<3.13,>=3.10"
 dependencies = [
+    # Direct dependencies. Make sure that we always stay on the current major version
     "typer<1.0.0,>=0.13.1",
     "lemon-tizer<1.0.0,>=0.0.7",
-    "yt-dlp",
     "genanki<1.0.0,>=0.13.1",
     "ffmpeg-python<1.0.0,>=0.2.0",
-    "pandas",
-    "openpyxl",
+    "pandas<3.0.0,>=2.2.3",
+    "openpyxl<4.0.0,>=3.1.5",
     "pysubs2<2.0.0,>=1.7.3",
-    "numpy<2",
-    "argos-spacy-compatibility<1.0.0,>=0.1.0",
-    "whisperx-numpy2-compatibility<1.0.0,>=0.1.1",
     "rtoml<1.0.0,>=0.11.0",
     "tomlkit<1.0.0,>=0.13.2",
-    "torch==2.5.1",
-    "torchaudio==2.5.1",
-    "spacy==3.7.5",
-    "faster-whisper==1.0.3",
+
+    # Direct dependencies that we always want the latest version of, regardless of major version
+    # yt-dlp - We always want latest due to yt api periodically changing, therefore no upper limit
+    "yt-dlp>=2024.11.18", 
+
+    # Packages missing as requirements from other packages
+    "pip",  # argos assumes that this is available when managing models, doesn't automatically get added with uv
+
+    # These are effectively pins, they are my own builds made for compatibility reasons
+    "argos-spacy-compatibility<1.0.0,>=0.1.0",
+    "whisperx-numpy2-compatibility<1.0.0,>=0.1.1",
+
+    # The following have all been added due to compatibility issues in some configurations
+    "torch==2.5.1", # cpu version, the installers deal with adding CUDA
+    "torchaudio==2.5.1", # cpu version, the installers deal with adding CUDA
+    "spacy==3.7.5", # 3.8 has a Windows memory bug
+    "faster-whisper==1.0.3", # breaking changes in 1.1.0
+    "transformers==4.46.3", # fixes transcriber models not initialising
+    "ctranslate2==4.5.0", # pinning due to being very finicky depending on version
+    "pyannote-core==5.0.0", # Many version incompatibilities
+    "pyannote-audio==3.3.2", # Many version incompatibilities
+    "llvmlite==0.43.0", # Many, many, many version incompatibilities
+    "numba==0.60.0", # Many, many, many version incompatibilities
+    "numpy<2", # Numpy 2 breaks spacy 3.7, not listed in their dependencies
+
+
+    # The following are key packagers in the ml pipeline
+    # No specific errors observed but locking down due to the very high volume
+    # of version issues observed in the rest of the pipeline
+    "tokenizers==0.20.3",
+    "onnxruntime==1.20.1",
+    "safetensors==0.4.5",
+
+
 ]
 classifiers = [
     "Intended Audience :: End Users/Desktop",
@@ -48,6 +75,15 @@ keywords = [
     "priming",
 ]
 
+[dependency-groups]
+dev = [
+    "mkdocs-glightbox>=0.4.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-material[imaging]>=9.5.46",
+    "mdx-truly-sane-lists>=1.3",
+    "mkdocs-minify-plugin>=0.8.0",
+]
+
 [project.urls]
 homepage = "https://gogadget.jfox.io/"
 repository = "https://github.com/jonathanfox5/gogadget"
@@ -61,14 +97,7 @@ gogadget = "gogadget.main:app"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[dependency-groups]
-dev = [
-    "mkdocs-glightbox>=0.4.0",
-    "mkdocs>=1.6.1",
-    "mkdocs-material[imaging]>=9.5.46",
-    "mdx-truly-sane-lists>=1.3",
-    "mkdocs-minify-plugin>=0.8.0",
-]
+
 
 [tool.mypy]
 disable_error_code = "import-untyped"
