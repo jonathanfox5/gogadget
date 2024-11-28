@@ -51,6 +51,10 @@ A test server can then be run with:
 uv run mkdocs serve -f docs/mkdocs.yml
 ```
 
+!!! note "mkdocs errors"
+
+    When running `mkdocs`, if you get an error message that references `cairo`, you will need need to follow [this guide](https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/#cairo-graphics) to get it set up on your system.
+
 The command reference page can automatically be regenerated with:
 
 ```sh
