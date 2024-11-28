@@ -1,9 +1,7 @@
 site_name: gogadget
 site_url: https://gogadget.jfox.io
 site_author: Jonathan Fox
-site_description: >-
-  User friendly toolkit for generating immersion language learning tools including 
-  downloading media, generating subtitles and creating Anki decks.
+site_description: User friendly toolkit for generating immersion language learning tools including downloading media, generating subtitles and creating Anki decks.
 
 repo_url: https://github.com/jonathanfox5/gogadget
 repo_name: gogadget
@@ -79,7 +77,7 @@ plugins:
   - glightbox
   - search
   - minify:
-      minify_html: false
+      minify_html: true
 
 extra_css:
   - css/extra.css
