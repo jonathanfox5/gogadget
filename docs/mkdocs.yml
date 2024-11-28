@@ -79,7 +79,7 @@ plugins:
   - glightbox
   - search
   - minify:
-      minify_html: true
+      minify_html: false
 
 extra_css:
   - css/extra.css
