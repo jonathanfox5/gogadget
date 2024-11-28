@@ -176,3 +176,4 @@ temp_test.py
 install/bin/*.exe
 install/bin/*.whl
 *.afdesign~lock~
+docs/site/
