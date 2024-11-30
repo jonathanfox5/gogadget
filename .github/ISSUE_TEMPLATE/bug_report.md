@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report an error or unexpected behaviour
 title: ''
 labels: bug
 assignees: jonathanfox5
