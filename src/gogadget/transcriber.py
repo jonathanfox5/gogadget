@@ -1,9 +1,12 @@
+__author__ = "Jonathan Fox"
+__copyright__ = "Copyright 2024, Jonathan Fox"
+__license__ = "GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html"
+__full_source_code__ = "https://github.com/jonathanfox5/gogadget"
+
 import gc
 from pathlib import Path
 
 import whisperx_numpy2_compatibility as whisperx
-from torch.cuda import empty_cache as empty_cuda_cache
-from torch.cuda import is_available as is_cuda_available
 from whisperx_numpy2_compatibility.SubtitlesProcessor import SubtitlesProcessor
 from whisperx_numpy2_compatibility.utils import get_writer as get_whisperx_writer
 
@@ -75,7 +78,10 @@ Troubleshooting:
     )
 
     # If we are using CUDA, we need to clear the model from memory before running the next one
-    reclaim_memory_transcriber()
+    if device == "cuda":
+        reclaim_memory_gpu()
+    else:
+        reclaim_memory_cpu()
 
     # Check we have something, otherwise error
     if not stage_1_results:
@@ -92,7 +98,10 @@ Troubleshooting:
     )
 
     # If we are using CUDA, we need to clear the model from memory before running the next one
-    reclaim_memory_transcriber()
+    if device == "cuda":
+        reclaim_memory_gpu()
+    else:
+        reclaim_memory_cpu()
 
     # Check we have something, otherwise error
     if not stage_2_results:
@@ -127,6 +136,7 @@ def stage1_transcription(
     cpu_cores: int,
     verbose: bool,
 ) -> list[dict]:
+    """Do the initial transcription, alignment with timestamps may be poor at this stage"""
     # Load transcription model
     CliUtils.print_status("Transcriber: Loading stage 1 model")
     model = whisperx.load_model(
@@ -170,6 +180,8 @@ def stage2_transcription(
     alignment_model_name: str | None,
     verbose: bool,
 ) -> list[dict]:
+    """More accurately align timestamps"""
+
     # Process arguments. Whisperx needs a model to be None to activate its own chooser
     if isinstance(alignment_model_name, str):
         if alignment_model_name.strip() == "":
@@ -210,6 +222,8 @@ def write_subtitles_split(
     max_line_length: int,
     sub_split_threshold: int,
 ) -> list:
+    """Limit the length of subtitles and split them up"""
+
     is_vtt = False
     if subtitle_format.lower() == "vtt":
         is_vtt = True
@@ -242,6 +256,8 @@ def write_subtitles_split(
 def write_subtitles_anki(
     stage2_results: list[dict], output_directory: Path, subtitle_format: str
 ) -> list:
+    """Write the full length subtitles as transcribed. Useful for when we need the whole sentence (e.g. for Anki)"""
+
     # We don't care about these but the function forces us to include them
     writer_args = {"highlight_words": False, "max_line_count": None, "max_line_width": None}
 
@@ -275,11 +291,22 @@ def write_subtitles_anki(
     return []
 
 
-def reclaim_memory_transcriber():
+def reclaim_memory_gpu():
+    """Clear out GPU memory"""
+    from torch.cuda import empty_cache as empty_cuda_cache
+
     gc.collect()
     if cuda_available():
         empty_cuda_cache()
 
 
+def reclaim_memory_cpu():
+    """Force clear model from memory"""
+    gc.collect()
+
+
 def cuda_available() -> bool:
+    """Check if the current system supports CUDA"""
+    from torch.cuda import is_available as is_cuda_available
+
     return is_cuda_available()

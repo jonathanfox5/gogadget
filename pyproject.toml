@@ -1,6 +1,10 @@
+# Copyright: © 2024 Jonathan Fox
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+# Full source code: https://github.com/jonathanfox5/gogadget
+
 [project]
 name = "gogadget"
-version = "0.2.12"
+version = "0.3.1"
 description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
 authors = [
     {name = "Jonathan Fox"},
@@ -43,7 +47,6 @@ dependencies = [
     "numba==0.60.0", # Many, many, many version incompatibilities
     "numpy<2", # Numpy 2 breaks spacy 3.7, not listed in their dependencies
 
-
     # The following are key packagers in the ml pipeline
     # No specific errors observed but locking down due to the very high volume
     # of version issues observed in the rest of the pipeline
@@ -51,8 +54,6 @@ dependencies = [
     "onnxruntime==1.20.1",
     "safetensors==0.4.5",
     "speechbrain==1.0.2"
-
-
 ]
 classifiers = [
     "Intended Audience :: End Users/Desktop",
@@ -97,8 +98,6 @@ gogadget = "gogadget.main:app"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-
 
 [tool.mypy]
 disable_error_code = "import-untyped"

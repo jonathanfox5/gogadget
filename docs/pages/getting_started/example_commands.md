@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 Please see the [Youtube Tutorial](../getting_started/video_tutorial.md) for demonstrations of the features, including configuration for more advanced users.
 
 ## Download media
