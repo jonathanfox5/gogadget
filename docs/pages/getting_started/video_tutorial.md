@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 Coming in a few days...
 
 <!-- <div class = "iframe-responsive-container">

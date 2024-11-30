@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 - **If you prefer to watch a tutorial rather than follow a written guide, click here: [Video Tutorial](../getting_started/video_tutorial.md)**
 - Installation instructions: [Installation](../getting_started/installation.md)
 - Examples of some of the functions are given here: [Basic Examples](../getting_started/example_commands.md)

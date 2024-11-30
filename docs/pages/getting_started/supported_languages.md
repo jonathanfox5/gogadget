@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 | Language              | Code | All Modules | Lemmatiser | Transcriber | Translator |
 | --------------------- | ---- | ----------- | ---------- | ----------- | ---------- |
 | Albanian              | sq   |             |            |             | ✅         |

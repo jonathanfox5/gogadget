@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 ## Github actions
 
 On every commit, there is a github action that rebuilds the documentation website on each commit.
@@ -53,7 +57,7 @@ uv run mkdocs serve -f docs/mkdocs.yml
 
 !!! note "mkdocs errors"
 
-    When running `mkdocs`, if you get an error message that references `cairo`, you will need need to follow [this guide](https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/#cairo-graphics) to get it set up on your system.
+    When running `mkdocs`, if you get an error message that references `cairo`, you will need need to follow [this guide](https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/#cairo-graphics) to set it up on your system.
 
 The command reference page can automatically be regenerated with:
 
@@ -61,9 +65,10 @@ The command reference page can automatically be regenerated with:
 uv run typer gogadget.main utils docs --name gogadget --output docs/pages/reference/command_reference.md
 ```
 
-!!! note "Manual aesthetic changes"
+!!! note "Manual changes"
 
-    From the newly generated [the command reference page](../reference/command_reference.md), I delete the first bit of help text that is shown in the command line version when typing `gogadget`. This is for aesthetic purposes only!
+    1. From the newly generated [the command reference page](../reference/command_reference.md), I delete the first bit of help text that is shown in the command line version when typing `gogadget`. This is for aesthetic purposes only!
+    2. As per [GNU guidance](https://www.gnu.org/licenses/gpl-howto.html), copyright / license info is then added to top of file.
 
 ## Running from source
 

@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 ## Preparing priming materials
 
 The following example is my personal use case for producing priming materials prior to immersing in them. My target language is Italian (`it`) and my native language is English(`en`). I have downloaded a json dictionary, word audio and an exclude list as described in [Getting dictionary, word audio and exclude lists](../getting_started/getting_resources.md).

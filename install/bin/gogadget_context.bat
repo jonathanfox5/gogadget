@@ -1,4 +1,9 @@
 @echo off
+
+@REM "Copyright: © 2024 Jonathan Fox"
+@REM "License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html"
+@REM "Full source code: https://github.com/jonathanfox5/gogadget"
+
 echo ~~~ To list all commands, type gogadget then press enter ~~~
 echo ~~~ Some useful commands ~~~
 echo 1. Get list of two letter language codes to use in the commands

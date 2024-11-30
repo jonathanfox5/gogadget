@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 ## Accessing settings
 
 The settings can be accessed with the following command. It will open the settings file in your default GUI text editor on macOS / Linux or in notepad / VSCode on Windows.

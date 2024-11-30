@@ -243,5 +243,6 @@ This program is free software: you can redistribute it and/or modify it under th
 
 All materials in this repository are covered by the aforementioned license, unless specifically noted below:
 
-- [gogadget/ytdlp_cli_to_api.py](https://github.com/jonathanfox5/gogadget/blob/main/gogadget/ytdlp_cli_to_api.py) has been directly reproduced from [yt-dlp's github page](https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py) ([license](https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE)) without modification.
+- [src/gogadget/ytdlp_cli_to_api.py](https://github.com/jonathanfox5/gogadget/blob/main/gogadget/ytdlp_cli_to_api.py) has been directly reproduced from [yt-dlp's github page](https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py) ([license](https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE)) without modification.
 - The Windows installer bundles the binaries for both [FFMPEG](https://ffmpeg.org) ([license](https://ffmpeg.org/legal.html)) and [uv](https://github.com/astral-sh/uv) ([license](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)).
+- The Bootstrap framework javascript and CSS files stored within [src/gogadget/resources/html](https://github.com/jonathanfox5/gogadget/tree/main/src/gogadget/resources/html) have been directly reproduced without modification ([license](https://github.com/twbs/bootstrap/blob/v5.3.3/LICENSE))

@@ -1,3 +1,8 @@
+__author__ = "Jonathan Fox"
+__copyright__ = "Copyright 2024, Jonathan Fox"
+__license__ = "GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html"
+__full_source_code__ = "https://github.com/jonathanfox5/gogadget"
+
 from .command_runner import program_exists
 
 
@@ -13,7 +18,10 @@ class HelpText:
     Error text is handled within individual functions"""
 
     # General info
-    license = "[blue bold link=https://https://github.com/jonathanfox5/gogadget]gogadget[/] is Copyright © 2024 Jonathan Fox. It is licensed under [blue bold link=https://www.gnu.org/licenses/agpl-3.0.html]AGPL-3.0[/]."
+    license = """[blue u link=https://https://github.com/jonathanfox5/gogadget]gogadget[/] is Copyright © 2024 Jonathan Fox. 
+It is licensed under [blue u link=https://www.gnu.org/licenses/agpl-3.0.html]AGPL-3.0-or-later[/]. 
+Full source code available at https://github.com/jonathanfox5/gogadget
+    """
 
     # Commands
     main = """

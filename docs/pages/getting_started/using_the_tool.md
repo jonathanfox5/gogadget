@@ -1,3 +1,7 @@
+<!-- Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget -->
+
 ## Understanding commands
 
 The intended behaviour is that the tool itself should guide the user on how to use it. If you type `gogadget` in a command prompt or terminal window, you will get:

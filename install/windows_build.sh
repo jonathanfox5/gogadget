@@ -3,7 +3,7 @@
 # Clear out any wheels and existing installers that we have
 rm -f dist/* && rm -f install/bin/*.whl
 
-# uv lock to check dependencies can be resolved
+# uv lock to create a record of the dependencies
 uv lock
 
 # Build new wheel and copy to bin folder

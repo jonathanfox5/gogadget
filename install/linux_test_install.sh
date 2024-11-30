@@ -20,4 +20,6 @@ if [ -z "$whl_file" ]; then
     exit 1
 fi
 
+# Python 3.10 is used due to certain dependencies having 
+# compatibility issues with linux ARM on newer versions
 uv tool install "$whl_file" --python 3.10
