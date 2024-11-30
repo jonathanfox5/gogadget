@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Report bugs and make feature requests
-    url: https://github.com/jonathanfox5/gogadget/issues
-    about: Please report security vulnerabilities here.
   - name: Discussions
     url: https://github.com/jonathanfox5/gogadget/discussions
-    about: Please ask and answer all other questions here.
+    about: Please ask all other questions and start other discussion topics here
