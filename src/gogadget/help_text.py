@@ -21,6 +21,11 @@ class HelpText:
     license = """[blue u link=https://https://github.com/jonathanfox5/gogadget]gogadget[/] is Copyright © 2024 Jonathan Fox. 
 It is licensed under [blue u link=https://www.gnu.org/licenses/agpl-3.0.html]AGPL-3.0-or-later[/]. 
 Full source code available at https://github.com/jonathanfox5/gogadget
+
+Some distributions of this tool directly integrate code or binaries from [blue u link=https://github.com/yt-dlp/yt-dlp/]yt-dlp[/] (unlicence), [blue u link=https://getbootstrap.com]bootstrap[/] (MIT), [blue u link=https://ffmpeg.org]ffmpeg[/] (LGPLv2), [blue u link=https://apps.ankiweb.net]Anki[/] (AGPLv3) and [blue u link=https://github.com/astral-sh/uv]uv[/] (MIT). These licenses are available in the gogadget installation directory inside the .whl file.
+
+There are many python dependencies and the individual LICENSE files should have automatically been installed with this program by your package manager.
+For convenience, an auto generated list of the licenses for each of the dependencies has been compiled here: https://gogadget.jfox.io/license_info/full_license_info/
     """
 
     # Commands

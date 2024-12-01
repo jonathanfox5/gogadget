@@ -61,19 +61,13 @@ You can therefore run the program as you wish, for any purpose, provided that yo
 
 Why free:
 
-1. I have greatly benefited from other pieces of free software such as the incredible [Anki](https://github.com/ankitects/anki). It therefore only feels right to give back in the same manner.
+1. I have greatly benefited from other pieces of free software such as the incredible [Anki](https://apps.ankiweb.net). It therefore only feels right to give back in the same manner.
 2. There are far too many pieces of software that try to lock you in, force subscriptions on you, steal your data, etc. I didn't want to create another one!
 3. I don't run any servers for the application so the only real cost is my time. Therefore, I don't need to charge.
 4. I hope that this can be a platform that others can build upon and therefore continue the cycle of creating high quality tools that anyone can use and tweak.
 
 ## Acknowledgements
 
-[gogadget](https://github.com/jonathanfox5/gogadget) is Copyright © 2024 Jonathan Fox.
+--8<-- "docs/pages/license_info/acknowledgements.md"
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-All materials in this repository are covered by the aforementioned license, unless specifically noted below:
-
-- [src/gogadget/ytdlp_cli_to_api.py](https://github.com/jonathanfox5/gogadget/blob/main/gogadget/ytdlp_cli_to_api.py) has been directly reproduced from [yt-dlp's github page](https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py) ([license](https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE)) without modification.
-- The Windows installer bundles the binaries for both [FFMPEG](https://ffmpeg.org) ([license](https://ffmpeg.org/legal.html)) and [uv](https://github.com/astral-sh/uv) ([license](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)).
-- The Bootstrap framework javascript and CSS files stored within [src/gogadget/resources/html](https://github.com/jonathanfox5/gogadget/tree/main/src/gogadget/resources/html) have been directly reproduced without modification ([license](https://github.com/twbs/bootstrap/blob/main/LICENSE))
+`LICENSE` files for each of the python dependencies will be included with the installation. For convenience, you can view an auto-generated table of each of the licenses and authors [here](license_info/full_license_info.md).
