@@ -29,6 +29,7 @@ nav:
       - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
       - Command reference: reference/command_reference.md
       - Default settings: reference/default_settings.md
+  - Getting Help: misc/getting_help.md
   - Reference: 
     - Command reference: reference/command_reference.md
     - Default settings: reference/default_settings.md

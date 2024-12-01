@@ -53,6 +53,19 @@ Click [here](https://www.youtube.com/watch?v=tb9PQAR_t3Q) to view the video on Y
 - It supports 19 [languages](getting_started/supported_languages.md) fully with partial support for many more.
 - Once you have installed the resources for your language, all modules apart from `gogadget download` are fully offline. This makes it useful for travelling or for processing personal conversations as there is no server involved.
 
+## Why is `gogadget` free?
+
+`gogadget` is [free software](https://www.gnu.org/philosophy/free-sw.html), both in terms of "free beer" and "free speech".
+
+You can therefore run the program as you wish, for any purpose, provided that you comply with the terms of the license ([AGPLv3-or-later](https://github.com/jonathanfox5/gogadget/blob/main/LICENSE)). This means that, theoretically, you could even modify it and distribute your own version (even though I would personally _**much**_ rather that you submit a [pull request](https://github.com/jonathanfox5/gogadget/pulls) to improve this version!) The main practical restriction of AGPLv3 is that you need to license your version under these same terms, including making your source code available to your users so that everyone can benefit from it.
+
+Why free:
+
+1. I have greatly benefited from other pieces of free software such as the incredible [Anki](https://github.com/ankitects/anki). It therefore only feels right to give back in the same manner.
+2. There are far too many pieces of software that try to lock you in, force subscriptions on you, steal your data, etc. I didn't want to create another one!
+3. I don't run any servers for the application so the only real cost is my time. Therefore, I don't need to charge.
+4. I hope that this can be a platform that others can build upon and therefore continue the cycle of creating high quality tools that anyone can use and tweak.
+
 ## Acknowledgements
 
 [gogadget](https://github.com/jonathanfox5/gogadget) is Copyright © 2024 Jonathan Fox.
@@ -63,4 +76,4 @@ All materials in this repository are covered by the aforementioned license, unle
 
 - [src/gogadget/ytdlp_cli_to_api.py](https://github.com/jonathanfox5/gogadget/blob/main/gogadget/ytdlp_cli_to_api.py) has been directly reproduced from [yt-dlp's github page](https://github.com/yt-dlp/yt-dlp/blob/master/devscripts/cli_to_api.py) ([license](https://raw.githubusercontent.com/yt-dlp/yt-dlp/refs/heads/master/LICENSE)) without modification.
 - The Windows installer bundles the binaries for both [FFMPEG](https://ffmpeg.org) ([license](https://ffmpeg.org/legal.html)) and [uv](https://github.com/astral-sh/uv) ([license](https://github.com/astral-sh/uv/blob/main/LICENSE-MIT)).
-- The Bootstrap framework javascript and CSS files stored within [src/gogadget/resources/html](https://github.com/jonathanfox5/gogadget/tree/main/src/gogadget/resources/html) have been directly reproduced without modification ([license](https://github.com/twbs/bootstrap/blob/v5.3.3/LICENSE))
+- The Bootstrap framework javascript and CSS files stored within [src/gogadget/resources/html](https://github.com/jonathanfox5/gogadget/tree/main/src/gogadget/resources/html) have been directly reproduced without modification ([license](https://github.com/twbs/bootstrap/blob/main/LICENSE))

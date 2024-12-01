@@ -80,7 +80,7 @@ Firstly, please note the package requirements at the top of this document. You c
 --8<-- "install/run_from_source_example.sh"
 ```
 
-### On clean install of Ubuntu Server 24.04 LTS
+### On a clean install of Ubuntu Server 24.04 LTS
 
 ```sh title="install/linux_test_install.sh"
 --8<-- "install/linux_test_install.sh"

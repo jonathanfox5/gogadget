@@ -8,3 +8,4 @@ Full source code: https://github.com/jonathanfox5/gogadget -->
 - An example use case of the tool (generating priming materials): [Example use case](../getting_started/example_use_case.md)
 - Full written documentation of every function in the tool is available here: [Command reference](../reference/command_reference.md)
 - Where to get dictionary and audio files to use in your Anki cards: [Getting resources](../getting_started/getting_resources.md)
+- How to get help: [Getting Help](../misc/getting_help.md)

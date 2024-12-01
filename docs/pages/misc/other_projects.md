@@ -18,6 +18,7 @@ You may also be interested in:
 
 **Other projects**
 
+- [Anki](https://apps.ankiweb.net): A powerful and customisable flashcard tool.
 - [Vocabsieve](https://github.com/FreeLanguageTools/vocabsieve/): A very useful sentence mining tool.
 - [asbplayer](https://chromewebstore.google.com/detail/asbplayer-language-learni/hkledmpjpaehamkiehglnbelcpdflcab?pli=1): A video player well suited for sentence mining and manipulating on screen subtitles within your browser.
 - [Lute](https://github.com/LuteOrg/lute-v3): An immersion learning tool, focused on written materials.
