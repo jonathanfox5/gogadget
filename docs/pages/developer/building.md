@@ -41,7 +41,9 @@ These commands are for Bash on Windows, you will need to convert them to whateve
 --8<-- "install/windows_build.sh"
 ```
 
-### Documentation
+## Documentation
+
+### mkdocs-material
 
 The documentation uses `mkdocs-material` and related plugins. It also uses `typer` to generate [the command reference page](../reference/command_reference.md). The required packages are installed by running:
 
@@ -59,6 +61,8 @@ uv run mkdocs serve -f docs/mkdocs.yml
 
     When running `mkdocs`, if you get an error message that references `cairo`, you will need need to follow [this guide](https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/#cairo-graphics) to set it up on your system.
 
+### Generating command reference page
+
 The command reference page can automatically be regenerated with:
 
 ```sh
@@ -69,6 +73,20 @@ uv run typer gogadget.main utils docs --name gogadget --output docs/pages/refere
 
     1. From the newly generated [the command reference page](../reference/command_reference.md), I delete the first bit of help text that is shown in the command line version when typing `gogadget`. This is for aesthetic purposes only!
     2. As per [GNU guidance](https://www.gnu.org/licenses/gpl-howto.html), copyright / license info is then added to top of file.
+
+### Generating list of python dependencies
+
+The list of licenses for python dependencies can be generated with the following. The documentation site automatically references the generated file.
+
+```sh
+uv sync
+source .venv/bin/activate
+pip-licenses --format=markdown --with-authors --no-version --with-urls --with-system --order=license --output-file=src/gogadget/3rd-party-licences/license_listing_for_python_dependencies.md
+```
+
+!!! note "File location"
+
+    `pip-licenses` doesn't have the functionality to output to a specific directory. Therefore, you will need to move it to `src/gogadget/3rd-party-licenses/` manually.
 
 ## Running from source
 
