@@ -24,15 +24,16 @@ nav:
       - Using the tool: getting_started/using_the_tool.md
       - Example commands: getting_started/example_commands.md
       - "Example use case: priming": getting_started/example_use_case.md
+      - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
     - Reference:
       - Supported languages: getting_started/supported_languages.md
-      - Getting dictionaries, word audio and exclude lists: getting_started/getting_resources.md
-      - Command reference: reference/command_reference.md
-      - Default settings: reference/default_settings.md
+      - Detailed command reference: reference/command_reference.md
+      - Settting defaults in the configuration file: reference/default_settings.md
   - Getting Help: misc/getting_help.md
   - Reference: 
-    - Detailed Command reference: reference/command_reference.md
-    - Default settings: reference/default_settings.md
+    - Detailed command reference: reference/command_reference.md
+    - Settting defaults in the configuration file: reference/default_settings.md
+    - Supported languages: getting_started/supported_languages.md
     - Full listing of licenses: license_info/full_license_info.md
   - Developer:
     - Building: developer/building.md
