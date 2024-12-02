@@ -441,16 +441,6 @@ def frequency_analysis(
     )
 
 
-# @app.command(
-#     no_args_is_help=True,
-#     help=HelpText.interactive_transcript,
-#     rich_help_panel="Primary Functions",
-#     epilog=ffmpeg_warning(),
-# )
-# def interactive_transcript():
-#     return
-
-
 @app.command(
     no_args_is_help=True,
     rich_help_panel="Primary Functions",
@@ -605,15 +595,16 @@ def install(
         "Some transcriber functions may appear to freeze for a few minutes if you haven't run them before!"
     )
     CliUtils.print_status("Transcriber: Checking CUDA status")
-    transcriber = import_module(".transcriber", APP_NAME)
+    utils = import_module(".utils", APP_NAME)
 
-    cuda = transcriber.cuda_available()
+    cuda = utils.is_cuda_available()
     if cuda:
         CliUtils.print_rich("CUDA enabled, can use GPU processing")
     else:
         CliUtils.print_rich("CUDA disabled, using CPU processing")
 
     CliUtils.print_status("Transcriber: Initialising models")
+    transcriber = import_module(".transcriber", APP_NAME)
     dummy_transcribe_file = get_resources_directory() / "a.mp3"
     transcriber.transcriber(
         input_path=dummy_transcribe_file,

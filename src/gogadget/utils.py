@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 from .cli_utils import CliUtils
+from .command_runner import get_platform, program_exists
 
 
 def get_cpu_cores(minus_one: bool = False):
@@ -173,3 +174,46 @@ def sanitise_string_html(input_string: str) -> str:
         return output_string
     else:
         return ""
+
+
+def is_cuda_available() -> bool:
+    """Check if the current system supports CUDA
+    Do a command line check first to avoid the loading times of torch"""
+
+    cli_available = check_cuda_cli_tools()
+
+    if not cli_available:
+        return False
+
+    cuda_available = check_cuda_torch()
+
+    if not cuda_available:
+        CliUtils.print_rich(
+            "CUDA not available, could not initialise using torch. If you are trying to use CUDA, do you have the CUDA specific version of torch installed?"
+        )
+
+    return cuda_available
+
+
+def check_cuda_cli_tools() -> bool:
+    """Check if the current system supports CUDA by testing for cli tools installed"""
+
+    # Macos should always return false
+    current_platform = get_platform()
+    if current_platform == "Darwin":
+        CliUtils.print_rich("CUDA not available, running on macOS")
+        return False
+
+    nvidia_smi = program_exists("nvidia-smi")
+
+    if not nvidia_smi:
+        CliUtils.print_rich("CUDA not available, nvidia-smi not found")
+
+    return nvidia_smi
+
+
+def check_cuda_torch() -> bool:
+    """Check if the current system supports CUDA using torch"""
+    from torch.cuda import is_available as is_cuda_available
+
+    return is_cuda_available()
