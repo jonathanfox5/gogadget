@@ -21,13 +21,7 @@ Full source code: https://github.com/jonathanfox5/gogadget -->
 
 ## Video tutorial
 
-Coming in a few days...
-
-<!-- <div class = "iframe-responsive-container">
-<iframe class = "iframe-responsive-content" src="https://www.youtube.com/embed/tb9PQAR_t3Q" frameBorder="0"></iframe>
-</div>
-
-Click [here](https://www.youtube.com/watch?v=tb9PQAR_t3Q) to view the video on YouTube if it does not load above. -->
+--8<-- "docs/pages/getting_started/video_tutorial.md"
 
 ## Useful links
 
@@ -35,6 +29,7 @@ Click [here](https://www.youtube.com/watch?v=tb9PQAR_t3Q) to view the video on Y
 - [Example commands](getting_started/example_commands.md)
 - [Detailed command reference](reference/command_reference.md)
 - [Video tutorial](getting_started/video_tutorial.md)
+- [Getting help with problems](misc/getting_help.md)
 
 ## Key features
 

@@ -23,6 +23,7 @@ Full documentation is available in the [manual](https://gogadget.jfox.io/). If y
 - **[Example commands](https://gogadget.jfox.io/getting_started/example_commands/)**: Simple examples of the most common commands.
 - **[Detailed command reference](https://gogadget.jfox.io/reference/command_reference/)**: Every command listed with all possible parameters and examples. Warning - could be overwhelming!
 - **[Video tutorial](https://gogadget.jfox.io/getting_started/video_tutorial/)**: A video tutorial covering the installation of the tool and an overview of its functions.
+- **[Getting help with problems](https://gogadget.jfox.io/misc/getting_help)**: How to get help with problems if you can't find the answer in the [manual](https://gogadget.jfox.io/).
 
 ## Video tutorial
 
