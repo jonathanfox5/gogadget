@@ -12,7 +12,7 @@ from whisperx_numpy2_compatibility.utils import get_writer as get_whisperx_write
 
 from .cli_utils import CliUtils
 from .config import SUPPORTED_AUDIO_EXTS, SUPPORTED_VIDEO_EXTS
-from .utils import get_cpu_cores, list_files_with_extension
+from .utils import get_cpu_cores, is_cuda_available, list_files_with_extension
 
 
 def transcriber(
@@ -53,7 +53,7 @@ def transcriber(
     compute_type = "int8"
     device = "cpu"
     if use_gpu:
-        if cuda_available():
+        if is_cuda_available():
             device = "cuda"
             compute_type = "float16"
         else:
@@ -296,17 +296,10 @@ def reclaim_memory_gpu():
     from torch.cuda import empty_cache as empty_cuda_cache
 
     gc.collect()
-    if cuda_available():
+    if is_cuda_available():
         empty_cuda_cache()
 
 
 def reclaim_memory_cpu():
     """Force clear model from memory"""
     gc.collect()
-
-
-def cuda_available() -> bool:
-    """Check if the current system supports CUDA"""
-    from torch.cuda import is_available as is_cuda_available
-
-    return is_cuda_available()
