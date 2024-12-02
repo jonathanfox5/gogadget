@@ -50,7 +50,7 @@ Full source code: https://github.com/jonathanfox5/gogadget -->
 
 ## Why is `gogadget` free?
 
-`gogadget` is [free software](https://www.gnu.org/philosophy/free-sw.html), both in terms of "free beer" and "free speech".
+`gogadget` is [free software](https://www.gnu.org/philosophy/free-sw.html), both in terms of "free beer" and "freedom".
 
 You can therefore run the program as you wish, for any purpose, provided that you comply with the terms of the license ([AGPLv3-or-later](https://github.com/jonathanfox5/gogadget/blob/main/LICENSE)). This means that, theoretically, you could even modify it and distribute your own version (even though I would personally _**much**_ rather that you submit a [pull request](https://github.com/jonathanfox5/gogadget/pulls) to improve this version!) The main practical restriction of AGPLv3 is that you need to license your version under these same terms, including making your source code available to your users so that everyone can benefit from it.
 
