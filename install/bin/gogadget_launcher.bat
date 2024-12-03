@@ -32,4 +32,4 @@ echo      gogadget set-defaults
 echo      etc.
 echo.
 
-powershell.exe -noexit -command "cd ~/Documents"
+powershell.exe -noexit -command "cd ~/Desktop"
