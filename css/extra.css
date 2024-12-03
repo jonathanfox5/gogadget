@@ -1,0 +1,38 @@
+/* Copyright: © 2024 Jonathan Fox
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+Full source code: https://github.com/jonathanfox5/gogadget 
+*/
+
+.md-nav--secondary {
+  border-left: 0.05rem solid #777 !important;
+}
+
+.md-nav__link--active {
+  font-weight: bold !important;
+  color: #ddd !important;
+}
+
+.md-tabs__item--active {
+  font-weight: bold !important;
+}
+
+.md-header__topic {
+  display: none !important;
+}
+
+.iframe-responsive-container {
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.iframe-responsive-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
