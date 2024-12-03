@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Report an error or unexpected behaviour
-title: ''
+title: 'Bug: '
 labels: bug
 assignees: jonathanfox5
 
