@@ -1,6 +1,6 @@
 @echo off
 
-echo Copyright: © 2024 Jonathan Fox
+echo Copyright: 2024 Jonathan Fox
 echo License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 echo Full source code: https://github.com/jonathanfox5/gogadget
 echo.
