@@ -1,7 +1,7 @@
 <h3 align="center">
    <a href="https://gogadget.jfox.io"><img src="https://gogadget.jfox.io/img/header_black.svg" alt="gogadget" /></a>
    <p>
-   Language Learning Toolkit
+   Free Language Learning Toolkit
    </p>
    <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
    <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
