@@ -5,7 +5,7 @@ Full source code: https://github.com/jonathanfox5/gogadget -->
 <h1 align="center">
   <a href="https://gogadget.jfox.io"><img src="img/header.svg" alt="gogadget" style="max-width: 1000px; width: 90%; height: auto" /></a>
   <br>
-  Language Learning Toolkit
+  Free Language Learning Toolkit
   <br>
   <a href="https://github.com/jonathanfox5/gogadget/releases"><img src="https://img.shields.io/github/v/tag/jonathanfox5/gogadget?label=download&color=blue" alt="Download" /></a>
   <a href="https://gogadget.jfox.io"><img src="https://img.shields.io/badge/view-documentation-brightgreen" alt="Documentation" /></a>
@@ -14,7 +14,7 @@ Full source code: https://github.com/jonathanfox5/gogadget -->
 
 ## Overview
 
-`gogadget` is a toolkit for producing immersion and priming materials for language learning.
+`gogadget` is a free toolkit for producing immersion and priming materials for language learning.
 
 - It tries to solve the problem that many of the most powerful tools available are hard to install, difficult to use or require lots of effort to configure for optimal results.
 - It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions.
