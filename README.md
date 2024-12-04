@@ -27,7 +27,7 @@ Full documentation is available in the [manual](https://gogadget.jfox.io/). If y
 
 ## Video tutorial
 
-Click on the image below to view a tutorial covering the installation of the tool and the use of its key functions. Alternatively, click [here](https://gogadget.jfox.io/) to read the manual.
+Click on the image below to view a video tutorial covering the installation of the tool and the use of its key functions. Alternatively, click [here](https://gogadget.jfox.io/) to read the manual.
 
 [![Youtube Tutorial](https://img.youtube.com/vi/xV4T6LT-_mc/maxresdefault.jpg)](https://www.youtube.com/watch?v=xV4T6LT-_mc)
 
