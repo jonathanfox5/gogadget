@@ -6,9 +6,9 @@ __full_source_code__ = "https://github.com/jonathanfox5/gogadget"
 import gc
 from pathlib import Path
 
-import whisperx_numpy2_compatibility as whisperx
-from whisperx_numpy2_compatibility.SubtitlesProcessor import SubtitlesProcessor
-from whisperx_numpy2_compatibility.utils import get_writer as get_whisperx_writer
+import whisperjf as whisperx
+from whisperjf.SubtitlesProcessor import SubtitlesProcessor
+from whisperjf.utils import get_writer as get_whisperx_writer
 
 from .cli_utils import CliUtils
 from .config import SUPPORTED_AUDIO_EXTS, SUPPORTED_VIDEO_EXTS

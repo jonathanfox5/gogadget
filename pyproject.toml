@@ -4,7 +4,7 @@
 
 [project]
 name = "gogadget"
-version = "0.3.1"
+version = "0.3.2"
 description = "gogadget is a toolkit for producing immersion and priming materials for language learning. It is capable of downloading audio and video files, automatically transcribing subtitles from videos and podcasts, and automatically producing filtered Anki decks with sentence audio / translations / screenshots / definitions."
 authors = [
     {name = "Jonathan Fox"},
@@ -25,20 +25,19 @@ dependencies = [
 
     # Direct dependencies that we always want the latest version of, regardless of major version
     # yt-dlp - We always want latest due to yt api periodically changing, therefore no upper limit
-    "yt-dlp>=2024.11.18", 
+    "yt-dlp>=2025.1.26", 
 
     # Packages missing as requirements from other packages
     "pip",  # argos assumes that this is available when managing models, doesn't automatically get added with uv
 
     # These are effectively pins, they are my own builds made for compatibility reasons
     "argos-spacy-compatibility<1.0.0,>=0.1.0",
-    "whisperx-numpy2-compatibility<1.0.0,>=0.1.1",
+    "whisperjf<1.0.0,>=0.1.0",
 
     # The following have all been added due to compatibility issues in some configurations
     "torch==2.5.1", # cpu version, the installers deal with adding CUDA
     "torchaudio==2.5.1", # cpu version, the installers deal with adding CUDA
     "spacy==3.7.5", # 3.8 has a Windows memory bug
-    "faster-whisper==1.0.3", # breaking changes in 1.1.0
     "transformers==4.46.3", # fixes transcriber models not initialising
     "ctranslate2==4.5.0", # pinning due to being very finicky depending on version
     "pyannote-core==5.0.0", # Many version incompatibilities
