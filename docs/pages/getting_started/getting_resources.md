@@ -19,7 +19,7 @@ Although this is more tricky for you (as the user) to set up, I believe that the
 
 These files are used by `gogadget anki-deck` and they are specified the following arguments:
 
-- `--dictionary` This should be a dictionary in `json` format. [Vocabsieve's documentation](https://docs.freelanguagetools.org/resources.html) is an excellent resource for finding one in your target language. The Migaku and Wiktionary ones are both very good if you want a bilingual dictionary. If the dictionary that you want isn't available in `json` format, [converters are available](https://duckduckgo.com/?q=stardict+to+json+converter).
+- `--dictionary` This should be a dictionary in `json` format. [Vocabsieve's documentation](https://docs.freelanguagetools.org/resources.html) is an excellent resource for finding one in your target language. The Migaku ones are currently tested as working. Others which don't follow Migaku's format won't work, [although this is currently being worked on](https://github.com/jonathanfox5/gogadget/issues/12).
 - `--word-audio` This is should be a directory of `mp3` files with native pronunciations of individual words. [Vocabsieve's documentation](https://docs.freelanguagetools.org/resources.html) is, again, an excellent resource for these. I use both the Forvo and Lingua Libre ones that are linked in the Vocabsieve docs. The use of `mp3` (rather than any other audio format) is enforced by the tool due to compatibility issues with certain versions of Anki.
 
 ??? note "Tips for batch converting files"
