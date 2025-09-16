@@ -111,7 +111,7 @@ Installation instructions for Linux:
     You can **THEN** run:
 
     ```sh
-    uv tool install gogadget --python 3.10 --with 'torch==2.5.1+cu124' --with 'torchaudio==2.5.1+cu124' --index 'https://download.pytorch.org/whl/cu124'
+    uv tool install gogadget --python 3.10 --with 'torch==2.8.0+cu129' --with 'torchaudio==2.8.0+cu129' --index 'https://download.pytorch.org/whl/cu129'
     ```
 
     Note that **BOTH** commands are required, in this order!
@@ -159,7 +159,7 @@ You should ignore this section if you are using the installation instructions fo
 Notes on Python version:
 
 - The tool is currently compatible with Python `3.10`, `3.11` and `3.12`. On some platforms, some dependencies have issues when you build them on newer python versions so its generally safest to install `3.10`.
-- `3.13` is **not** supported as the dependencies `ctranslate2` and `torch` do not currently provide compatible packages.
+- `3.13` is **not** supported as the versions used of the dependencies `ctranslate2` and `torch` do not currently provide compatible packages.
 - If you manually install gogadget and you get errors about either of these packages, a Python version issue is probably the cause.
 
 You may get some ideas for custom installations from my [script](https://github.com/jonathanfox5/gogadget/blob/main/install/linux_test_install.sh) that I use to test on clean installs of linux.

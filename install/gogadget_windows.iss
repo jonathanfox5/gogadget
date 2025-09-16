@@ -3,12 +3,12 @@
 ; Full source code: https://github.com/jonathanfox5/gogadget
 
 #define MyAppName "gogadget"
-#define MyAppVersion "0.3.2"
+#define MyAppVersion "0.3.3"
 #define MyAppPublisher "Jonathan Fox"
 #define MyAppURL "https://github.com/jonathanfox5/gogadget"
 #define BaseLaunchBat "gogadget_launcher.bat"
 #define ContextLaunchBat "gogadget_context.bat"
-#define WheelName "gogadget-0.3.2-py3-none-any.whl"
+#define WheelName "gogadget-0.3.3-py3-none-any.whl"
 
 [Setup]
 AppId={{04CF6C0E-59E0-4038-BB70-311BBABA4483}
@@ -63,7 +63,7 @@ Source: "bin\uv*.exe"; DestDir: "{%USERPROFILE}\.local\bin"; Flags: uninsneverun
 [Run]
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12";
 Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool update-shell"; Flags: runhidden
-Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12 --with torch==2.5.1+cu124 --with torchaudio==2.5.1+cu124 --index https://download.pytorch.org/whl/cu124"; Components: cuda
+Filename: "{%USERPROFILE}\.local\bin\uv.exe"; Parameters: "tool install {app}\{#WheelName} --python 3.12 --with torch==2.8.0+cu129 --with torchaudio==2.8.0+cu129 --index https://download.pytorch.org/whl/cu129"; Components: cuda
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#BaseLaunchBat}"; IconFilename: "{app}\{#MyAppName}.ico"
